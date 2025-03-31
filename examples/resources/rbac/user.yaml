@@ -1,0 +1,11 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: User
+metadata:
+  name: demo-cp-user
+spec:
+  providerConfigRef:
+    name: tenant
+  forProvider:
+    email: demo-cp-user@spectrocloud.com
+    firstName: demo-cp-user
+    lastName: demo-cp-user

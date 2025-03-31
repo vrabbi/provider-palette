@@ -1,0 +1,10 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: Macros
+metadata:
+  name: project-macro
+spec:
+  forProvider:
+    macros:
+      project-macro-1: val1
+      project-macro-2: val2
+    project: Default

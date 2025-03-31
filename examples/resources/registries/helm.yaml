@@ -1,0 +1,13 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: HelmRegistry
+metadata:
+  name: demo-cp-hashicorp-helm-charts
+spec:
+  providerConfigRef:
+    name: tenant
+  forProvider:
+    credentials:
+    - credentialType: noAuth
+    endpoint: https://helm.releases.hashicorp.com
+    isPrivate: false
+    name: demo-cp-hashicorp

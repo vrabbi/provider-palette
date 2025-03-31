@@ -1,0 +1,26 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: VSphereCloudAccount
+metadata:
+  name: demo-cp-vsphere-cloudaccount
+spec:
+  providerConfigRef:
+    name: saas-tenant
+  forProvider:
+    context: tenant
+    name: vsphere-demo
+    privateCloudGatewayId: "65fc061d96c13cd453bc7679"
+    vsphereIgnoreInsecureError: true
+    vspherePasswordSecretRef:
+      key: password
+      name: demo-cp-vsphere-creds
+      namespace: crossplane-system
+    vsphereUsername: administrator@vsphere.local
+    vsphereVcenter: demo-vc-01.terasky.demo
+#! ---
+#! apiVersion: v1
+#! kind: Secret
+#! metadata:
+#!   name: demo-cp-vsphere-creds
+#!   namespace: crossplane-system
+#! stringData:
+#!   password: "FILL ME IN"

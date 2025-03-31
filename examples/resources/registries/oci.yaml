@@ -1,0 +1,14 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: OCIRegistry
+metadata:
+  name: demo-cp-bitnami-oci-registry
+spec:
+  providerConfigRef:
+    name: tenant
+  forProvider:
+    credentials:
+    - credentialType: basic
+    endpoint: registry-1.docker.io/bitnamicharts
+    isPrivate: false
+    name: demo-cp-bitnami-oci
+    type: basic

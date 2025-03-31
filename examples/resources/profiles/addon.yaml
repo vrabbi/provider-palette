@@ -1,0 +1,145 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: ClusterProfile
+metadata:
+  name: demo-cp-adons
+spec:
+  providerConfigRef:
+    name: tenant
+  forProvider:
+    cloud: all
+    description: A basic add-on profile for all clouds
+    name: demo-cp-adons
+    pack:
+    - name: reloader
+      tag: "1.3.0"
+      type: oci
+      uid: 67d6183c314f7612018865dd
+      values: |
+        pack:
+          content:
+            images:
+              - image: us-docker.pkg.dev/palette-images/packs/reloader/1.3.0/reloader:v1.3.0
+            charts:
+              - repo: https://stakater.github.io/stakater-charts
+                name: reloader
+                version: 1.3.0
+          namespace: "reloader"
+          spectrocloud.com/install-priority: 0
+        charts:
+          reloader:
+            global:
+              imageRegistry: ""
+              imagePullSecrets: []
+            kubernetes:
+              host: https://kubernetes.default
+            nameOverride: ""
+            fullnameOverride: ""
+            reloader:
+              autoReloadAll: false
+              isArgoRollouts: false
+              isOpenshift: false
+              ignoreSecrets: false
+              ignoreConfigMaps: false
+              reloadOnCreate: false
+              reloadOnDelete: false
+              syncAfterRestart: false
+              reloadStrategy: default
+              ignoreNamespaces: ""
+              namespaceSelector: ""
+              resourceLabelSelector: ""
+              logFormat: ""
+              logLevel: info 
+              watchGlobally: true
+              enableHA: false
+              readOnlyRootFileSystem: false
+              legacy:
+                rbac: false
+              matchLabels: {}
+              enableMetricsByNamespace: false
+              deployment:
+                replicas: 1
+                revisionHistoryLimit: 2
+                nodeSelector: # cloud.google.com/gke-nodepool: default-pool
+                affinity: {}
+                securityContext:
+                  runAsNonRoot: true
+                  runAsUser: 65534
+                  seccompProfile:
+                    type: RuntimeDefault
+                containerSecurityContext: {}
+                tolerations: []
+                topologySpreadConstraints: []
+                annotations: {}
+                labels:
+                  provider: stakater
+                  group: com.stakater.platform
+                  version: v1.3.0
+                image:
+                  name: us-docker.pkg.dev/palette-images/packs/reloader/1.3.0/reloader
+                  base: palette-images/packs/reloader/1.3.0/reloader
+                  tag: v1.3.0
+                  pullPolicy: IfNotPresent
+                env:
+                  open:
+                  secret:
+                  field:
+                  existing:
+                livenessProbe: {}
+                readinessProbe: {}
+                resources: {}
+                pod:
+                  annotations: {}
+                priorityClassName: ""
+                gomaxprocsOverride: ""
+                gomemlimitOverride: ""
+              service: {}
+              rbac:
+                enabled: true
+                labels: {}
+              serviceAccount:
+                create: true
+                labels: {}
+                annotations: {}
+                name:
+              custom_annotations: {}
+              serviceMonitor:
+                enabled: false
+                labels: {}
+                annotations: {}
+                honorLabels: true
+                metricRelabelings: []
+                relabelings: []
+                targetLabels: []
+              podMonitor:
+                enabled: false
+                labels: {}
+                annotations: {}
+                honorLabels: true
+                metricRelabelings: []
+                relabelings: []
+                podTargetLabels: []
+              podDisruptionBudget:
+                enabled: false
+              netpol:
+                enabled: false
+                from: []
+                to: []
+              verticalPodAutoscaler:
+                enabled: false
+                controlledResources: []
+                maxAllowed: {}
+                minAllowed: {}
+                updatePolicy:
+                  updateMode: Auto
+              volumeMounts: []
+              volumes: []
+              webhookUrl: ""
+    - name: apache
+      type: helm
+      tag: "11.3.5"
+      values: |
+        pack:
+          namespace: "apache"
+      uid: "67e5e69a004c467e2a48625f"
+    type: add-on
+    version: 1.0.0

@@ -1,0 +1,36 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: Project
+metadata:
+  name: demo-cp-project
+spec:
+  providerConfigRef:
+    name: tenant
+  forProvider:
+    name: demo-cp
+---
+apiVersion: palette.crossplane.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: demo-cp
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      name: spectrocloud-demo-cp-creds
+      namespace: crossplane-system
+      key: credentials
+#! ---
+#! apiVersion: v1
+#! kind: Secret
+#! metadata:
+#!   name: spectrocloud-demo-cp-creds
+#!   namespace: crossplane-system
+#! type: Opaque
+#! stringData:
+#!   credentials: |
+#!     {
+#!       "api_key": "FILL ME IN",
+#!       "host": "FILL ME IN",
+#!       "ignore_insecure_tls_error": "true",
+#!       "project_name": "demo-cp"
+#!     }

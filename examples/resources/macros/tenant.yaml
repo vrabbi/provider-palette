@@ -1,0 +1,9 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: Macros
+metadata:
+  name: tenant-macro
+spec:
+  forProvider:
+    macros:
+      tenant-macro-1: val1
+      tenant-macro-2: val2

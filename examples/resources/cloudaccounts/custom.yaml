@@ -1,0 +1,28 @@
+#! apiVersion: v1
+#! kind: Secret
+#! metadata:
+#!   name: demo-cp-vultr-creds
+#!   namespace: crossplane-system
+#! type: Opaque
+#! stringData:
+#!   VULTR_API_KEY: "FILL ME IN"
+#! ---
+apiVersion: palette.crossplane.io/v1alpha1
+kind: CustomCloudAccount
+metadata:
+  name: demo-cp-vultr
+spec:
+  providerConfigRef:
+    name: tenant
+  forProvider:
+    cloud: vultr
+    context: tenant
+    credentialsSecretRef:
+      name: demo-cp-vultr-creds
+      namespace: crossplane-system
+    name: demo-cp-vultr
+    privateCloudGatewayId: "67d6c9822bf7e75b9eb0309c"
+  initProvider:
+    credentialsSecretRef:
+      name: demo-cp-vultr-creds
+      namespace: crossplane-system

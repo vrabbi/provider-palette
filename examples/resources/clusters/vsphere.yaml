@@ -1,0 +1,58 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: VSphereCluster
+metadata:
+  name: demo-cp-01
+spec:
+  providerConfigRef:
+    name: tenant
+  forProvider:
+    cloudAccountId: 67b2152f451c8cee3c4c339b
+    context: tenant
+    name: demo-cp-01
+    osPatchOnBoot: false
+    skipCompletion: false
+    cloudConfig:
+      - datacenter: Demo-Datacenter
+        folder: LABS/Scott/spc-test-cp
+        imageTemplateFolder: spectro-templates
+        ntpServers: 
+          - 10.100.100.100
+        sshKeys:
+          - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDMbprNuzofXBf7L41MPcVMrEb0xQgw9AaSDBvRowrHr/BNCTEm05v0CnTEmEnEP8WgG963SoiIIFQ2EsHC+Tyt4oROTMPDMe7L8KmhzfDqvneUVj8ax86FdT0sVPdl+s/pWAmAa6SB8m8BFJZBpTpw1MXQH+cfwZJoOk5QGcj0Xi8vDQJucngDKwvKhCQ7sWdLTFgohmpJS7GFOe0ea4/78aEsb1Ulj4MfET2t8LkZBngHDad8jkyok8tXg5zsIptqt9kqQDcl48u1MOw5CUfnaK6TN0dOT2km46IWPWaPQCRmMoLVwcNkOzOlS7Bb0n8wfdTtx13BFuVt9a0LYaysT//6lVOlotNTOOKASGazGzM+zLPlIOTrG7OHw8StsG65LHZbp2r3kmi2IgImHuuhd4lCyeTlWR2ik+2SWmNM06jwYijjPoDijuDj7m+5OSW0SrllJHVWyp4Qe9/zBXEMSiRytd2PI6F/qy2MOfeKupvt1hwKdQmOJA/s314aESs= vrabbi@DESKTOP-OLSRC3G
+        staticIp: true
+    clusterProfile:
+      - id: 67b307fb229d50dfccede577
+        variables: {}
+      - id: 67b5fd9492b1f576a2f5998b
+        variables: {}
+      - id: 67b21f60229d50d012f6afde
+        variables: {}
+    machinePool:
+      - controlPlane: false
+        controlPlaneAsWorker: false
+        count: 4
+        name: worker-pool
+        instanceType:
+          - cpu: 8
+            diskSizeGb: 60
+            memoryMb: 16384
+        placement:
+          - cluster: Demo-Cluster
+            datastore: vsanDatastore
+            network: /infra/segments/scott-palette
+            resourcePool: ""
+            staticIpPoolId: 67b2f84c78ce85bbca748d6b
+      - controlPlane: true
+        controlPlaneAsWorker: false
+        count: 1
+        name: control-plane-pool
+        instanceType:
+          - cpu: 8
+            diskSizeGb: 60
+            memoryMb: 16384
+        placement:
+          - cluster: Demo-Cluster
+            datastore: vsanDatastore
+            network: /infra/segments/scott-palette
+            resourcePool: ""
+            staticIpPoolId: 67b2f84c78ce85bbca748d6b

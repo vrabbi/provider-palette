@@ -3,4 +3,4 @@ kind: Provider
 metadata:
   name: provider-palette
 spec:
-  package: vrabbi/provider-palette:v0.1.0
+  package: ghcr.io/vrabbi/provider-palette:v0.0.1

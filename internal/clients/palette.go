@@ -75,10 +75,9 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		ps.Configuration = map[string]interface{}{
 			keyAPIEndpoint: creds[keyAPIEndpoint],
 			keyAPIKey:      creds[keyAPIKey],
-			keyProjectName: creds[keyProjectName],
 		}
 
-		for _, k := range []string{keyInsecure, keyRetries, keyTrace} {
+		for _, k := range []string{keyInsecure, keyRetries, keyTrace, keyProjectName} {
 			if v, ok := creds[k]; ok {
 				ps.Configuration[k] = v
 			}

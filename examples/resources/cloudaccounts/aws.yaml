@@ -1,0 +1,24 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: AWSCloudAccount
+metadata:
+  name: demo-cp-aws-01
+spec:
+  providerConfigRef:
+    name: tenant
+  forProvider:
+    context: tenant
+    awsAccessKey: "FILL ME IN"
+    awsSecretKeySecretRef:
+      key: password
+      name: demo-cp-aws-01-creds
+      namespace: crossplane-system
+    name: demo-cp-aws-01
+#! ---
+#! apiVersion: v1
+#! kind: Secret
+#! metadata:
+#!   name: demo-cp-aws-01-creds
+#!   namespace: crossplane-system
+#! type: Opaque
+#! stringData:
+#!   password: "FILL ME IN"
