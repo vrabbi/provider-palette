@@ -9,8 +9,11 @@ import "github.com/crossplane/upjet/pkg/config"
 // ExternalNameConfigs contains all external name configurations for this
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
-	// Import requires using a randomly generated ID from provider: nl-2e21sda
-	"null_resource": config.IdentifierFromProvider,
+	"spectrocloud_project":       config.IdentifierFromProvider,
+	"spectrocloud_ssh_key":       config.IdentifierFromProvider,
+	"spectrocloud_registry_helm": config.IdentifierFromProvider,
+	"spectrocloud_user":          config.IdentifierFromProvider,
+	"spectrocloud_team":          config.IdentifierFromProvider,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the
