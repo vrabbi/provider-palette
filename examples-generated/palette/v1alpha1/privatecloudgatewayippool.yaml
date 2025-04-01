@@ -1,0 +1,20 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: PrivateCloudGatewayIPPool
+metadata:
+  annotations:
+    meta.upbound.io/example-id: palette/v1alpha1/privatecloudgatewayippool
+  labels:
+    testing.upbound.io/example-name: ippool
+  name: ippool
+spec:
+  forProvider:
+    gateway: 192.168.1.1
+    ipEndRange: 192.168.1.100
+    ipStartRange: 192.168.1.10
+    name: primary-compute-pool-1
+    nameserverAddresses:
+    - 192.168.1.8
+    networkType: range
+    prefix: "24"
+    privateCloudGatewayId: ${data.spectrocloud_private_cloud_gateway.pcg.id}
+    restrictToSingleCluster: true

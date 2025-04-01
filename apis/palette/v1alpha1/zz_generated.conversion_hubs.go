@@ -37,6 +37,12 @@ func (tr *OCIRegistry) Hub() {}
 func (tr *PlatformSetting) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *PrivateCloudGatewayDNSMap) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *PrivateCloudGatewayIPPool) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *Project) Hub() {}
 
 // Hub marks this type as a conversion hub.

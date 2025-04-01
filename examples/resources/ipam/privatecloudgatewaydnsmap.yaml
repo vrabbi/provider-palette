@@ -1,0 +1,12 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: PrivateCloudGatewayDNSMap
+metadata:
+  name: demo-cp-pcg-dns-map-01
+spec:
+  providerConfigRef:
+    name: saas-tenant
+  forProvider:
+    dataCenter: Demo-Datacenter
+    network: 	/infra/segments/Demo-Aviv
+    privateCloudGatewayId: 65fc061d96c13cd453bc7679
+    searchDomainName: test1.spectro.com

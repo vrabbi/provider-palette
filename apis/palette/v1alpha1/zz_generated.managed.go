@@ -608,6 +608,126 @@ func (mg *PlatformSetting) SetWriteConnectionSecretToReference(r *xpv1.SecretRef
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
+// GetCondition of this PrivateCloudGatewayDNSMap.
+func (mg *PrivateCloudGatewayDNSMap) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetDeletionPolicy of this PrivateCloudGatewayDNSMap.
+func (mg *PrivateCloudGatewayDNSMap) GetDeletionPolicy() xpv1.DeletionPolicy {
+	return mg.Spec.DeletionPolicy
+}
+
+// GetManagementPolicies of this PrivateCloudGatewayDNSMap.
+func (mg *PrivateCloudGatewayDNSMap) GetManagementPolicies() xpv1.ManagementPolicies {
+	return mg.Spec.ManagementPolicies
+}
+
+// GetProviderConfigReference of this PrivateCloudGatewayDNSMap.
+func (mg *PrivateCloudGatewayDNSMap) GetProviderConfigReference() *xpv1.Reference {
+	return mg.Spec.ProviderConfigReference
+}
+
+// GetPublishConnectionDetailsTo of this PrivateCloudGatewayDNSMap.
+func (mg *PrivateCloudGatewayDNSMap) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+	return mg.Spec.PublishConnectionDetailsTo
+}
+
+// GetWriteConnectionSecretToReference of this PrivateCloudGatewayDNSMap.
+func (mg *PrivateCloudGatewayDNSMap) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this PrivateCloudGatewayDNSMap.
+func (mg *PrivateCloudGatewayDNSMap) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetDeletionPolicy of this PrivateCloudGatewayDNSMap.
+func (mg *PrivateCloudGatewayDNSMap) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+	mg.Spec.DeletionPolicy = r
+}
+
+// SetManagementPolicies of this PrivateCloudGatewayDNSMap.
+func (mg *PrivateCloudGatewayDNSMap) SetManagementPolicies(r xpv1.ManagementPolicies) {
+	mg.Spec.ManagementPolicies = r
+}
+
+// SetProviderConfigReference of this PrivateCloudGatewayDNSMap.
+func (mg *PrivateCloudGatewayDNSMap) SetProviderConfigReference(r *xpv1.Reference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+// SetPublishConnectionDetailsTo of this PrivateCloudGatewayDNSMap.
+func (mg *PrivateCloudGatewayDNSMap) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+	mg.Spec.PublishConnectionDetailsTo = r
+}
+
+// SetWriteConnectionSecretToReference of this PrivateCloudGatewayDNSMap.
+func (mg *PrivateCloudGatewayDNSMap) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}
+
+// GetCondition of this PrivateCloudGatewayIPPool.
+func (mg *PrivateCloudGatewayIPPool) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetDeletionPolicy of this PrivateCloudGatewayIPPool.
+func (mg *PrivateCloudGatewayIPPool) GetDeletionPolicy() xpv1.DeletionPolicy {
+	return mg.Spec.DeletionPolicy
+}
+
+// GetManagementPolicies of this PrivateCloudGatewayIPPool.
+func (mg *PrivateCloudGatewayIPPool) GetManagementPolicies() xpv1.ManagementPolicies {
+	return mg.Spec.ManagementPolicies
+}
+
+// GetProviderConfigReference of this PrivateCloudGatewayIPPool.
+func (mg *PrivateCloudGatewayIPPool) GetProviderConfigReference() *xpv1.Reference {
+	return mg.Spec.ProviderConfigReference
+}
+
+// GetPublishConnectionDetailsTo of this PrivateCloudGatewayIPPool.
+func (mg *PrivateCloudGatewayIPPool) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+	return mg.Spec.PublishConnectionDetailsTo
+}
+
+// GetWriteConnectionSecretToReference of this PrivateCloudGatewayIPPool.
+func (mg *PrivateCloudGatewayIPPool) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this PrivateCloudGatewayIPPool.
+func (mg *PrivateCloudGatewayIPPool) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetDeletionPolicy of this PrivateCloudGatewayIPPool.
+func (mg *PrivateCloudGatewayIPPool) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+	mg.Spec.DeletionPolicy = r
+}
+
+// SetManagementPolicies of this PrivateCloudGatewayIPPool.
+func (mg *PrivateCloudGatewayIPPool) SetManagementPolicies(r xpv1.ManagementPolicies) {
+	mg.Spec.ManagementPolicies = r
+}
+
+// SetProviderConfigReference of this PrivateCloudGatewayIPPool.
+func (mg *PrivateCloudGatewayIPPool) SetProviderConfigReference(r *xpv1.Reference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+// SetPublishConnectionDetailsTo of this PrivateCloudGatewayIPPool.
+func (mg *PrivateCloudGatewayIPPool) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+	mg.Spec.PublishConnectionDetailsTo = r
+}
+
+// SetWriteConnectionSecretToReference of this PrivateCloudGatewayIPPool.
+func (mg *PrivateCloudGatewayIPPool) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}
+
 // GetCondition of this Project.
 func (mg *Project) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)

@@ -68,4 +68,13 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "palette"
 		r.Kind = "EKSCluster"
 	})
+	p.AddResourceConfigurator("spectrocloud_privatecloudgateway_dns_map", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "PrivateCloudGatewayDNSMap"
+	})
+	p.AddResourceConfigurator("spectrocloud_privatecloudgateway_ippool", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "PrivateCloudGatewayIPPool"
+	})
+
 }

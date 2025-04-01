@@ -19,6 +19,8 @@ import (
 	macros "github.com/vrabbi/provider-palette/internal/controller/palette/macros"
 	ociregistry "github.com/vrabbi/provider-palette/internal/controller/palette/ociregistry"
 	platformsetting "github.com/vrabbi/provider-palette/internal/controller/palette/platformsetting"
+	privatecloudgatewaydnsmap "github.com/vrabbi/provider-palette/internal/controller/palette/privatecloudgatewaydnsmap"
+	privatecloudgatewayippool "github.com/vrabbi/provider-palette/internal/controller/palette/privatecloudgatewayippool"
 	project "github.com/vrabbi/provider-palette/internal/controller/palette/project"
 	sshkey "github.com/vrabbi/provider-palette/internal/controller/palette/sshkey"
 	team "github.com/vrabbi/provider-palette/internal/controller/palette/team"
@@ -42,6 +44,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		macros.Setup,
 		ociregistry.Setup,
 		platformsetting.Setup,
+		privatecloudgatewaydnsmap.Setup,
+		privatecloudgatewayippool.Setup,
 		project.Setup,
 		sshkey.Setup,
 		team.Setup,

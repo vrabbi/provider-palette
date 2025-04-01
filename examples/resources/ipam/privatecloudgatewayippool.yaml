@@ -1,0 +1,18 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: PrivateCloudGatewayIPPool
+metadata:
+  name: demo-cp-pcg-ippool-01
+spec:
+  providerConfigRef:
+    name: saas-tenant
+  forProvider:
+    gateway: 192.168.1.1
+    ipEndRange: 192.168.1.100
+    ipStartRange: 192.168.1.10
+    name: demo-cp-pcg-ippool-01
+    nameserverAddresses:
+    - 192.168.1.8
+    networkType: range
+    prefix: 24
+    privateCloudGatewayId: 65fc061d96c13cd453bc7679
+    restrictToSingleCluster: false
