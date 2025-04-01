@@ -17,6 +17,15 @@ func (l *AWSCloudAccountList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this AzureCloudAccountList.
+func (l *AzureCloudAccountList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this ClusterProfileList.
 func (l *ClusterProfileList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
@@ -28,6 +37,15 @@ func (l *ClusterProfileList) GetItems() []resource.Managed {
 
 // GetItems of this CustomCloudAccountList.
 func (l *CustomCloudAccountList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this DeveloperSettingList.
+func (l *DeveloperSettingList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
@@ -55,6 +73,15 @@ func (l *MacrosList) GetItems() []resource.Managed {
 
 // GetItems of this OCIRegistryList.
 func (l *OCIRegistryList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this PlatformSettingList.
+func (l *PlatformSettingList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

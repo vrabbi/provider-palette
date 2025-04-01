@@ -10,10 +10,16 @@ package v1alpha1
 func (tr *AWSCloudAccount) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *AzureCloudAccount) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *ClusterProfile) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *CustomCloudAccount) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *DeveloperSetting) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *HelmRegistry) Hub() {}
@@ -23,6 +29,9 @@ func (tr *Macros) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *OCIRegistry) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *PlatformSetting) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *Project) Hub() {}

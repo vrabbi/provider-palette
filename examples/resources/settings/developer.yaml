@@ -1,0 +1,13 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: DeveloperSetting
+metadata:
+  name: demo-cp-dev-setting
+spec:
+  providerConfigRef:
+    name: tenant
+  forProvider:
+    cpu: 20
+    hideSystemClusterGroup: false
+    memory: 100
+    storage: 100
+    virtualClustersLimit: 10

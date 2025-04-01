@@ -10,11 +10,14 @@ import (
 	"github.com/crossplane/upjet/pkg/controller"
 
 	awscloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/awscloudaccount"
+	azurecloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/azurecloudaccount"
 	clusterprofile "github.com/vrabbi/provider-palette/internal/controller/palette/clusterprofile"
 	customcloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/customcloudaccount"
+	developersetting "github.com/vrabbi/provider-palette/internal/controller/palette/developersetting"
 	helmregistry "github.com/vrabbi/provider-palette/internal/controller/palette/helmregistry"
 	macros "github.com/vrabbi/provider-palette/internal/controller/palette/macros"
 	ociregistry "github.com/vrabbi/provider-palette/internal/controller/palette/ociregistry"
+	platformsetting "github.com/vrabbi/provider-palette/internal/controller/palette/platformsetting"
 	project "github.com/vrabbi/provider-palette/internal/controller/palette/project"
 	sshkey "github.com/vrabbi/provider-palette/internal/controller/palette/sshkey"
 	team "github.com/vrabbi/provider-palette/internal/controller/palette/team"
@@ -29,11 +32,14 @@ import (
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		awscloudaccount.Setup,
+		azurecloudaccount.Setup,
 		clusterprofile.Setup,
 		customcloudaccount.Setup,
+		developersetting.Setup,
 		helmregistry.Setup,
 		macros.Setup,
 		ociregistry.Setup,
+		platformsetting.Setup,
 		project.Setup,
 		sshkey.Setup,
 		team.Setup,

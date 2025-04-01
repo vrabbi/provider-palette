@@ -52,4 +52,16 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "palette"
 		r.Kind = "Macros"
 	})
+	p.AddResourceConfigurator("spectrocloud_cloudaccount_azure", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "AzureCloudAccount"
+	})
+	p.AddResourceConfigurator("spectrocloud_developer_setting", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "DeveloperSetting"
+	})
+	p.AddResourceConfigurator("spectrocloud_platform_setting", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "PlatformSetting"
+	})
 }

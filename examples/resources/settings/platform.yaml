@@ -1,0 +1,13 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: PlatformSetting
+metadata:
+  name: demo-cp-platform-settings
+spec:
+  providerConfigRef:
+    name: tenant
+  forProvider:
+    context: tenant
+    enableAutoRemediation: true
+    clusterAutoRemediation: true
+    pauseAgentUpgrades: unlock
+    sessionTimeout: 230
