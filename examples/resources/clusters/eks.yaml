@@ -1,0 +1,21 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: EKSCluster
+metadata:
+  name: demo-cp-eks-cls-01
+spec:
+  providerConfigRef:
+    name: tenant
+  forProvider:
+    cloudAccountId: 67c6da6092b1f66a5a16b2c0
+    context: tenant
+    cloudConfig:
+    - region: us-east-1
+      sshKeyName: spectro
+    clusterProfile:
+    - id: 67c6dc3430141f37ada01b9c
+    machinePool:
+    - count: 3
+      diskSizeGb: 60
+      instanceType: t3.large
+      name: worker-basic
+    name: demo-cp-eks-cls-01

@@ -64,4 +64,8 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "palette"
 		r.Kind = "PlatformSetting"
 	})
+	p.AddResourceConfigurator("spectrocloud_cluster_eks", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "EKSCluster"
+	})
 }

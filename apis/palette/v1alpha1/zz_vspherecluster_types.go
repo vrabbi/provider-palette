@@ -13,406 +13,74 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type BackupPolicyInitParameters struct {
+type ClusterProfilePackManifestInitParameters struct {
 
-	// The ID of the backup location to use for the backup.
-	BackupLocationID *string `json:"backupLocationId,omitempty" tf:"backup_location_id,omitempty"`
+	// The content of the manifest. The content is the YAML content of the manifest.
+	Content *string `json:"content,omitempty" tf:"content,omitempty"`
 
-	// The list of cluster UIDs to include in the backup. If `include_all_clusters` is set to `true`, then all clusters will be included.
-	// +listType=set
-	ClusterUids []*string `json:"clusterUids,omitempty" tf:"cluster_uids,omitempty"`
-
-	// The number of hours after which the backup will be deleted. For example, if the expiry is set to 24, the backup will be deleted after 24 hours.
-	ExpiryInHour *float64 `json:"expiryInHour,omitempty" tf:"expiry_in_hour,omitempty"`
-
-	// Whether to include all clusters in the backup. If set to false, only the clusters specified in `cluster_uids` will be included.
-	IncludeAllClusters *bool `json:"includeAllClusters,omitempty" tf:"include_all_clusters,omitempty"`
-
-	// Indicates whether to include cluster resources in the backup. If set to false, only the cluster configuration and disks will be backed up. (Note: Starting with Palette version 4.6, the include_cluster_resources attribute will be deprecated, and a new attribute, include_cluster_resources_mode, will be introduced.)
-	IncludeClusterResources *bool `json:"includeClusterResources,omitempty" tf:"include_cluster_resources,omitempty"`
-
-	// Specifies whether to include the cluster resources in the backup. Supported values are `always`, `never`, and `auto`.
-	IncludeClusterResourcesMode *string `json:"includeClusterResourcesMode,omitempty" tf:"include_cluster_resources_mode,omitempty"`
-
-	// Whether to include the disks in the backup. If set to false, only the cluster configuration will be backed up.
-	IncludeDisks *bool `json:"includeDisks,omitempty" tf:"include_disks,omitempty"`
-
-	// The list of Kubernetes namespaces to include in the backup. If not specified, all namespaces will be included.
-	// +listType=set
-	Namespaces []*string `json:"namespaces,omitempty" tf:"namespaces,omitempty"`
-
-	// Prefix for the backup name. The backup name will be of the format <prefix>-<cluster-name>-<timestamp>.
-	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
-
-	// The schedule for the backup. The schedule is specified in cron format. For example, to run the backup every day at 1:00 AM, the schedule should be set to `0 1 * * *`.
-	Schedule *string `json:"schedule,omitempty" tf:"schedule,omitempty"`
+	// The name of the manifest. The name must be unique within the pack.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 }
 
-type BackupPolicyObservation struct {
+type ClusterProfilePackManifestObservation struct {
 
-	// The ID of the backup location to use for the backup.
-	BackupLocationID *string `json:"backupLocationId,omitempty" tf:"backup_location_id,omitempty"`
+	// The content of the manifest. The content is the YAML content of the manifest.
+	Content *string `json:"content,omitempty" tf:"content,omitempty"`
 
-	// The list of cluster UIDs to include in the backup. If `include_all_clusters` is set to `true`, then all clusters will be included.
-	// +listType=set
-	ClusterUids []*string `json:"clusterUids,omitempty" tf:"cluster_uids,omitempty"`
-
-	// The number of hours after which the backup will be deleted. For example, if the expiry is set to 24, the backup will be deleted after 24 hours.
-	ExpiryInHour *float64 `json:"expiryInHour,omitempty" tf:"expiry_in_hour,omitempty"`
-
-	// Whether to include all clusters in the backup. If set to false, only the clusters specified in `cluster_uids` will be included.
-	IncludeAllClusters *bool `json:"includeAllClusters,omitempty" tf:"include_all_clusters,omitempty"`
-
-	// Indicates whether to include cluster resources in the backup. If set to false, only the cluster configuration and disks will be backed up. (Note: Starting with Palette version 4.6, the include_cluster_resources attribute will be deprecated, and a new attribute, include_cluster_resources_mode, will be introduced.)
-	IncludeClusterResources *bool `json:"includeClusterResources,omitempty" tf:"include_cluster_resources,omitempty"`
-
-	// Specifies whether to include the cluster resources in the backup. Supported values are `always`, `never`, and `auto`.
-	IncludeClusterResourcesMode *string `json:"includeClusterResourcesMode,omitempty" tf:"include_cluster_resources_mode,omitempty"`
-
-	// Whether to include the disks in the backup. If set to false, only the cluster configuration will be backed up.
-	IncludeDisks *bool `json:"includeDisks,omitempty" tf:"include_disks,omitempty"`
-
-	// The list of Kubernetes namespaces to include in the backup. If not specified, all namespaces will be included.
-	// +listType=set
-	Namespaces []*string `json:"namespaces,omitempty" tf:"namespaces,omitempty"`
-
-	// Prefix for the backup name. The backup name will be of the format <prefix>-<cluster-name>-<timestamp>.
-	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
-
-	// The schedule for the backup. The schedule is specified in cron format. For example, to run the backup every day at 1:00 AM, the schedule should be set to `0 1 * * *`.
-	Schedule *string `json:"schedule,omitempty" tf:"schedule,omitempty"`
-}
-
-type BackupPolicyParameters struct {
-
-	// The ID of the backup location to use for the backup.
-	// +kubebuilder:validation:Optional
-	BackupLocationID *string `json:"backupLocationId" tf:"backup_location_id,omitempty"`
-
-	// The list of cluster UIDs to include in the backup. If `include_all_clusters` is set to `true`, then all clusters will be included.
-	// +kubebuilder:validation:Optional
-	// +listType=set
-	ClusterUids []*string `json:"clusterUids,omitempty" tf:"cluster_uids,omitempty"`
-
-	// The number of hours after which the backup will be deleted. For example, if the expiry is set to 24, the backup will be deleted after 24 hours.
-	// +kubebuilder:validation:Optional
-	ExpiryInHour *float64 `json:"expiryInHour" tf:"expiry_in_hour,omitempty"`
-
-	// Whether to include all clusters in the backup. If set to false, only the clusters specified in `cluster_uids` will be included.
-	// +kubebuilder:validation:Optional
-	IncludeAllClusters *bool `json:"includeAllClusters,omitempty" tf:"include_all_clusters,omitempty"`
-
-	// Indicates whether to include cluster resources in the backup. If set to false, only the cluster configuration and disks will be backed up. (Note: Starting with Palette version 4.6, the include_cluster_resources attribute will be deprecated, and a new attribute, include_cluster_resources_mode, will be introduced.)
-	// +kubebuilder:validation:Optional
-	IncludeClusterResources *bool `json:"includeClusterResources,omitempty" tf:"include_cluster_resources,omitempty"`
-
-	// Specifies whether to include the cluster resources in the backup. Supported values are `always`, `never`, and `auto`.
-	// +kubebuilder:validation:Optional
-	IncludeClusterResourcesMode *string `json:"includeClusterResourcesMode,omitempty" tf:"include_cluster_resources_mode,omitempty"`
-
-	// Whether to include the disks in the backup. If set to false, only the cluster configuration will be backed up.
-	// +kubebuilder:validation:Optional
-	IncludeDisks *bool `json:"includeDisks,omitempty" tf:"include_disks,omitempty"`
-
-	// The list of Kubernetes namespaces to include in the backup. If not specified, all namespaces will be included.
-	// +kubebuilder:validation:Optional
-	// +listType=set
-	Namespaces []*string `json:"namespaces,omitempty" tf:"namespaces,omitempty"`
-
-	// Prefix for the backup name. The backup name will be of the format <prefix>-<cluster-name>-<timestamp>.
-	// +kubebuilder:validation:Optional
-	Prefix *string `json:"prefix" tf:"prefix,omitempty"`
-
-	// The schedule for the backup. The schedule is specified in cron format. For example, to run the backup every day at 1:00 AM, the schedule should be set to `0 1 * * *`.
-	// +kubebuilder:validation:Optional
-	Schedule *string `json:"schedule" tf:"schedule,omitempty"`
-}
-
-type CloudConfigInitParameters struct {
-
-	// The name of the datacenter in vSphere. This is the name of the datacenter as it appears in vSphere.
-	Datacenter *string `json:"datacenter,omitempty" tf:"datacenter,omitempty"`
-
-	// The name of the folder in vSphere. This is the name of the folder as it appears in vSphere.
-	Folder *string `json:"folder,omitempty" tf:"folder,omitempty"`
-
-	// The host endpoint to use for the cluster. This can be `IP` or `FQDN(External/DDNS)`.
-	HostEndpoint *string `json:"hostEndpoint,omitempty" tf:"host_endpoint,omitempty"`
-
-	// The name of the image template folder in vSphere. This is the name of the folder as it appears in vSphere.
-	ImageTemplateFolder *string `json:"imageTemplateFolder,omitempty" tf:"image_template_folder,omitempty"`
-
-	// The search domain to use for the cluster in case of DHCP.
-	NetworkSearchDomain *string `json:"networkSearchDomain,omitempty" tf:"network_search_domain,omitempty"`
-
-	// The type of network to use for the cluster. This can be `VIP` or `DDNS`.
-	NetworkType *string `json:"networkType,omitempty" tf:"network_type,omitempty"`
-
-	// A list of NTP servers to be used by the cluster.
-	// +listType=set
-	NtpServers []*string `json:"ntpServers,omitempty" tf:"ntp_servers,omitempty"`
-
-	// The SSH key to be used for the cluster. This is the public key that will be used to access the cluster nodes. `ssh_key & ssh_keys` are mutually exclusive.
-	SSHKey *string `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
-
-	// List of public SSH (Secure Shell) keys to establish, administer, and communicate with remote clusters, `ssh_key & ssh_keys` are mutually exclusive.
-	// +listType=set
-	SSHKeys []*string `json:"sshKeys,omitempty" tf:"ssh_keys,omitempty"`
-
-	// Whether to use static IP addresses for the cluster. If `true`, the cluster will use static IP addresses. If `false`, the cluster will use DDNS. Default is `false`.
-	StaticIP *bool `json:"staticIp,omitempty" tf:"static_ip,omitempty"`
-}
-
-type CloudConfigObservation struct {
-
-	// The name of the datacenter in vSphere. This is the name of the datacenter as it appears in vSphere.
-	Datacenter *string `json:"datacenter,omitempty" tf:"datacenter,omitempty"`
-
-	// The name of the folder in vSphere. This is the name of the folder as it appears in vSphere.
-	Folder *string `json:"folder,omitempty" tf:"folder,omitempty"`
-
-	// The host endpoint to use for the cluster. This can be `IP` or `FQDN(External/DDNS)`.
-	HostEndpoint *string `json:"hostEndpoint,omitempty" tf:"host_endpoint,omitempty"`
-
-	// The name of the image template folder in vSphere. This is the name of the folder as it appears in vSphere.
-	ImageTemplateFolder *string `json:"imageTemplateFolder,omitempty" tf:"image_template_folder,omitempty"`
-
-	// The search domain to use for the cluster in case of DHCP.
-	NetworkSearchDomain *string `json:"networkSearchDomain,omitempty" tf:"network_search_domain,omitempty"`
-
-	// The type of network to use for the cluster. This can be `VIP` or `DDNS`.
-	NetworkType *string `json:"networkType,omitempty" tf:"network_type,omitempty"`
-
-	// A list of NTP servers to be used by the cluster.
-	// +listType=set
-	NtpServers []*string `json:"ntpServers,omitempty" tf:"ntp_servers,omitempty"`
-
-	// The SSH key to be used for the cluster. This is the public key that will be used to access the cluster nodes. `ssh_key & ssh_keys` are mutually exclusive.
-	SSHKey *string `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
-
-	// List of public SSH (Secure Shell) keys to establish, administer, and communicate with remote clusters, `ssh_key & ssh_keys` are mutually exclusive.
-	// +listType=set
-	SSHKeys []*string `json:"sshKeys,omitempty" tf:"ssh_keys,omitempty"`
-
-	// Whether to use static IP addresses for the cluster. If `true`, the cluster will use static IP addresses. If `false`, the cluster will use DDNS. Default is `false`.
-	StaticIP *bool `json:"staticIp,omitempty" tf:"static_ip,omitempty"`
-}
-
-type CloudConfigParameters struct {
-
-	// The name of the datacenter in vSphere. This is the name of the datacenter as it appears in vSphere.
-	// +kubebuilder:validation:Optional
-	Datacenter *string `json:"datacenter" tf:"datacenter,omitempty"`
-
-	// The name of the folder in vSphere. This is the name of the folder as it appears in vSphere.
-	// +kubebuilder:validation:Optional
-	Folder *string `json:"folder" tf:"folder,omitempty"`
-
-	// The host endpoint to use for the cluster. This can be `IP` or `FQDN(External/DDNS)`.
-	// +kubebuilder:validation:Optional
-	HostEndpoint *string `json:"hostEndpoint,omitempty" tf:"host_endpoint,omitempty"`
-
-	// The name of the image template folder in vSphere. This is the name of the folder as it appears in vSphere.
-	// +kubebuilder:validation:Optional
-	ImageTemplateFolder *string `json:"imageTemplateFolder,omitempty" tf:"image_template_folder,omitempty"`
-
-	// The search domain to use for the cluster in case of DHCP.
-	// +kubebuilder:validation:Optional
-	NetworkSearchDomain *string `json:"networkSearchDomain,omitempty" tf:"network_search_domain,omitempty"`
-
-	// The type of network to use for the cluster. This can be `VIP` or `DDNS`.
-	// +kubebuilder:validation:Optional
-	NetworkType *string `json:"networkType,omitempty" tf:"network_type,omitempty"`
-
-	// A list of NTP servers to be used by the cluster.
-	// +kubebuilder:validation:Optional
-	// +listType=set
-	NtpServers []*string `json:"ntpServers,omitempty" tf:"ntp_servers,omitempty"`
-
-	// The SSH key to be used for the cluster. This is the public key that will be used to access the cluster nodes. `ssh_key & ssh_keys` are mutually exclusive.
-	// +kubebuilder:validation:Optional
-	SSHKey *string `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
-
-	// List of public SSH (Secure Shell) keys to establish, administer, and communicate with remote clusters, `ssh_key & ssh_keys` are mutually exclusive.
-	// +kubebuilder:validation:Optional
-	// +listType=set
-	SSHKeys []*string `json:"sshKeys,omitempty" tf:"ssh_keys,omitempty"`
-
-	// Whether to use static IP addresses for the cluster. If `true`, the cluster will use static IP addresses. If `false`, the cluster will use DDNS. Default is `false`.
-	// +kubebuilder:validation:Optional
-	StaticIP *bool `json:"staticIp,omitempty" tf:"static_ip,omitempty"`
-}
-
-type ClusterProfilePackInitParameters struct {
-	Manifest []PackManifestInitParameters `json:"manifest,omitempty" tf:"manifest,omitempty"`
-
-	// The name of the pack. The name must be unique within the cluster profile.
+	// The name of the manifest. The name must be unique within the pack.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// The registry UID of the pack. The registry UID is the unique identifier of the registry. This attribute is required if there is more than one registry that contains a pack with the same name.
-	RegistryUID *string `json:"registryUid,omitempty" tf:"registry_uid,omitempty"`
-
-	// The tag of the pack. The tag is the version of the pack. This attribute is required if the pack type is `spectro` or `helm`.
-	Tag *string `json:"tag,omitempty" tf:"tag,omitempty"`
-
-	// The type of the pack. Allowed values are `spectro`, `manifest`, `helm`, or `oci`. The default value is spectro. If using an OCI registry for pack, set the type to `oci`.
-	Type *string `json:"type,omitempty" tf:"type,omitempty"`
-
-	// The unique identifier of the pack. The value can be looked up using the [`spectrocloud_pack`](https://registry.io/providers/spectrocloud/spectrocloud/latest/docs/data-sources/pack) data source. This value is required if the pack type is `spectro` and for `helm` if the chart is from a public helm registry.
 	UID *string `json:"uid,omitempty" tf:"uid,omitempty"`
-
-	// The values of the pack. The values are the configuration values of the pack. The values are specified in YAML format.
-	Values *string `json:"values,omitempty" tf:"values,omitempty"`
 }
 
-type ClusterProfilePackObservation struct {
-	Manifest []PackManifestObservation `json:"manifest,omitempty" tf:"manifest,omitempty"`
+type ClusterProfilePackManifestParameters struct {
 
-	// The name of the pack. The name must be unique within the cluster profile.
+	// The content of the manifest. The content is the YAML content of the manifest.
+	// +kubebuilder:validation:Optional
+	Content *string `json:"content" tf:"content,omitempty"`
+
+	// The name of the manifest. The name must be unique within the pack.
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name" tf:"name,omitempty"`
+}
+
+type ClusterRbacBindingSubjectsInitParameters struct {
+
+	// The name of the subject. Required if 'type' is set to 'User' or 'Group'.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// The registry UID of the pack. The registry UID is the unique identifier of the registry. This attribute is required if there is more than one registry that contains a pack with the same name.
-	RegistryUID *string `json:"registryUid,omitempty" tf:"registry_uid,omitempty"`
+	// The Kubernetes namespace of the subject. Required if 'type' is set to 'ServiceAccount'.
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
 
-	// The tag of the pack. The tag is the version of the pack. This attribute is required if the pack type is `spectro` or `helm`.
-	Tag *string `json:"tag,omitempty" tf:"tag,omitempty"`
-
-	// The type of the pack. Allowed values are `spectro`, `manifest`, `helm`, or `oci`. The default value is spectro. If using an OCI registry for pack, set the type to `oci`.
+	// The type of the subject. Can be one of the following values: `User`, `Group`, or `ServiceAccount`.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
-
-	// The unique identifier of the pack. The value can be looked up using the [`spectrocloud_pack`](https://registry.io/providers/spectrocloud/spectrocloud/latest/docs/data-sources/pack) data source. This value is required if the pack type is `spectro` and for `helm` if the chart is from a public helm registry.
-	UID *string `json:"uid,omitempty" tf:"uid,omitempty"`
-
-	// The values of the pack. The values are the configuration values of the pack. The values are specified in YAML format.
-	Values *string `json:"values,omitempty" tf:"values,omitempty"`
 }
 
-type ClusterProfilePackParameters struct {
+type ClusterRbacBindingSubjectsObservation struct {
 
-	// +kubebuilder:validation:Optional
-	Manifest []PackManifestParameters `json:"manifest,omitempty" tf:"manifest,omitempty"`
+	// The name of the subject. Required if 'type' is set to 'User' or 'Group'.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// The name of the pack. The name must be unique within the cluster profile.
+	// The Kubernetes namespace of the subject. Required if 'type' is set to 'ServiceAccount'.
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// The type of the subject. Can be one of the following values: `User`, `Group`, or `ServiceAccount`.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+}
+
+type ClusterRbacBindingSubjectsParameters struct {
+
+	// The name of the subject. Required if 'type' is set to 'User' or 'Group'.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name" tf:"name,omitempty"`
 
-	// The registry UID of the pack. The registry UID is the unique identifier of the registry. This attribute is required if there is more than one registry that contains a pack with the same name.
-	// +kubebuilder:validation:Optional
-	RegistryUID *string `json:"registryUid,omitempty" tf:"registry_uid,omitempty"`
-
-	// The tag of the pack. The tag is the version of the pack. This attribute is required if the pack type is `spectro` or `helm`.
-	// +kubebuilder:validation:Optional
-	Tag *string `json:"tag,omitempty" tf:"tag,omitempty"`
-
-	// The type of the pack. Allowed values are `spectro`, `manifest`, `helm`, or `oci`. The default value is spectro. If using an OCI registry for pack, set the type to `oci`.
-	// +kubebuilder:validation:Optional
-	Type *string `json:"type,omitempty" tf:"type,omitempty"`
-
-	// The unique identifier of the pack. The value can be looked up using the [`spectrocloud_pack`](https://registry.io/providers/spectrocloud/spectrocloud/latest/docs/data-sources/pack) data source. This value is required if the pack type is `spectro` and for `helm` if the chart is from a public helm registry.
-	// +kubebuilder:validation:Optional
-	UID *string `json:"uid,omitempty" tf:"uid,omitempty"`
-
-	// The values of the pack. The values are the configuration values of the pack. The values are specified in YAML format.
-	// +kubebuilder:validation:Optional
-	Values *string `json:"values,omitempty" tf:"values,omitempty"`
-}
-
-type ClusterRbacBindingInitParameters struct {
-
-	// The Kubernetes namespace of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// The role of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
-	// +mapType=granular
-	Role map[string]*string `json:"role,omitempty" tf:"role,omitempty"`
-
-	Subjects []SubjectsInitParameters `json:"subjects,omitempty" tf:"subjects,omitempty"`
-
-	// The type of the RBAC binding. Can be one of the following values: `RoleBinding`, or `ClusterRoleBinding`.
-	Type *string `json:"type,omitempty" tf:"type,omitempty"`
-}
-
-type ClusterRbacBindingObservation struct {
-
-	// The Kubernetes namespace of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// The role of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
-	// +mapType=granular
-	Role map[string]*string `json:"role,omitempty" tf:"role,omitempty"`
-
-	Subjects []SubjectsObservation `json:"subjects,omitempty" tf:"subjects,omitempty"`
-
-	// The type of the RBAC binding. Can be one of the following values: `RoleBinding`, or `ClusterRoleBinding`.
-	Type *string `json:"type,omitempty" tf:"type,omitempty"`
-}
-
-type ClusterRbacBindingParameters struct {
-
-	// The Kubernetes namespace of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
+	// The Kubernetes namespace of the subject. Required if 'type' is set to 'ServiceAccount'.
 	// +kubebuilder:validation:Optional
 	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
 
-	// The role of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
-	// +kubebuilder:validation:Optional
-	// +mapType=granular
-	Role map[string]*string `json:"role,omitempty" tf:"role,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Subjects []SubjectsParameters `json:"subjects,omitempty" tf:"subjects,omitempty"`
-
-	// The type of the RBAC binding. Can be one of the following values: `RoleBinding`, or `ClusterRoleBinding`.
+	// The type of the subject. Can be one of the following values: `User`, `Group`, or `ServiceAccount`.
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type" tf:"type,omitempty"`
-}
-
-type HostConfigInitParameters struct {
-
-	// The external traffic policy for the cluster.
-	ExternalTrafficPolicy *string `json:"externalTrafficPolicy,omitempty" tf:"external_traffic_policy,omitempty"`
-
-	// The type of endpoint for the cluster. Can be either 'Ingress' or 'LoadBalancer'. The default is 'Ingress'.
-	HostEndpointType *string `json:"hostEndpointType,omitempty" tf:"host_endpoint_type,omitempty"`
-
-	// The host for the Ingress endpoint. Required if 'host_endpoint_type' is set to 'Ingress'.
-	IngressHost *string `json:"ingressHost,omitempty" tf:"ingress_host,omitempty"`
-
-	// The source ranges for the load balancer. Required if 'host_endpoint_type' is set to 'LoadBalancer'.
-	LoadBalancerSourceRanges *string `json:"loadBalancerSourceRanges,omitempty" tf:"load_balancer_source_ranges,omitempty"`
-}
-
-type HostConfigObservation struct {
-
-	// The external traffic policy for the cluster.
-	ExternalTrafficPolicy *string `json:"externalTrafficPolicy,omitempty" tf:"external_traffic_policy,omitempty"`
-
-	// The type of endpoint for the cluster. Can be either 'Ingress' or 'LoadBalancer'. The default is 'Ingress'.
-	HostEndpointType *string `json:"hostEndpointType,omitempty" tf:"host_endpoint_type,omitempty"`
-
-	// The host for the Ingress endpoint. Required if 'host_endpoint_type' is set to 'Ingress'.
-	IngressHost *string `json:"ingressHost,omitempty" tf:"ingress_host,omitempty"`
-
-	// The source ranges for the load balancer. Required if 'host_endpoint_type' is set to 'LoadBalancer'.
-	LoadBalancerSourceRanges *string `json:"loadBalancerSourceRanges,omitempty" tf:"load_balancer_source_ranges,omitempty"`
-}
-
-type HostConfigParameters struct {
-
-	// The external traffic policy for the cluster.
-	// +kubebuilder:validation:Optional
-	ExternalTrafficPolicy *string `json:"externalTrafficPolicy,omitempty" tf:"external_traffic_policy,omitempty"`
-
-	// The type of endpoint for the cluster. Can be either 'Ingress' or 'LoadBalancer'. The default is 'Ingress'.
-	// +kubebuilder:validation:Optional
-	HostEndpointType *string `json:"hostEndpointType,omitempty" tf:"host_endpoint_type,omitempty"`
-
-	// The host for the Ingress endpoint. Required if 'host_endpoint_type' is set to 'Ingress'.
-	// +kubebuilder:validation:Optional
-	IngressHost *string `json:"ingressHost,omitempty" tf:"ingress_host,omitempty"`
-
-	// The source ranges for the load balancer. Required if 'host_endpoint_type' is set to 'LoadBalancer'.
-	// +kubebuilder:validation:Optional
-	LoadBalancerSourceRanges *string `json:"loadBalancerSourceRanges,omitempty" tf:"load_balancer_source_ranges,omitempty"`
 }
 
 type InstanceTypeInitParameters struct {
@@ -454,245 +122,7 @@ type InstanceTypeParameters struct {
 	MemoryMb *float64 `json:"memoryMb" tf:"memory_mb,omitempty"`
 }
 
-type LocationConfigInitParameters struct {
-
-	// The country code of the country the cluster is located in.
-	CountryCode *string `json:"countryCode,omitempty" tf:"country_code,omitempty"`
-
-	// The name of the country.
-	CountryName *string `json:"countryName,omitempty" tf:"country_name,omitempty"`
-
-	// The latitude coordinates value.
-	Latitude *float64 `json:"latitude,omitempty" tf:"latitude,omitempty"`
-
-	// The longitude coordinates value.
-	Longitude *float64 `json:"longitude,omitempty" tf:"longitude,omitempty"`
-
-	// The region code of where the cluster is located in.
-	RegionCode *string `json:"regionCode,omitempty" tf:"region_code,omitempty"`
-
-	// The name of the region.
-	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
-}
-
-type LocationConfigObservation struct {
-
-	// The country code of the country the cluster is located in.
-	CountryCode *string `json:"countryCode,omitempty" tf:"country_code,omitempty"`
-
-	// The name of the country.
-	CountryName *string `json:"countryName,omitempty" tf:"country_name,omitempty"`
-
-	// The latitude coordinates value.
-	Latitude *float64 `json:"latitude,omitempty" tf:"latitude,omitempty"`
-
-	// The longitude coordinates value.
-	Longitude *float64 `json:"longitude,omitempty" tf:"longitude,omitempty"`
-
-	// The region code of where the cluster is located in.
-	RegionCode *string `json:"regionCode,omitempty" tf:"region_code,omitempty"`
-
-	// The name of the region.
-	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
-}
-
-type LocationConfigParameters struct {
-
-	// The country code of the country the cluster is located in.
-	// +kubebuilder:validation:Optional
-	CountryCode *string `json:"countryCode,omitempty" tf:"country_code,omitempty"`
-
-	// The name of the country.
-	// +kubebuilder:validation:Optional
-	CountryName *string `json:"countryName,omitempty" tf:"country_name,omitempty"`
-
-	// The latitude coordinates value.
-	// +kubebuilder:validation:Optional
-	Latitude *float64 `json:"latitude" tf:"latitude,omitempty"`
-
-	// The longitude coordinates value.
-	// +kubebuilder:validation:Optional
-	Longitude *float64 `json:"longitude" tf:"longitude,omitempty"`
-
-	// The region code of where the cluster is located in.
-	// +kubebuilder:validation:Optional
-	RegionCode *string `json:"regionCode,omitempty" tf:"region_code,omitempty"`
-
-	// The name of the region.
-	// +kubebuilder:validation:Optional
-	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
-}
-
-type MachinePoolInitParameters struct {
-
-	// +mapType=granular
-	AdditionalLabels map[string]*string `json:"additionalLabels,omitempty" tf:"additional_labels,omitempty"`
-
-	// Whether this machine pool is a control plane. Defaults to `false`.
-	ControlPlane *bool `json:"controlPlane,omitempty" tf:"control_plane,omitempty"`
-
-	// Whether this machine pool is a control plane and a worker. Defaults to `false`.
-	ControlPlaneAsWorker *bool `json:"controlPlaneAsWorker,omitempty" tf:"control_plane_as_worker,omitempty"`
-
-	// Number of nodes in the machine pool.
-	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
-
-	InstanceType []InstanceTypeInitParameters `json:"instanceType,omitempty" tf:"instance_type,omitempty"`
-
-	// Maximum number of nodes in the machine pool. This is used for autoscaling the machine pool.
-	Max *float64 `json:"max,omitempty" tf:"max,omitempty"`
-
-	// Minimum number of nodes in the machine pool. This is used for autoscaling the machine pool.
-	Min *float64 `json:"min,omitempty" tf:"min,omitempty"`
-
-	// The name of the machine pool. This is used to identify the machine pool in the cluster.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	Node []NodeInitParameters `json:"node,omitempty" tf:"node,omitempty"`
-
-	// Minimum number of seconds node should be Ready, before the next node is selected for repave. Default value is `0`, Applicable only for worker pools.
-	NodeRepaveInterval *float64 `json:"nodeRepaveInterval,omitempty" tf:"node_repave_interval,omitempty"`
-
-	Placement []PlacementInitParameters `json:"placement,omitempty" tf:"placement,omitempty"`
-
-	Taints []TaintsInitParameters `json:"taints,omitempty" tf:"taints,omitempty"`
-
-	// Update strategy for the machine pool. Valid values are `RollingUpdateScaleOut` and `RollingUpdateScaleIn`.
-	UpdateStrategy *string `json:"updateStrategy,omitempty" tf:"update_strategy,omitempty"`
-}
-
-type MachinePoolObservation struct {
-
-	// +mapType=granular
-	AdditionalLabels map[string]*string `json:"additionalLabels,omitempty" tf:"additional_labels,omitempty"`
-
-	// Whether this machine pool is a control plane. Defaults to `false`.
-	ControlPlane *bool `json:"controlPlane,omitempty" tf:"control_plane,omitempty"`
-
-	// Whether this machine pool is a control plane and a worker. Defaults to `false`.
-	ControlPlaneAsWorker *bool `json:"controlPlaneAsWorker,omitempty" tf:"control_plane_as_worker,omitempty"`
-
-	// Number of nodes in the machine pool.
-	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
-
-	InstanceType []InstanceTypeObservation `json:"instanceType,omitempty" tf:"instance_type,omitempty"`
-
-	// Maximum number of nodes in the machine pool. This is used for autoscaling the machine pool.
-	Max *float64 `json:"max,omitempty" tf:"max,omitempty"`
-
-	// Minimum number of nodes in the machine pool. This is used for autoscaling the machine pool.
-	Min *float64 `json:"min,omitempty" tf:"min,omitempty"`
-
-	// The name of the machine pool. This is used to identify the machine pool in the cluster.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	Node []NodeObservation `json:"node,omitempty" tf:"node,omitempty"`
-
-	// Minimum number of seconds node should be Ready, before the next node is selected for repave. Default value is `0`, Applicable only for worker pools.
-	NodeRepaveInterval *float64 `json:"nodeRepaveInterval,omitempty" tf:"node_repave_interval,omitempty"`
-
-	Placement []PlacementObservation `json:"placement,omitempty" tf:"placement,omitempty"`
-
-	Taints []TaintsObservation `json:"taints,omitempty" tf:"taints,omitempty"`
-
-	// Update strategy for the machine pool. Valid values are `RollingUpdateScaleOut` and `RollingUpdateScaleIn`.
-	UpdateStrategy *string `json:"updateStrategy,omitempty" tf:"update_strategy,omitempty"`
-}
-
-type MachinePoolParameters struct {
-
-	// +kubebuilder:validation:Optional
-	// +mapType=granular
-	AdditionalLabels map[string]*string `json:"additionalLabels,omitempty" tf:"additional_labels,omitempty"`
-
-	// Whether this machine pool is a control plane. Defaults to `false`.
-	// +kubebuilder:validation:Optional
-	ControlPlane *bool `json:"controlPlane,omitempty" tf:"control_plane,omitempty"`
-
-	// Whether this machine pool is a control plane and a worker. Defaults to `false`.
-	// +kubebuilder:validation:Optional
-	ControlPlaneAsWorker *bool `json:"controlPlaneAsWorker,omitempty" tf:"control_plane_as_worker,omitempty"`
-
-	// Number of nodes in the machine pool.
-	// +kubebuilder:validation:Optional
-	Count *float64 `json:"count" tf:"count,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	InstanceType []InstanceTypeParameters `json:"instanceType" tf:"instance_type,omitempty"`
-
-	// Maximum number of nodes in the machine pool. This is used for autoscaling the machine pool.
-	// +kubebuilder:validation:Optional
-	Max *float64 `json:"max,omitempty" tf:"max,omitempty"`
-
-	// Minimum number of nodes in the machine pool. This is used for autoscaling the machine pool.
-	// +kubebuilder:validation:Optional
-	Min *float64 `json:"min,omitempty" tf:"min,omitempty"`
-
-	// The name of the machine pool. This is used to identify the machine pool in the cluster.
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Node []NodeParameters `json:"node,omitempty" tf:"node,omitempty"`
-
-	// Minimum number of seconds node should be Ready, before the next node is selected for repave. Default value is `0`, Applicable only for worker pools.
-	// +kubebuilder:validation:Optional
-	NodeRepaveInterval *float64 `json:"nodeRepaveInterval,omitempty" tf:"node_repave_interval,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Placement []PlacementParameters `json:"placement" tf:"placement,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Taints []TaintsParameters `json:"taints,omitempty" tf:"taints,omitempty"`
-
-	// Update strategy for the machine pool. Valid values are `RollingUpdateScaleOut` and `RollingUpdateScaleIn`.
-	// +kubebuilder:validation:Optional
-	UpdateStrategy *string `json:"updateStrategy,omitempty" tf:"update_strategy,omitempty"`
-}
-
-type NamespacesInitParameters struct {
-
-	// List of images to disallow for the namespace. For example, `['nginx:latest', 'redis:latest']`
-	ImagesBlacklist []*string `json:"imagesBlacklist,omitempty" tf:"images_blacklist,omitempty"`
-
-	// Name of the namespace. This is the name of the Kubernetes namespace in the cluster.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// Resource allocation for the namespace. This is a map containing the resource type and the resource value. For example, `{cpu_cores: '2', memory_MiB: '2048'}`
-	// +mapType=granular
-	ResourceAllocation map[string]*string `json:"resourceAllocation,omitempty" tf:"resource_allocation,omitempty"`
-}
-
-type NamespacesObservation struct {
-
-	// List of images to disallow for the namespace. For example, `['nginx:latest', 'redis:latest']`
-	ImagesBlacklist []*string `json:"imagesBlacklist,omitempty" tf:"images_blacklist,omitempty"`
-
-	// Name of the namespace. This is the name of the Kubernetes namespace in the cluster.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// Resource allocation for the namespace. This is a map containing the resource type and the resource value. For example, `{cpu_cores: '2', memory_MiB: '2048'}`
-	// +mapType=granular
-	ResourceAllocation map[string]*string `json:"resourceAllocation,omitempty" tf:"resource_allocation,omitempty"`
-}
-
-type NamespacesParameters struct {
-
-	// List of images to disallow for the namespace. For example, `['nginx:latest', 'redis:latest']`
-	// +kubebuilder:validation:Optional
-	ImagesBlacklist []*string `json:"imagesBlacklist,omitempty" tf:"images_blacklist,omitempty"`
-
-	// Name of the namespace. This is the name of the Kubernetes namespace in the cluster.
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name" tf:"name,omitempty"`
-
-	// Resource allocation for the namespace. This is a map containing the resource type and the resource value. For example, `{cpu_cores: '2', memory_MiB: '2048'}`
-	// +kubebuilder:validation:Optional
-	// +mapType=granular
-	ResourceAllocation map[string]*string `json:"resourceAllocation" tf:"resource_allocation,omitempty"`
-}
-
-type NodeInitParameters struct {
+type MachinePoolNodeInitParameters struct {
 
 	// The action to perform on the node. Valid values are: `cordon`, `uncordon`.
 	Action *string `json:"action,omitempty" tf:"action,omitempty"`
@@ -701,7 +131,7 @@ type NodeInitParameters struct {
 	NodeID *string `json:"nodeId,omitempty" tf:"node_id,omitempty"`
 }
 
-type NodeObservation struct {
+type MachinePoolNodeObservation struct {
 
 	// The action to perform on the node. Valid values are: `cordon`, `uncordon`.
 	Action *string `json:"action,omitempty" tf:"action,omitempty"`
@@ -710,7 +140,7 @@ type NodeObservation struct {
 	NodeID *string `json:"nodeId,omitempty" tf:"node_id,omitempty"`
 }
 
-type NodeParameters struct {
+type MachinePoolNodeParameters struct {
 
 	// The action to perform on the node. Valid values are: `cordon`, `uncordon`.
 	// +kubebuilder:validation:Optional
@@ -721,35 +151,43 @@ type NodeParameters struct {
 	NodeID *string `json:"nodeId" tf:"node_id,omitempty"`
 }
 
-type PackManifestInitParameters struct {
+type MachinePoolTaintsInitParameters struct {
 
-	// The content of the manifest. The content is the YAML content of the manifest.
-	Content *string `json:"content,omitempty" tf:"content,omitempty"`
+	// The effect of the taint. Allowed values are: `NoSchedule`, `PreferNoSchedule` or `NoExecute`.
+	Effect *string `json:"effect,omitempty" tf:"effect,omitempty"`
 
-	// The name of the manifest. The name must be unique within the pack.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+	// The key of the taint.
+	Key *string `json:"key,omitempty" tf:"key,omitempty"`
+
+	// The value of the taint.
+	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
 
-type PackManifestObservation struct {
+type MachinePoolTaintsObservation struct {
 
-	// The content of the manifest. The content is the YAML content of the manifest.
-	Content *string `json:"content,omitempty" tf:"content,omitempty"`
+	// The effect of the taint. Allowed values are: `NoSchedule`, `PreferNoSchedule` or `NoExecute`.
+	Effect *string `json:"effect,omitempty" tf:"effect,omitempty"`
 
-	// The name of the manifest. The name must be unique within the pack.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+	// The key of the taint.
+	Key *string `json:"key,omitempty" tf:"key,omitempty"`
 
-	UID *string `json:"uid,omitempty" tf:"uid,omitempty"`
+	// The value of the taint.
+	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
 
-type PackManifestParameters struct {
+type MachinePoolTaintsParameters struct {
 
-	// The content of the manifest. The content is the YAML content of the manifest.
+	// The effect of the taint. Allowed values are: `NoSchedule`, `PreferNoSchedule` or `NoExecute`.
 	// +kubebuilder:validation:Optional
-	Content *string `json:"content" tf:"content,omitempty"`
+	Effect *string `json:"effect" tf:"effect,omitempty"`
 
-	// The name of the manifest. The name must be unique within the pack.
+	// The key of the taint.
 	// +kubebuilder:validation:Optional
-	Name *string `json:"name" tf:"name,omitempty"`
+	Key *string `json:"key" tf:"key,omitempty"`
+
+	// The value of the taint.
+	// +kubebuilder:validation:Optional
+	Value *string `json:"value" tf:"value,omitempty"`
 }
 
 type PlacementInitParameters struct {
@@ -813,121 +251,234 @@ type PlacementParameters struct {
 	StaticIPPoolID *string `json:"staticIpPoolId,omitempty" tf:"static_ip_pool_id,omitempty"`
 }
 
-type ScanPolicyInitParameters struct {
+type VSphereClusterBackupPolicyInitParameters struct {
 
-	// The schedule for configuration scan.
-	ConfigurationScanSchedule *string `json:"configurationScanSchedule,omitempty" tf:"configuration_scan_schedule,omitempty"`
+	// The ID of the backup location to use for the backup.
+	BackupLocationID *string `json:"backupLocationId,omitempty" tf:"backup_location_id,omitempty"`
 
-	// The schedule for conformance scan.
-	ConformanceScanSchedule *string `json:"conformanceScanSchedule,omitempty" tf:"conformance_scan_schedule,omitempty"`
+	// The list of cluster UIDs to include in the backup. If `include_all_clusters` is set to `true`, then all clusters will be included.
+	// +listType=set
+	ClusterUids []*string `json:"clusterUids,omitempty" tf:"cluster_uids,omitempty"`
 
-	// The schedule for penetration scan.
-	PenetrationScanSchedule *string `json:"penetrationScanSchedule,omitempty" tf:"penetration_scan_schedule,omitempty"`
+	// The number of hours after which the backup will be deleted. For example, if the expiry is set to 24, the backup will be deleted after 24 hours.
+	ExpiryInHour *float64 `json:"expiryInHour,omitempty" tf:"expiry_in_hour,omitempty"`
+
+	// Whether to include all clusters in the backup. If set to false, only the clusters specified in `cluster_uids` will be included.
+	IncludeAllClusters *bool `json:"includeAllClusters,omitempty" tf:"include_all_clusters,omitempty"`
+
+	// Indicates whether to include cluster resources in the backup. If set to false, only the cluster configuration and disks will be backed up. (Note: Starting with Palette version 4.6, the include_cluster_resources attribute will be deprecated, and a new attribute, include_cluster_resources_mode, will be introduced.)
+	IncludeClusterResources *bool `json:"includeClusterResources,omitempty" tf:"include_cluster_resources,omitempty"`
+
+	// Specifies whether to include the cluster resources in the backup. Supported values are `always`, `never`, and `auto`.
+	IncludeClusterResourcesMode *string `json:"includeClusterResourcesMode,omitempty" tf:"include_cluster_resources_mode,omitempty"`
+
+	// Whether to include the disks in the backup. If set to false, only the cluster configuration will be backed up.
+	IncludeDisks *bool `json:"includeDisks,omitempty" tf:"include_disks,omitempty"`
+
+	// The list of Kubernetes namespaces to include in the backup. If not specified, all namespaces will be included.
+	// +listType=set
+	Namespaces []*string `json:"namespaces,omitempty" tf:"namespaces,omitempty"`
+
+	// Prefix for the backup name. The backup name will be of the format <prefix>-<cluster-name>-<timestamp>.
+	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
+
+	// The schedule for the backup. The schedule is specified in cron format. For example, to run the backup every day at 1:00 AM, the schedule should be set to `0 1 * * *`.
+	Schedule *string `json:"schedule,omitempty" tf:"schedule,omitempty"`
 }
 
-type ScanPolicyObservation struct {
+type VSphereClusterBackupPolicyObservation struct {
 
-	// The schedule for configuration scan.
-	ConfigurationScanSchedule *string `json:"configurationScanSchedule,omitempty" tf:"configuration_scan_schedule,omitempty"`
+	// The ID of the backup location to use for the backup.
+	BackupLocationID *string `json:"backupLocationId,omitempty" tf:"backup_location_id,omitempty"`
 
-	// The schedule for conformance scan.
-	ConformanceScanSchedule *string `json:"conformanceScanSchedule,omitempty" tf:"conformance_scan_schedule,omitempty"`
+	// The list of cluster UIDs to include in the backup. If `include_all_clusters` is set to `true`, then all clusters will be included.
+	// +listType=set
+	ClusterUids []*string `json:"clusterUids,omitempty" tf:"cluster_uids,omitempty"`
 
-	// The schedule for penetration scan.
-	PenetrationScanSchedule *string `json:"penetrationScanSchedule,omitempty" tf:"penetration_scan_schedule,omitempty"`
+	// The number of hours after which the backup will be deleted. For example, if the expiry is set to 24, the backup will be deleted after 24 hours.
+	ExpiryInHour *float64 `json:"expiryInHour,omitempty" tf:"expiry_in_hour,omitempty"`
+
+	// Whether to include all clusters in the backup. If set to false, only the clusters specified in `cluster_uids` will be included.
+	IncludeAllClusters *bool `json:"includeAllClusters,omitempty" tf:"include_all_clusters,omitempty"`
+
+	// Indicates whether to include cluster resources in the backup. If set to false, only the cluster configuration and disks will be backed up. (Note: Starting with Palette version 4.6, the include_cluster_resources attribute will be deprecated, and a new attribute, include_cluster_resources_mode, will be introduced.)
+	IncludeClusterResources *bool `json:"includeClusterResources,omitempty" tf:"include_cluster_resources,omitempty"`
+
+	// Specifies whether to include the cluster resources in the backup. Supported values are `always`, `never`, and `auto`.
+	IncludeClusterResourcesMode *string `json:"includeClusterResourcesMode,omitempty" tf:"include_cluster_resources_mode,omitempty"`
+
+	// Whether to include the disks in the backup. If set to false, only the cluster configuration will be backed up.
+	IncludeDisks *bool `json:"includeDisks,omitempty" tf:"include_disks,omitempty"`
+
+	// The list of Kubernetes namespaces to include in the backup. If not specified, all namespaces will be included.
+	// +listType=set
+	Namespaces []*string `json:"namespaces,omitempty" tf:"namespaces,omitempty"`
+
+	// Prefix for the backup name. The backup name will be of the format <prefix>-<cluster-name>-<timestamp>.
+	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
+
+	// The schedule for the backup. The schedule is specified in cron format. For example, to run the backup every day at 1:00 AM, the schedule should be set to `0 1 * * *`.
+	Schedule *string `json:"schedule,omitempty" tf:"schedule,omitempty"`
 }
 
-type ScanPolicyParameters struct {
+type VSphereClusterBackupPolicyParameters struct {
 
-	// The schedule for configuration scan.
+	// The ID of the backup location to use for the backup.
 	// +kubebuilder:validation:Optional
-	ConfigurationScanSchedule *string `json:"configurationScanSchedule" tf:"configuration_scan_schedule,omitempty"`
+	BackupLocationID *string `json:"backupLocationId" tf:"backup_location_id,omitempty"`
 
-	// The schedule for conformance scan.
+	// The list of cluster UIDs to include in the backup. If `include_all_clusters` is set to `true`, then all clusters will be included.
 	// +kubebuilder:validation:Optional
-	ConformanceScanSchedule *string `json:"conformanceScanSchedule" tf:"conformance_scan_schedule,omitempty"`
+	// +listType=set
+	ClusterUids []*string `json:"clusterUids,omitempty" tf:"cluster_uids,omitempty"`
 
-	// The schedule for penetration scan.
+	// The number of hours after which the backup will be deleted. For example, if the expiry is set to 24, the backup will be deleted after 24 hours.
 	// +kubebuilder:validation:Optional
-	PenetrationScanSchedule *string `json:"penetrationScanSchedule" tf:"penetration_scan_schedule,omitempty"`
+	ExpiryInHour *float64 `json:"expiryInHour" tf:"expiry_in_hour,omitempty"`
+
+	// Whether to include all clusters in the backup. If set to false, only the clusters specified in `cluster_uids` will be included.
+	// +kubebuilder:validation:Optional
+	IncludeAllClusters *bool `json:"includeAllClusters,omitempty" tf:"include_all_clusters,omitempty"`
+
+	// Indicates whether to include cluster resources in the backup. If set to false, only the cluster configuration and disks will be backed up. (Note: Starting with Palette version 4.6, the include_cluster_resources attribute will be deprecated, and a new attribute, include_cluster_resources_mode, will be introduced.)
+	// +kubebuilder:validation:Optional
+	IncludeClusterResources *bool `json:"includeClusterResources,omitempty" tf:"include_cluster_resources,omitempty"`
+
+	// Specifies whether to include the cluster resources in the backup. Supported values are `always`, `never`, and `auto`.
+	// +kubebuilder:validation:Optional
+	IncludeClusterResourcesMode *string `json:"includeClusterResourcesMode,omitempty" tf:"include_cluster_resources_mode,omitempty"`
+
+	// Whether to include the disks in the backup. If set to false, only the cluster configuration will be backed up.
+	// +kubebuilder:validation:Optional
+	IncludeDisks *bool `json:"includeDisks,omitempty" tf:"include_disks,omitempty"`
+
+	// The list of Kubernetes namespaces to include in the backup. If not specified, all namespaces will be included.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	Namespaces []*string `json:"namespaces,omitempty" tf:"namespaces,omitempty"`
+
+	// Prefix for the backup name. The backup name will be of the format <prefix>-<cluster-name>-<timestamp>.
+	// +kubebuilder:validation:Optional
+	Prefix *string `json:"prefix" tf:"prefix,omitempty"`
+
+	// The schedule for the backup. The schedule is specified in cron format. For example, to run the backup every day at 1:00 AM, the schedule should be set to `0 1 * * *`.
+	// +kubebuilder:validation:Optional
+	Schedule *string `json:"schedule" tf:"schedule,omitempty"`
 }
 
-type SubjectsInitParameters struct {
+type VSphereClusterCloudConfigInitParameters struct {
 
-	// The name of the subject. Required if 'type' is set to 'User' or 'Group'.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+	// The name of the datacenter in vSphere. This is the name of the datacenter as it appears in vSphere.
+	Datacenter *string `json:"datacenter,omitempty" tf:"datacenter,omitempty"`
 
-	// The Kubernetes namespace of the subject. Required if 'type' is set to 'ServiceAccount'.
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+	// The name of the folder in vSphere. This is the name of the folder as it appears in vSphere.
+	Folder *string `json:"folder,omitempty" tf:"folder,omitempty"`
 
-	// The type of the subject. Can be one of the following values: `User`, `Group`, or `ServiceAccount`.
-	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+	// The host endpoint to use for the cluster. This can be `IP` or `FQDN(External/DDNS)`.
+	HostEndpoint *string `json:"hostEndpoint,omitempty" tf:"host_endpoint,omitempty"`
+
+	// The name of the image template folder in vSphere. This is the name of the folder as it appears in vSphere.
+	ImageTemplateFolder *string `json:"imageTemplateFolder,omitempty" tf:"image_template_folder,omitempty"`
+
+	// The search domain to use for the cluster in case of DHCP.
+	NetworkSearchDomain *string `json:"networkSearchDomain,omitempty" tf:"network_search_domain,omitempty"`
+
+	// The type of network to use for the cluster. This can be `VIP` or `DDNS`.
+	NetworkType *string `json:"networkType,omitempty" tf:"network_type,omitempty"`
+
+	// A list of NTP servers to be used by the cluster.
+	// +listType=set
+	NtpServers []*string `json:"ntpServers,omitempty" tf:"ntp_servers,omitempty"`
+
+	// The SSH key to be used for the cluster. This is the public key that will be used to access the cluster nodes. `ssh_key & ssh_keys` are mutually exclusive.
+	SSHKey *string `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
+
+	// List of public SSH (Secure Shell) keys to establish, administer, and communicate with remote clusters, `ssh_key & ssh_keys` are mutually exclusive.
+	// +listType=set
+	SSHKeys []*string `json:"sshKeys,omitempty" tf:"ssh_keys,omitempty"`
+
+	// Whether to use static IP addresses for the cluster. If `true`, the cluster will use static IP addresses. If `false`, the cluster will use DDNS. Default is `false`.
+	StaticIP *bool `json:"staticIp,omitempty" tf:"static_ip,omitempty"`
 }
 
-type SubjectsObservation struct {
+type VSphereClusterCloudConfigObservation struct {
 
-	// The name of the subject. Required if 'type' is set to 'User' or 'Group'.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+	// The name of the datacenter in vSphere. This is the name of the datacenter as it appears in vSphere.
+	Datacenter *string `json:"datacenter,omitempty" tf:"datacenter,omitempty"`
 
-	// The Kubernetes namespace of the subject. Required if 'type' is set to 'ServiceAccount'.
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+	// The name of the folder in vSphere. This is the name of the folder as it appears in vSphere.
+	Folder *string `json:"folder,omitempty" tf:"folder,omitempty"`
 
-	// The type of the subject. Can be one of the following values: `User`, `Group`, or `ServiceAccount`.
-	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+	// The host endpoint to use for the cluster. This can be `IP` or `FQDN(External/DDNS)`.
+	HostEndpoint *string `json:"hostEndpoint,omitempty" tf:"host_endpoint,omitempty"`
+
+	// The name of the image template folder in vSphere. This is the name of the folder as it appears in vSphere.
+	ImageTemplateFolder *string `json:"imageTemplateFolder,omitempty" tf:"image_template_folder,omitempty"`
+
+	// The search domain to use for the cluster in case of DHCP.
+	NetworkSearchDomain *string `json:"networkSearchDomain,omitempty" tf:"network_search_domain,omitempty"`
+
+	// The type of network to use for the cluster. This can be `VIP` or `DDNS`.
+	NetworkType *string `json:"networkType,omitempty" tf:"network_type,omitempty"`
+
+	// A list of NTP servers to be used by the cluster.
+	// +listType=set
+	NtpServers []*string `json:"ntpServers,omitempty" tf:"ntp_servers,omitempty"`
+
+	// The SSH key to be used for the cluster. This is the public key that will be used to access the cluster nodes. `ssh_key & ssh_keys` are mutually exclusive.
+	SSHKey *string `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
+
+	// List of public SSH (Secure Shell) keys to establish, administer, and communicate with remote clusters, `ssh_key & ssh_keys` are mutually exclusive.
+	// +listType=set
+	SSHKeys []*string `json:"sshKeys,omitempty" tf:"ssh_keys,omitempty"`
+
+	// Whether to use static IP addresses for the cluster. If `true`, the cluster will use static IP addresses. If `false`, the cluster will use DDNS. Default is `false`.
+	StaticIP *bool `json:"staticIp,omitempty" tf:"static_ip,omitempty"`
 }
 
-type SubjectsParameters struct {
+type VSphereClusterCloudConfigParameters struct {
 
-	// The name of the subject. Required if 'type' is set to 'User' or 'Group'.
+	// The name of the datacenter in vSphere. This is the name of the datacenter as it appears in vSphere.
 	// +kubebuilder:validation:Optional
-	Name *string `json:"name" tf:"name,omitempty"`
+	Datacenter *string `json:"datacenter" tf:"datacenter,omitempty"`
 
-	// The Kubernetes namespace of the subject. Required if 'type' is set to 'ServiceAccount'.
+	// The name of the folder in vSphere. This is the name of the folder as it appears in vSphere.
 	// +kubebuilder:validation:Optional
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+	Folder *string `json:"folder" tf:"folder,omitempty"`
 
-	// The type of the subject. Can be one of the following values: `User`, `Group`, or `ServiceAccount`.
+	// The host endpoint to use for the cluster. This can be `IP` or `FQDN(External/DDNS)`.
 	// +kubebuilder:validation:Optional
-	Type *string `json:"type" tf:"type,omitempty"`
-}
+	HostEndpoint *string `json:"hostEndpoint,omitempty" tf:"host_endpoint,omitempty"`
 
-type TaintsInitParameters struct {
-
-	// The effect of the taint. Allowed values are: `NoSchedule`, `PreferNoSchedule` or `NoExecute`.
-	Effect *string `json:"effect,omitempty" tf:"effect,omitempty"`
-
-	// The key of the taint.
-	Key *string `json:"key,omitempty" tf:"key,omitempty"`
-
-	// The value of the taint.
-	Value *string `json:"value,omitempty" tf:"value,omitempty"`
-}
-
-type TaintsObservation struct {
-
-	// The effect of the taint. Allowed values are: `NoSchedule`, `PreferNoSchedule` or `NoExecute`.
-	Effect *string `json:"effect,omitempty" tf:"effect,omitempty"`
-
-	// The key of the taint.
-	Key *string `json:"key,omitempty" tf:"key,omitempty"`
-
-	// The value of the taint.
-	Value *string `json:"value,omitempty" tf:"value,omitempty"`
-}
-
-type TaintsParameters struct {
-
-	// The effect of the taint. Allowed values are: `NoSchedule`, `PreferNoSchedule` or `NoExecute`.
+	// The name of the image template folder in vSphere. This is the name of the folder as it appears in vSphere.
 	// +kubebuilder:validation:Optional
-	Effect *string `json:"effect" tf:"effect,omitempty"`
+	ImageTemplateFolder *string `json:"imageTemplateFolder,omitempty" tf:"image_template_folder,omitempty"`
 
-	// The key of the taint.
+	// The search domain to use for the cluster in case of DHCP.
 	// +kubebuilder:validation:Optional
-	Key *string `json:"key" tf:"key,omitempty"`
+	NetworkSearchDomain *string `json:"networkSearchDomain,omitempty" tf:"network_search_domain,omitempty"`
 
-	// The value of the taint.
+	// The type of network to use for the cluster. This can be `VIP` or `DDNS`.
 	// +kubebuilder:validation:Optional
-	Value *string `json:"value" tf:"value,omitempty"`
+	NetworkType *string `json:"networkType,omitempty" tf:"network_type,omitempty"`
+
+	// A list of NTP servers to be used by the cluster.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	NtpServers []*string `json:"ntpServers,omitempty" tf:"ntp_servers,omitempty"`
+
+	// The SSH key to be used for the cluster. This is the public key that will be used to access the cluster nodes. `ssh_key & ssh_keys` are mutually exclusive.
+	// +kubebuilder:validation:Optional
+	SSHKey *string `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
+
+	// List of public SSH (Secure Shell) keys to establish, administer, and communicate with remote clusters, `ssh_key & ssh_keys` are mutually exclusive.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	SSHKeys []*string `json:"sshKeys,omitempty" tf:"ssh_keys,omitempty"`
+
+	// Whether to use static IP addresses for the cluster. If `true`, the cluster will use static IP addresses. If `false`, the cluster will use DDNS. Default is `false`.
+	// +kubebuilder:validation:Optional
+	StaticIP *bool `json:"staticIp,omitempty" tf:"static_ip,omitempty"`
 }
 
 type VSphereClusterClusterProfileInitParameters struct {
@@ -936,7 +487,7 @@ type VSphereClusterClusterProfileInitParameters struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// For packs of type `spectro`, `helm`, and `manifest`, at least one pack must be specified.
-	Pack []ClusterProfilePackInitParameters `json:"pack,omitempty" tf:"pack,omitempty"`
+	Pack []VSphereClusterClusterProfilePackInitParameters `json:"pack,omitempty" tf:"pack,omitempty"`
 
 	// A map of cluster profile variables, specified as key-value pairs. For example: `priority = "5"`.
 	// +mapType=granular
@@ -949,11 +500,85 @@ type VSphereClusterClusterProfileObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// For packs of type `spectro`, `helm`, and `manifest`, at least one pack must be specified.
-	Pack []ClusterProfilePackObservation `json:"pack,omitempty" tf:"pack,omitempty"`
+	Pack []VSphereClusterClusterProfilePackObservation `json:"pack,omitempty" tf:"pack,omitempty"`
 
 	// A map of cluster profile variables, specified as key-value pairs. For example: `priority = "5"`.
 	// +mapType=granular
 	Variables map[string]*string `json:"variables,omitempty" tf:"variables,omitempty"`
+}
+
+type VSphereClusterClusterProfilePackInitParameters struct {
+	Manifest []ClusterProfilePackManifestInitParameters `json:"manifest,omitempty" tf:"manifest,omitempty"`
+
+	// The name of the pack. The name must be unique within the cluster profile.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// The registry UID of the pack. The registry UID is the unique identifier of the registry. This attribute is required if there is more than one registry that contains a pack with the same name.
+	RegistryUID *string `json:"registryUid,omitempty" tf:"registry_uid,omitempty"`
+
+	// The tag of the pack. The tag is the version of the pack. This attribute is required if the pack type is `spectro` or `helm`.
+	Tag *string `json:"tag,omitempty" tf:"tag,omitempty"`
+
+	// The type of the pack. Allowed values are `spectro`, `manifest`, `helm`, or `oci`. The default value is spectro. If using an OCI registry for pack, set the type to `oci`.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+
+	// The unique identifier of the pack. The value can be looked up using the [`spectrocloud_pack`](https://registry.io/providers/spectrocloud/spectrocloud/latest/docs/data-sources/pack) data source. This value is required if the pack type is `spectro` and for `helm` if the chart is from a public helm registry.
+	UID *string `json:"uid,omitempty" tf:"uid,omitempty"`
+
+	// The values of the pack. The values are the configuration values of the pack. The values are specified in YAML format.
+	Values *string `json:"values,omitempty" tf:"values,omitempty"`
+}
+
+type VSphereClusterClusterProfilePackObservation struct {
+	Manifest []ClusterProfilePackManifestObservation `json:"manifest,omitempty" tf:"manifest,omitempty"`
+
+	// The name of the pack. The name must be unique within the cluster profile.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// The registry UID of the pack. The registry UID is the unique identifier of the registry. This attribute is required if there is more than one registry that contains a pack with the same name.
+	RegistryUID *string `json:"registryUid,omitempty" tf:"registry_uid,omitempty"`
+
+	// The tag of the pack. The tag is the version of the pack. This attribute is required if the pack type is `spectro` or `helm`.
+	Tag *string `json:"tag,omitempty" tf:"tag,omitempty"`
+
+	// The type of the pack. Allowed values are `spectro`, `manifest`, `helm`, or `oci`. The default value is spectro. If using an OCI registry for pack, set the type to `oci`.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+
+	// The unique identifier of the pack. The value can be looked up using the [`spectrocloud_pack`](https://registry.io/providers/spectrocloud/spectrocloud/latest/docs/data-sources/pack) data source. This value is required if the pack type is `spectro` and for `helm` if the chart is from a public helm registry.
+	UID *string `json:"uid,omitempty" tf:"uid,omitempty"`
+
+	// The values of the pack. The values are the configuration values of the pack. The values are specified in YAML format.
+	Values *string `json:"values,omitempty" tf:"values,omitempty"`
+}
+
+type VSphereClusterClusterProfilePackParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Manifest []ClusterProfilePackManifestParameters `json:"manifest,omitempty" tf:"manifest,omitempty"`
+
+	// The name of the pack. The name must be unique within the cluster profile.
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name" tf:"name,omitempty"`
+
+	// The registry UID of the pack. The registry UID is the unique identifier of the registry. This attribute is required if there is more than one registry that contains a pack with the same name.
+	// +kubebuilder:validation:Optional
+	RegistryUID *string `json:"registryUid,omitempty" tf:"registry_uid,omitempty"`
+
+	// The tag of the pack. The tag is the version of the pack. This attribute is required if the pack type is `spectro` or `helm`.
+	// +kubebuilder:validation:Optional
+	Tag *string `json:"tag,omitempty" tf:"tag,omitempty"`
+
+	// The type of the pack. Allowed values are `spectro`, `manifest`, `helm`, or `oci`. The default value is spectro. If using an OCI registry for pack, set the type to `oci`.
+	// +kubebuilder:validation:Optional
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+
+	// The unique identifier of the pack. The value can be looked up using the [`spectrocloud_pack`](https://registry.io/providers/spectrocloud/spectrocloud/latest/docs/data-sources/pack) data source. This value is required if the pack type is `spectro` and for `helm` if the chart is from a public helm registry.
+	// +kubebuilder:validation:Optional
+	UID *string `json:"uid,omitempty" tf:"uid,omitempty"`
+
+	// The values of the pack. The values are the configuration values of the pack. The values are specified in YAML format.
+	// +kubebuilder:validation:Optional
+	Values *string `json:"values,omitempty" tf:"values,omitempty"`
 }
 
 type VSphereClusterClusterProfileParameters struct {
@@ -964,12 +589,110 @@ type VSphereClusterClusterProfileParameters struct {
 
 	// For packs of type `spectro`, `helm`, and `manifest`, at least one pack must be specified.
 	// +kubebuilder:validation:Optional
-	Pack []ClusterProfilePackParameters `json:"pack,omitempty" tf:"pack,omitempty"`
+	Pack []VSphereClusterClusterProfilePackParameters `json:"pack,omitempty" tf:"pack,omitempty"`
 
 	// A map of cluster profile variables, specified as key-value pairs. For example: `priority = "5"`.
 	// +kubebuilder:validation:Optional
 	// +mapType=granular
 	Variables map[string]*string `json:"variables,omitempty" tf:"variables,omitempty"`
+}
+
+type VSphereClusterClusterRbacBindingInitParameters struct {
+
+	// The Kubernetes namespace of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// The role of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
+	// +mapType=granular
+	Role map[string]*string `json:"role,omitempty" tf:"role,omitempty"`
+
+	Subjects []ClusterRbacBindingSubjectsInitParameters `json:"subjects,omitempty" tf:"subjects,omitempty"`
+
+	// The type of the RBAC binding. Can be one of the following values: `RoleBinding`, or `ClusterRoleBinding`.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+}
+
+type VSphereClusterClusterRbacBindingObservation struct {
+
+	// The Kubernetes namespace of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// The role of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
+	// +mapType=granular
+	Role map[string]*string `json:"role,omitempty" tf:"role,omitempty"`
+
+	Subjects []ClusterRbacBindingSubjectsObservation `json:"subjects,omitempty" tf:"subjects,omitempty"`
+
+	// The type of the RBAC binding. Can be one of the following values: `RoleBinding`, or `ClusterRoleBinding`.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+}
+
+type VSphereClusterClusterRbacBindingParameters struct {
+
+	// The Kubernetes namespace of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// The role of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
+	// +kubebuilder:validation:Optional
+	// +mapType=granular
+	Role map[string]*string `json:"role,omitempty" tf:"role,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Subjects []ClusterRbacBindingSubjectsParameters `json:"subjects,omitempty" tf:"subjects,omitempty"`
+
+	// The type of the RBAC binding. Can be one of the following values: `RoleBinding`, or `ClusterRoleBinding`.
+	// +kubebuilder:validation:Optional
+	Type *string `json:"type" tf:"type,omitempty"`
+}
+
+type VSphereClusterHostConfigInitParameters struct {
+
+	// The external traffic policy for the cluster.
+	ExternalTrafficPolicy *string `json:"externalTrafficPolicy,omitempty" tf:"external_traffic_policy,omitempty"`
+
+	// The type of endpoint for the cluster. Can be either 'Ingress' or 'LoadBalancer'. The default is 'Ingress'.
+	HostEndpointType *string `json:"hostEndpointType,omitempty" tf:"host_endpoint_type,omitempty"`
+
+	// The host for the Ingress endpoint. Required if 'host_endpoint_type' is set to 'Ingress'.
+	IngressHost *string `json:"ingressHost,omitempty" tf:"ingress_host,omitempty"`
+
+	// The source ranges for the load balancer. Required if 'host_endpoint_type' is set to 'LoadBalancer'.
+	LoadBalancerSourceRanges *string `json:"loadBalancerSourceRanges,omitempty" tf:"load_balancer_source_ranges,omitempty"`
+}
+
+type VSphereClusterHostConfigObservation struct {
+
+	// The external traffic policy for the cluster.
+	ExternalTrafficPolicy *string `json:"externalTrafficPolicy,omitempty" tf:"external_traffic_policy,omitempty"`
+
+	// The type of endpoint for the cluster. Can be either 'Ingress' or 'LoadBalancer'. The default is 'Ingress'.
+	HostEndpointType *string `json:"hostEndpointType,omitempty" tf:"host_endpoint_type,omitempty"`
+
+	// The host for the Ingress endpoint. Required if 'host_endpoint_type' is set to 'Ingress'.
+	IngressHost *string `json:"ingressHost,omitempty" tf:"ingress_host,omitempty"`
+
+	// The source ranges for the load balancer. Required if 'host_endpoint_type' is set to 'LoadBalancer'.
+	LoadBalancerSourceRanges *string `json:"loadBalancerSourceRanges,omitempty" tf:"load_balancer_source_ranges,omitempty"`
+}
+
+type VSphereClusterHostConfigParameters struct {
+
+	// The external traffic policy for the cluster.
+	// +kubebuilder:validation:Optional
+	ExternalTrafficPolicy *string `json:"externalTrafficPolicy,omitempty" tf:"external_traffic_policy,omitempty"`
+
+	// The type of endpoint for the cluster. Can be either 'Ingress' or 'LoadBalancer'. The default is 'Ingress'.
+	// +kubebuilder:validation:Optional
+	HostEndpointType *string `json:"hostEndpointType,omitempty" tf:"host_endpoint_type,omitempty"`
+
+	// The host for the Ingress endpoint. Required if 'host_endpoint_type' is set to 'Ingress'.
+	// +kubebuilder:validation:Optional
+	IngressHost *string `json:"ingressHost,omitempty" tf:"ingress_host,omitempty"`
+
+	// The source ranges for the load balancer. Required if 'host_endpoint_type' is set to 'LoadBalancer'.
+	// +kubebuilder:validation:Optional
+	LoadBalancerSourceRanges *string `json:"loadBalancerSourceRanges,omitempty" tf:"load_balancer_source_ranges,omitempty"`
 }
 
 type VSphereClusterInitParameters struct {
@@ -978,12 +701,12 @@ type VSphereClusterInitParameters struct {
 	ApplySetting *string `json:"applySetting,omitempty" tf:"apply_setting,omitempty"`
 
 	// The backup policy for the cluster. If not specified, no backups will be taken.
-	BackupPolicy []BackupPolicyInitParameters `json:"backupPolicy,omitempty" tf:"backup_policy,omitempty"`
+	BackupPolicy []VSphereClusterBackupPolicyInitParameters `json:"backupPolicy,omitempty" tf:"backup_policy,omitempty"`
 
 	// ID of the cloud account to be used for the cluster. This cloud account must be of type `vsphere`.
 	CloudAccountID *string `json:"cloudAccountId,omitempty" tf:"cloud_account_id,omitempty"`
 
-	CloudConfig []CloudConfigInitParameters `json:"cloudConfig,omitempty" tf:"cloud_config,omitempty"`
+	CloudConfig []VSphereClusterCloudConfigInitParameters `json:"cloudConfig,omitempty" tf:"cloud_config,omitempty"`
 
 	// `cluster_meta_attribute` can be used to set additional cluster metadata information, eg `{'nic_name': 'test', 'env': 'stage'}`
 	ClusterMetaAttribute *string `json:"clusterMetaAttribute,omitempty" tf:"cluster_meta_attribute,omitempty"`
@@ -991,7 +714,7 @@ type VSphereClusterInitParameters struct {
 	ClusterProfile []VSphereClusterClusterProfileInitParameters `json:"clusterProfile,omitempty" tf:"cluster_profile,omitempty"`
 
 	// The RBAC binding for the cluster.
-	ClusterRbacBinding []ClusterRbacBindingInitParameters `json:"clusterRbacBinding,omitempty" tf:"cluster_rbac_binding,omitempty"`
+	ClusterRbacBinding []VSphereClusterClusterRbacBindingInitParameters `json:"clusterRbacBinding,omitempty" tf:"cluster_rbac_binding,omitempty"`
 
 	// The context of the VMware cluster. Allowed values are `project` or `tenant`. Default is `project`. If  the `project` context is specified, the project name will sourced from the provider configuration parameter [`project_name`](https://registry.io/providers/spectrocloud/spectrocloud/latest/docs#schema).
 	Context *string `json:"context,omitempty" tf:"context,omitempty"`
@@ -1006,17 +729,17 @@ type VSphereClusterInitParameters struct {
 	ForceDeleteDelay *float64 `json:"forceDeleteDelay,omitempty" tf:"force_delete_delay,omitempty"`
 
 	// The host configuration for the cluster.
-	HostConfig []HostConfigInitParameters `json:"hostConfig,omitempty" tf:"host_config,omitempty"`
+	HostConfig []VSphereClusterHostConfigInitParameters `json:"hostConfig,omitempty" tf:"host_config,omitempty"`
 
-	LocationConfig []LocationConfigInitParameters `json:"locationConfig,omitempty" tf:"location_config,omitempty"`
+	LocationConfig []VSphereClusterLocationConfigInitParameters `json:"locationConfig,omitempty" tf:"location_config,omitempty"`
 
-	MachinePool []MachinePoolInitParameters `json:"machinePool,omitempty" tf:"machine_pool,omitempty"`
+	MachinePool []VSphereClusterMachinePoolInitParameters `json:"machinePool,omitempty" tf:"machine_pool,omitempty"`
 
 	// The name of the cluster.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// The namespaces for the cluster.
-	Namespaces []NamespacesInitParameters `json:"namespaces,omitempty" tf:"namespaces,omitempty"`
+	Namespaces []VSphereClusterNamespacesInitParameters `json:"namespaces,omitempty" tf:"namespaces,omitempty"`
 
 	// The date and time after which to patch the cluster. Prefix the time value with the respective RFC. Ex: `RFC3339: 2006-01-02T15:04:05Z07:00`
 	OsPatchAfter *string `json:"osPatchAfter,omitempty" tf:"os_patch_after,omitempty"`
@@ -1034,7 +757,7 @@ type VSphereClusterInitParameters struct {
 	ReviewRepaveState *string `json:"reviewRepaveState,omitempty" tf:"review_repave_state,omitempty"`
 
 	// The scan policy for the cluster.
-	ScanPolicy []ScanPolicyInitParameters `json:"scanPolicy,omitempty" tf:"scan_policy,omitempty"`
+	ScanPolicy []VSphereClusterScanPolicyInitParameters `json:"scanPolicy,omitempty" tf:"scan_policy,omitempty"`
 
 	// If `true`, the cluster will be created asynchronously. Default value is `false`.
 	SkipCompletion *bool `json:"skipCompletion,omitempty" tf:"skip_completion,omitempty"`
@@ -1042,6 +765,244 @@ type VSphereClusterInitParameters struct {
 	// A list of tags to be applied to the cluster. Tags must be in the form of `key:value`.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+}
+
+type VSphereClusterLocationConfigInitParameters struct {
+
+	// The country code of the country the cluster is located in.
+	CountryCode *string `json:"countryCode,omitempty" tf:"country_code,omitempty"`
+
+	// The name of the country.
+	CountryName *string `json:"countryName,omitempty" tf:"country_name,omitempty"`
+
+	// The latitude coordinates value.
+	Latitude *float64 `json:"latitude,omitempty" tf:"latitude,omitempty"`
+
+	// The longitude coordinates value.
+	Longitude *float64 `json:"longitude,omitempty" tf:"longitude,omitempty"`
+
+	// The region code of where the cluster is located in.
+	RegionCode *string `json:"regionCode,omitempty" tf:"region_code,omitempty"`
+
+	// The name of the region.
+	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
+}
+
+type VSphereClusterLocationConfigObservation struct {
+
+	// The country code of the country the cluster is located in.
+	CountryCode *string `json:"countryCode,omitempty" tf:"country_code,omitempty"`
+
+	// The name of the country.
+	CountryName *string `json:"countryName,omitempty" tf:"country_name,omitempty"`
+
+	// The latitude coordinates value.
+	Latitude *float64 `json:"latitude,omitempty" tf:"latitude,omitempty"`
+
+	// The longitude coordinates value.
+	Longitude *float64 `json:"longitude,omitempty" tf:"longitude,omitempty"`
+
+	// The region code of where the cluster is located in.
+	RegionCode *string `json:"regionCode,omitempty" tf:"region_code,omitempty"`
+
+	// The name of the region.
+	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
+}
+
+type VSphereClusterLocationConfigParameters struct {
+
+	// The country code of the country the cluster is located in.
+	// +kubebuilder:validation:Optional
+	CountryCode *string `json:"countryCode,omitempty" tf:"country_code,omitempty"`
+
+	// The name of the country.
+	// +kubebuilder:validation:Optional
+	CountryName *string `json:"countryName,omitempty" tf:"country_name,omitempty"`
+
+	// The latitude coordinates value.
+	// +kubebuilder:validation:Optional
+	Latitude *float64 `json:"latitude" tf:"latitude,omitempty"`
+
+	// The longitude coordinates value.
+	// +kubebuilder:validation:Optional
+	Longitude *float64 `json:"longitude" tf:"longitude,omitempty"`
+
+	// The region code of where the cluster is located in.
+	// +kubebuilder:validation:Optional
+	RegionCode *string `json:"regionCode,omitempty" tf:"region_code,omitempty"`
+
+	// The name of the region.
+	// +kubebuilder:validation:Optional
+	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
+}
+
+type VSphereClusterMachinePoolInitParameters struct {
+
+	// +mapType=granular
+	AdditionalLabels map[string]*string `json:"additionalLabels,omitempty" tf:"additional_labels,omitempty"`
+
+	// Whether this machine pool is a control plane. Defaults to `false`.
+	ControlPlane *bool `json:"controlPlane,omitempty" tf:"control_plane,omitempty"`
+
+	// Whether this machine pool is a control plane and a worker. Defaults to `false`.
+	ControlPlaneAsWorker *bool `json:"controlPlaneAsWorker,omitempty" tf:"control_plane_as_worker,omitempty"`
+
+	// Number of nodes in the machine pool.
+	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
+
+	InstanceType []InstanceTypeInitParameters `json:"instanceType,omitempty" tf:"instance_type,omitempty"`
+
+	// Maximum number of nodes in the machine pool. This is used for autoscaling the machine pool.
+	Max *float64 `json:"max,omitempty" tf:"max,omitempty"`
+
+	// Minimum number of nodes in the machine pool. This is used for autoscaling the machine pool.
+	Min *float64 `json:"min,omitempty" tf:"min,omitempty"`
+
+	// The name of the machine pool. This is used to identify the machine pool in the cluster.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	Node []MachinePoolNodeInitParameters `json:"node,omitempty" tf:"node,omitempty"`
+
+	// Minimum number of seconds node should be Ready, before the next node is selected for repave. Default value is `0`, Applicable only for worker pools.
+	NodeRepaveInterval *float64 `json:"nodeRepaveInterval,omitempty" tf:"node_repave_interval,omitempty"`
+
+	Placement []PlacementInitParameters `json:"placement,omitempty" tf:"placement,omitempty"`
+
+	Taints []MachinePoolTaintsInitParameters `json:"taints,omitempty" tf:"taints,omitempty"`
+
+	// Update strategy for the machine pool. Valid values are `RollingUpdateScaleOut` and `RollingUpdateScaleIn`.
+	UpdateStrategy *string `json:"updateStrategy,omitempty" tf:"update_strategy,omitempty"`
+}
+
+type VSphereClusterMachinePoolObservation struct {
+
+	// +mapType=granular
+	AdditionalLabels map[string]*string `json:"additionalLabels,omitempty" tf:"additional_labels,omitempty"`
+
+	// Whether this machine pool is a control plane. Defaults to `false`.
+	ControlPlane *bool `json:"controlPlane,omitempty" tf:"control_plane,omitempty"`
+
+	// Whether this machine pool is a control plane and a worker. Defaults to `false`.
+	ControlPlaneAsWorker *bool `json:"controlPlaneAsWorker,omitempty" tf:"control_plane_as_worker,omitempty"`
+
+	// Number of nodes in the machine pool.
+	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
+
+	InstanceType []InstanceTypeObservation `json:"instanceType,omitempty" tf:"instance_type,omitempty"`
+
+	// Maximum number of nodes in the machine pool. This is used for autoscaling the machine pool.
+	Max *float64 `json:"max,omitempty" tf:"max,omitempty"`
+
+	// Minimum number of nodes in the machine pool. This is used for autoscaling the machine pool.
+	Min *float64 `json:"min,omitempty" tf:"min,omitempty"`
+
+	// The name of the machine pool. This is used to identify the machine pool in the cluster.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	Node []MachinePoolNodeObservation `json:"node,omitempty" tf:"node,omitempty"`
+
+	// Minimum number of seconds node should be Ready, before the next node is selected for repave. Default value is `0`, Applicable only for worker pools.
+	NodeRepaveInterval *float64 `json:"nodeRepaveInterval,omitempty" tf:"node_repave_interval,omitempty"`
+
+	Placement []PlacementObservation `json:"placement,omitempty" tf:"placement,omitempty"`
+
+	Taints []MachinePoolTaintsObservation `json:"taints,omitempty" tf:"taints,omitempty"`
+
+	// Update strategy for the machine pool. Valid values are `RollingUpdateScaleOut` and `RollingUpdateScaleIn`.
+	UpdateStrategy *string `json:"updateStrategy,omitempty" tf:"update_strategy,omitempty"`
+}
+
+type VSphereClusterMachinePoolParameters struct {
+
+	// +kubebuilder:validation:Optional
+	// +mapType=granular
+	AdditionalLabels map[string]*string `json:"additionalLabels,omitempty" tf:"additional_labels,omitempty"`
+
+	// Whether this machine pool is a control plane. Defaults to `false`.
+	// +kubebuilder:validation:Optional
+	ControlPlane *bool `json:"controlPlane,omitempty" tf:"control_plane,omitempty"`
+
+	// Whether this machine pool is a control plane and a worker. Defaults to `false`.
+	// +kubebuilder:validation:Optional
+	ControlPlaneAsWorker *bool `json:"controlPlaneAsWorker,omitempty" tf:"control_plane_as_worker,omitempty"`
+
+	// Number of nodes in the machine pool.
+	// +kubebuilder:validation:Optional
+	Count *float64 `json:"count" tf:"count,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	InstanceType []InstanceTypeParameters `json:"instanceType" tf:"instance_type,omitempty"`
+
+	// Maximum number of nodes in the machine pool. This is used for autoscaling the machine pool.
+	// +kubebuilder:validation:Optional
+	Max *float64 `json:"max,omitempty" tf:"max,omitempty"`
+
+	// Minimum number of nodes in the machine pool. This is used for autoscaling the machine pool.
+	// +kubebuilder:validation:Optional
+	Min *float64 `json:"min,omitempty" tf:"min,omitempty"`
+
+	// The name of the machine pool. This is used to identify the machine pool in the cluster.
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Node []MachinePoolNodeParameters `json:"node,omitempty" tf:"node,omitempty"`
+
+	// Minimum number of seconds node should be Ready, before the next node is selected for repave. Default value is `0`, Applicable only for worker pools.
+	// +kubebuilder:validation:Optional
+	NodeRepaveInterval *float64 `json:"nodeRepaveInterval,omitempty" tf:"node_repave_interval,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Placement []PlacementParameters `json:"placement" tf:"placement,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Taints []MachinePoolTaintsParameters `json:"taints,omitempty" tf:"taints,omitempty"`
+
+	// Update strategy for the machine pool. Valid values are `RollingUpdateScaleOut` and `RollingUpdateScaleIn`.
+	// +kubebuilder:validation:Optional
+	UpdateStrategy *string `json:"updateStrategy,omitempty" tf:"update_strategy,omitempty"`
+}
+
+type VSphereClusterNamespacesInitParameters struct {
+
+	// List of images to disallow for the namespace. For example, `['nginx:latest', 'redis:latest']`
+	ImagesBlacklist []*string `json:"imagesBlacklist,omitempty" tf:"images_blacklist,omitempty"`
+
+	// Name of the namespace. This is the name of the Kubernetes namespace in the cluster.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// Resource allocation for the namespace. This is a map containing the resource type and the resource value. For example, `{cpu_cores: '2', memory_MiB: '2048'}`
+	// +mapType=granular
+	ResourceAllocation map[string]*string `json:"resourceAllocation,omitempty" tf:"resource_allocation,omitempty"`
+}
+
+type VSphereClusterNamespacesObservation struct {
+
+	// List of images to disallow for the namespace. For example, `['nginx:latest', 'redis:latest']`
+	ImagesBlacklist []*string `json:"imagesBlacklist,omitempty" tf:"images_blacklist,omitempty"`
+
+	// Name of the namespace. This is the name of the Kubernetes namespace in the cluster.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// Resource allocation for the namespace. This is a map containing the resource type and the resource value. For example, `{cpu_cores: '2', memory_MiB: '2048'}`
+	// +mapType=granular
+	ResourceAllocation map[string]*string `json:"resourceAllocation,omitempty" tf:"resource_allocation,omitempty"`
+}
+
+type VSphereClusterNamespacesParameters struct {
+
+	// List of images to disallow for the namespace. For example, `['nginx:latest', 'redis:latest']`
+	// +kubebuilder:validation:Optional
+	ImagesBlacklist []*string `json:"imagesBlacklist,omitempty" tf:"images_blacklist,omitempty"`
+
+	// Name of the namespace. This is the name of the Kubernetes namespace in the cluster.
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name" tf:"name,omitempty"`
+
+	// Resource allocation for the namespace. This is a map containing the resource type and the resource value. For example, `{cpu_cores: '2', memory_MiB: '2048'}`
+	// +kubebuilder:validation:Optional
+	// +mapType=granular
+	ResourceAllocation map[string]*string `json:"resourceAllocation" tf:"resource_allocation,omitempty"`
 }
 
 type VSphereClusterObservation struct {
@@ -1053,12 +1014,12 @@ type VSphereClusterObservation struct {
 	ApplySetting *string `json:"applySetting,omitempty" tf:"apply_setting,omitempty"`
 
 	// The backup policy for the cluster. If not specified, no backups will be taken.
-	BackupPolicy []BackupPolicyObservation `json:"backupPolicy,omitempty" tf:"backup_policy,omitempty"`
+	BackupPolicy []VSphereClusterBackupPolicyObservation `json:"backupPolicy,omitempty" tf:"backup_policy,omitempty"`
 
 	// ID of the cloud account to be used for the cluster. This cloud account must be of type `vsphere`.
 	CloudAccountID *string `json:"cloudAccountId,omitempty" tf:"cloud_account_id,omitempty"`
 
-	CloudConfig []CloudConfigObservation `json:"cloudConfig,omitempty" tf:"cloud_config,omitempty"`
+	CloudConfig []VSphereClusterCloudConfigObservation `json:"cloudConfig,omitempty" tf:"cloud_config,omitempty"`
 
 	// ID of the cloud config used for the cluster. This cloud config must be of type `azure`.
 	CloudConfigID *string `json:"cloudConfigId,omitempty" tf:"cloud_config_id,omitempty"`
@@ -1069,7 +1030,7 @@ type VSphereClusterObservation struct {
 	ClusterProfile []VSphereClusterClusterProfileObservation `json:"clusterProfile,omitempty" tf:"cluster_profile,omitempty"`
 
 	// The RBAC binding for the cluster.
-	ClusterRbacBinding []ClusterRbacBindingObservation `json:"clusterRbacBinding,omitempty" tf:"cluster_rbac_binding,omitempty"`
+	ClusterRbacBinding []VSphereClusterClusterRbacBindingObservation `json:"clusterRbacBinding,omitempty" tf:"cluster_rbac_binding,omitempty"`
 
 	// The context of the VMware cluster. Allowed values are `project` or `tenant`. Default is `project`. If  the `project` context is specified, the project name will sourced from the provider configuration parameter [`project_name`](https://registry.io/providers/spectrocloud/spectrocloud/latest/docs#schema).
 	Context *string `json:"context,omitempty" tf:"context,omitempty"`
@@ -1084,22 +1045,22 @@ type VSphereClusterObservation struct {
 	ForceDeleteDelay *float64 `json:"forceDeleteDelay,omitempty" tf:"force_delete_delay,omitempty"`
 
 	// The host configuration for the cluster.
-	HostConfig []HostConfigObservation `json:"hostConfig,omitempty" tf:"host_config,omitempty"`
+	HostConfig []VSphereClusterHostConfigObservation `json:"hostConfig,omitempty" tf:"host_config,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// Kubeconfig for the cluster. This can be used to connect to the cluster using `kubectl`.
 	Kubeconfig *string `json:"kubeconfig,omitempty" tf:"kubeconfig,omitempty"`
 
-	LocationConfig []LocationConfigObservation `json:"locationConfig,omitempty" tf:"location_config,omitempty"`
+	LocationConfig []VSphereClusterLocationConfigObservation `json:"locationConfig,omitempty" tf:"location_config,omitempty"`
 
-	MachinePool []MachinePoolObservation `json:"machinePool,omitempty" tf:"machine_pool,omitempty"`
+	MachinePool []VSphereClusterMachinePoolObservation `json:"machinePool,omitempty" tf:"machine_pool,omitempty"`
 
 	// The name of the cluster.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// The namespaces for the cluster.
-	Namespaces []NamespacesObservation `json:"namespaces,omitempty" tf:"namespaces,omitempty"`
+	Namespaces []VSphereClusterNamespacesObservation `json:"namespaces,omitempty" tf:"namespaces,omitempty"`
 
 	// The date and time after which to patch the cluster. Prefix the time value with the respective RFC. Ex: `RFC3339: 2006-01-02T15:04:05Z07:00`
 	OsPatchAfter *string `json:"osPatchAfter,omitempty" tf:"os_patch_after,omitempty"`
@@ -1117,7 +1078,7 @@ type VSphereClusterObservation struct {
 	ReviewRepaveState *string `json:"reviewRepaveState,omitempty" tf:"review_repave_state,omitempty"`
 
 	// The scan policy for the cluster.
-	ScanPolicy []ScanPolicyObservation `json:"scanPolicy,omitempty" tf:"scan_policy,omitempty"`
+	ScanPolicy []VSphereClusterScanPolicyObservation `json:"scanPolicy,omitempty" tf:"scan_policy,omitempty"`
 
 	// If `true`, the cluster will be created asynchronously. Default value is `false`.
 	SkipCompletion *bool `json:"skipCompletion,omitempty" tf:"skip_completion,omitempty"`
@@ -1135,14 +1096,14 @@ type VSphereClusterParameters struct {
 
 	// The backup policy for the cluster. If not specified, no backups will be taken.
 	// +kubebuilder:validation:Optional
-	BackupPolicy []BackupPolicyParameters `json:"backupPolicy,omitempty" tf:"backup_policy,omitempty"`
+	BackupPolicy []VSphereClusterBackupPolicyParameters `json:"backupPolicy,omitempty" tf:"backup_policy,omitempty"`
 
 	// ID of the cloud account to be used for the cluster. This cloud account must be of type `vsphere`.
 	// +kubebuilder:validation:Optional
 	CloudAccountID *string `json:"cloudAccountId,omitempty" tf:"cloud_account_id,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	CloudConfig []CloudConfigParameters `json:"cloudConfig,omitempty" tf:"cloud_config,omitempty"`
+	CloudConfig []VSphereClusterCloudConfigParameters `json:"cloudConfig,omitempty" tf:"cloud_config,omitempty"`
 
 	// `cluster_meta_attribute` can be used to set additional cluster metadata information, eg `{'nic_name': 'test', 'env': 'stage'}`
 	// +kubebuilder:validation:Optional
@@ -1153,7 +1114,7 @@ type VSphereClusterParameters struct {
 
 	// The RBAC binding for the cluster.
 	// +kubebuilder:validation:Optional
-	ClusterRbacBinding []ClusterRbacBindingParameters `json:"clusterRbacBinding,omitempty" tf:"cluster_rbac_binding,omitempty"`
+	ClusterRbacBinding []VSphereClusterClusterRbacBindingParameters `json:"clusterRbacBinding,omitempty" tf:"cluster_rbac_binding,omitempty"`
 
 	// The context of the VMware cluster. Allowed values are `project` or `tenant`. Default is `project`. If  the `project` context is specified, the project name will sourced from the provider configuration parameter [`project_name`](https://registry.io/providers/spectrocloud/spectrocloud/latest/docs#schema).
 	// +kubebuilder:validation:Optional
@@ -1173,13 +1134,13 @@ type VSphereClusterParameters struct {
 
 	// The host configuration for the cluster.
 	// +kubebuilder:validation:Optional
-	HostConfig []HostConfigParameters `json:"hostConfig,omitempty" tf:"host_config,omitempty"`
+	HostConfig []VSphereClusterHostConfigParameters `json:"hostConfig,omitempty" tf:"host_config,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	LocationConfig []LocationConfigParameters `json:"locationConfig,omitempty" tf:"location_config,omitempty"`
+	LocationConfig []VSphereClusterLocationConfigParameters `json:"locationConfig,omitempty" tf:"location_config,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	MachinePool []MachinePoolParameters `json:"machinePool,omitempty" tf:"machine_pool,omitempty"`
+	MachinePool []VSphereClusterMachinePoolParameters `json:"machinePool,omitempty" tf:"machine_pool,omitempty"`
 
 	// The name of the cluster.
 	// +kubebuilder:validation:Optional
@@ -1187,7 +1148,7 @@ type VSphereClusterParameters struct {
 
 	// The namespaces for the cluster.
 	// +kubebuilder:validation:Optional
-	Namespaces []NamespacesParameters `json:"namespaces,omitempty" tf:"namespaces,omitempty"`
+	Namespaces []VSphereClusterNamespacesParameters `json:"namespaces,omitempty" tf:"namespaces,omitempty"`
 
 	// The date and time after which to patch the cluster. Prefix the time value with the respective RFC. Ex: `RFC3339: 2006-01-02T15:04:05Z07:00`
 	// +kubebuilder:validation:Optional
@@ -1211,7 +1172,7 @@ type VSphereClusterParameters struct {
 
 	// The scan policy for the cluster.
 	// +kubebuilder:validation:Optional
-	ScanPolicy []ScanPolicyParameters `json:"scanPolicy,omitempty" tf:"scan_policy,omitempty"`
+	ScanPolicy []VSphereClusterScanPolicyParameters `json:"scanPolicy,omitempty" tf:"scan_policy,omitempty"`
 
 	// If `true`, the cluster will be created asynchronously. Default value is `false`.
 	// +kubebuilder:validation:Optional
@@ -1221,6 +1182,45 @@ type VSphereClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+}
+
+type VSphereClusterScanPolicyInitParameters struct {
+
+	// The schedule for configuration scan.
+	ConfigurationScanSchedule *string `json:"configurationScanSchedule,omitempty" tf:"configuration_scan_schedule,omitempty"`
+
+	// The schedule for conformance scan.
+	ConformanceScanSchedule *string `json:"conformanceScanSchedule,omitempty" tf:"conformance_scan_schedule,omitempty"`
+
+	// The schedule for penetration scan.
+	PenetrationScanSchedule *string `json:"penetrationScanSchedule,omitempty" tf:"penetration_scan_schedule,omitempty"`
+}
+
+type VSphereClusterScanPolicyObservation struct {
+
+	// The schedule for configuration scan.
+	ConfigurationScanSchedule *string `json:"configurationScanSchedule,omitempty" tf:"configuration_scan_schedule,omitempty"`
+
+	// The schedule for conformance scan.
+	ConformanceScanSchedule *string `json:"conformanceScanSchedule,omitempty" tf:"conformance_scan_schedule,omitempty"`
+
+	// The schedule for penetration scan.
+	PenetrationScanSchedule *string `json:"penetrationScanSchedule,omitempty" tf:"penetration_scan_schedule,omitempty"`
+}
+
+type VSphereClusterScanPolicyParameters struct {
+
+	// The schedule for configuration scan.
+	// +kubebuilder:validation:Optional
+	ConfigurationScanSchedule *string `json:"configurationScanSchedule" tf:"configuration_scan_schedule,omitempty"`
+
+	// The schedule for conformance scan.
+	// +kubebuilder:validation:Optional
+	ConformanceScanSchedule *string `json:"conformanceScanSchedule" tf:"conformance_scan_schedule,omitempty"`
+
+	// The schedule for penetration scan.
+	// +kubebuilder:validation:Optional
+	PenetrationScanSchedule *string `json:"penetrationScanSchedule" tf:"penetration_scan_schedule,omitempty"`
 }
 
 // VSphereClusterSpec defines the desired state of VSphereCluster

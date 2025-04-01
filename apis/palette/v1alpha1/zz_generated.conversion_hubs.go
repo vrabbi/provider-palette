@@ -22,6 +22,9 @@ func (tr *CustomCloudAccount) Hub() {}
 func (tr *DeveloperSetting) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *EKSCluster) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *HelmRegistry) Hub() {}
 
 // Hub marks this type as a conversion hub.

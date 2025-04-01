@@ -14,6 +14,7 @@ import (
 	clusterprofile "github.com/vrabbi/provider-palette/internal/controller/palette/clusterprofile"
 	customcloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/customcloudaccount"
 	developersetting "github.com/vrabbi/provider-palette/internal/controller/palette/developersetting"
+	ekscluster "github.com/vrabbi/provider-palette/internal/controller/palette/ekscluster"
 	helmregistry "github.com/vrabbi/provider-palette/internal/controller/palette/helmregistry"
 	macros "github.com/vrabbi/provider-palette/internal/controller/palette/macros"
 	ociregistry "github.com/vrabbi/provider-palette/internal/controller/palette/ociregistry"
@@ -36,6 +37,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		clusterprofile.Setup,
 		customcloudaccount.Setup,
 		developersetting.Setup,
+		ekscluster.Setup,
 		helmregistry.Setup,
 		macros.Setup,
 		ociregistry.Setup,

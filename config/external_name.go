@@ -24,6 +24,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"spectrocloud_cloudaccount_azure":   config.IdentifierFromProvider,
 	"spectrocloud_developer_setting":    config.IdentifierFromProvider,
 	"spectrocloud_platform_setting":     config.IdentifierFromProvider,
+	"spectrocloud_cluster_eks":          config.IdentifierFromProvider,
 	/* BELLOW RESOURCES ARE NOT IMPLEMENTED YET
 		"spectrocloud_addon_deployment": config.IdentifierFromProvider,
 		"spectrocloud_appliance": config.IdentifierFromProvider,

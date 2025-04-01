@@ -53,6 +53,15 @@ func (l *DeveloperSettingList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this EKSClusterList.
+func (l *EKSClusterList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this HelmRegistryList.
 func (l *HelmRegistryList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
