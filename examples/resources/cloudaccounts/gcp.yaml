@@ -1,0 +1,24 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: GCPCloudAccount
+metadata:
+  name: demo-cp-gcp-cloudaccount-01
+spec:
+  providerConfigRef:
+    name: tenant
+  forProvider:
+    context: tenant
+    gcpJsonCredentials: |
+      {
+        "type": "FILL ME IN",
+        "project_id": "FILL ME IN",
+        "private_key_id": "FILL ME IN",
+        "private_key": "FILL ME IN",
+        "client_email": "FILL ME IN",
+        "client_id": "FILL ME IN",
+        "auth_uri": "FILL ME IN",
+        "token_uri": "FILL ME IN",
+        "auth_provider_x509_cert_url": "FILL ME IN",
+        "client_x509_cert_url": "FILL ME IN",
+        "universe_domain": "FILL ME IN"
+      }
+    name: demo-cp-gcp-cloudaccount-01

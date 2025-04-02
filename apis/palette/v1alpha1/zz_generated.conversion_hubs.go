@@ -31,6 +31,9 @@ func (tr *EKSCluster) Hub() {}
 func (tr *Filter) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *GCPCloudAccount) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *HelmRegistry) Hub() {}
 
 // Hub marks this type as a conversion hub.

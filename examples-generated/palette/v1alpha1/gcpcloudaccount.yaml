@@ -1,0 +1,12 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: GCPCloudAccount
+metadata:
+  annotations:
+    meta.upbound.io/example-id: palette/v1alpha1/gcpcloudaccount
+  labels:
+    testing.upbound.io/example-name: gcp-1
+  name: gcp-1
+spec:
+  forProvider:
+    gcpJsonCredentials: ${var.gcp_serviceaccount_json}
+    name: gcp-1

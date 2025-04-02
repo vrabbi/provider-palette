@@ -17,6 +17,7 @@ import (
 	developersetting "github.com/vrabbi/provider-palette/internal/controller/palette/developersetting"
 	ekscluster "github.com/vrabbi/provider-palette/internal/controller/palette/ekscluster"
 	filter "github.com/vrabbi/provider-palette/internal/controller/palette/filter"
+	gcpcloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/gcpcloudaccount"
 	helmregistry "github.com/vrabbi/provider-palette/internal/controller/palette/helmregistry"
 	macros "github.com/vrabbi/provider-palette/internal/controller/palette/macros"
 	ociregistry "github.com/vrabbi/provider-palette/internal/controller/palette/ociregistry"
@@ -47,6 +48,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		developersetting.Setup,
 		ekscluster.Setup,
 		filter.Setup,
+		gcpcloudaccount.Setup,
 		helmregistry.Setup,
 		macros.Setup,
 		ociregistry.Setup,

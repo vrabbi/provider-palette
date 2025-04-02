@@ -96,5 +96,14 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "palette"
 		r.Kind = "Role"
 	})
+	p.AddResourceConfigurator("spectrocloud_cloudaccount_gcp", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "GCPCloudAccount"
+		if s, ok := r.TerraformResource.Schema["gcp_json_credentials"]; ok {
+			s.Sensitive = false
+			s.Computed = false
+			s.Optional = false
 
+		}
+	})
 }

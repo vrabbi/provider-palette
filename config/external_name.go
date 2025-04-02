@@ -7,7 +7,7 @@ package config
 import "github.com/crossplane/upjet/pkg/config"
 
 // ExternalNameConfigs contains all external name configurations for this
-// provider (23).
+// provider (24).
 var ExternalNameConfigs = map[string]config.ExternalName{
 	"spectrocloud_project":                     config.IdentifierFromProvider,
 	"spectrocloud_ssh_key":                     config.IdentifierFromProvider,
@@ -32,8 +32,10 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"spectrocloud_password_policy":             config.IdentifierFromProvider,
 	"spectrocloud_resource_limit":              config.IdentifierFromProvider,
 	"spectrocloud_role":                        config.IdentifierFromProvider,
-	/* BELLOW RESOURCES (23) ARE NOT IMPLEMENTED YET
-	// HIGH PRIORITY
+	"spectrocloud_cloudaccount_gcp":            config.IdentifierFromProvider,
+	/* BELLOW RESOURCES (22) ARE NOT IMPLEMENTED YET
+	
+	// HIGH PRIORITY (7)
 	"spectrocloud_cloudaccount_maas": config.IdentifierFromProvider,
 	"spectrocloud_cluster_aks": config.IdentifierFromProvider,
 	"spectrocloud_cluster_aws": config.IdentifierFromProvider,
@@ -42,15 +44,16 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"spectrocloud_virtual_cluster": config.IdentifierFromProvider,
 	"spectrocloud_workspace": config.IdentifierFromProvider,
 
-	// LOW PRIORITY
-	"spectrocloud_cloudaccount_gcp": config.IdentifierFromProvider,
-	"spectrocloud_cloudaccount_openstack": config.IdentifierFromProvider,
+	// MEDIUM PRIORITY (4)
 	"spectrocloud_cluster_custom_cloud": config.IdentifierFromProvider,
-	"spectrocloud_cluster_edge_native": config.IdentifierFromProvider,
-	"spectrocloud_cluster_edge_vsphere": config.IdentifierFromProvider,
 	"spectrocloud_cluster_gcp": config.IdentifierFromProvider,
 	"spectrocloud_cluster_gke": config.IdentifierFromProvider,
 	"spectrocloud_cluster_maas": config.IdentifierFromProvider,
+
+	// LOW PRIORITY (11)
+	"spectrocloud_cloudaccount_openstack": config.IdentifierFromProvider,
+	"spectrocloud_cluster_edge_native": config.IdentifierFromProvider,
+	"spectrocloud_cluster_edge_vsphere": config.IdentifierFromProvider,
 	"spectrocloud_cluster_openstack": config.IdentifierFromProvider,
 	"spectrocloud_datavolume": config.IdentifierFromProvider,
 	"spectrocloud_registration_token": config.IdentifierFromProvider,
