@@ -9,34 +9,46 @@ import "github.com/crossplane/upjet/pkg/config"
 // ExternalNameConfigs contains all external name configurations for this
 // provider (24).
 var ExternalNameConfigs = map[string]config.ExternalName{
-	"spectrocloud_project":                     config.IdentifierFromProvider,
-	"spectrocloud_ssh_key":                     config.IdentifierFromProvider,
-	"spectrocloud_registry_helm":               config.IdentifierFromProvider,
-	"spectrocloud_registry_oci":                config.IdentifierFromProvider,
-	"spectrocloud_user":                        config.IdentifierFromProvider,
-	"spectrocloud_team":                        config.IdentifierFromProvider,
-	"spectrocloud_cloudaccount_custom":         config.IdentifierFromProvider,
-	"spectrocloud_cluster_profile":             config.TemplatedStringAsIdentifier("id", "{{ .external_name }}:{{ .parameters.context }}"),
-	"spectrocloud_cluster_vsphere":             config.IdentifierFromProvider,
-	"spectrocloud_cloudaccount_vsphere":        config.IdentifierFromProvider,
-	"spectrocloud_cloudaccount_aws":            config.IdentifierFromProvider,
-	"spectrocloud_macros":                      config.IdentifierFromProvider,
-	"spectrocloud_cloudaccount_azure":          config.IdentifierFromProvider,
-	"spectrocloud_developer_setting":           config.IdentifierFromProvider,
-	"spectrocloud_platform_setting":            config.IdentifierFromProvider,
-	"spectrocloud_cluster_eks":                 config.IdentifierFromProvider,
+	// TENANCY
+	"spectrocloud_project": config.IdentifierFromProvider,
+	// SECURITY
+	"spectrocloud_ssh_key": config.IdentifierFromProvider,
+	// REGISTRY
+	"spectrocloud_registry_helm": config.IdentifierFromProvider,
+	"spectrocloud_registry_oci":  config.IdentifierFromProvider,
+	// RBAC
+	"spectrocloud_user": config.IdentifierFromProvider,
+	"spectrocloud_team": config.IdentifierFromProvider,
+	"spectrocloud_role": config.IdentifierFromProvider,
+	// CLOUD ACCOUNTS
+	"spectrocloud_cloudaccount_aws":     config.IdentifierFromProvider,
+	"spectrocloud_cloudaccount_azure":   config.IdentifierFromProvider,
+	"spectrocloud_cloudaccount_custom":  config.IdentifierFromProvider,
+	"spectrocloud_cloudaccount_gcp":     config.IdentifierFromProvider,
+	"spectrocloud_cloudaccount_vsphere": config.IdentifierFromProvider,
+	// PROFILES
+	"spectrocloud_cluster_profile": config.TemplatedStringAsIdentifier("id", "{{ .external_name }}:{{ .parameters.context }}"),
+	// CLUSTERS
+	"spectrocloud_cluster_vsphere": config.IdentifierFromProvider,
+	"spectrocloud_cluster_eks":     config.IdentifierFromProvider,
+	// MACROS
+	"spectrocloud_macros": config.IdentifierFromProvider,
+	// SETTINGS
+	"spectrocloud_developer_setting": config.IdentifierFromProvider,
+	"spectrocloud_platform_setting":  config.IdentifierFromProvider,
+	"spectrocloud_filter":            config.IdentifierFromProvider,
+	// IPAM + DNS
 	"spectrocloud_privatecloudgateway_dns_map": config.IdentifierFromProvider,
 	"spectrocloud_privatecloudgateway_ippool":  config.IdentifierFromProvider,
 	"spectrocloud_backup_storage_location":     config.IdentifierFromProvider,
-	"spectrocloud_filter":                      config.IdentifierFromProvider,
-	"spectrocloud_password_policy":             config.IdentifierFromProvider,
-	"spectrocloud_resource_limit":              config.IdentifierFromProvider,
-	"spectrocloud_role":                        config.IdentifierFromProvider,
-	"spectrocloud_cloudaccount_gcp":            config.IdentifierFromProvider,
+	// POLICIES
+	"spectrocloud_password_policy": config.IdentifierFromProvider,
+	"spectrocloud_resource_limit":  config.IdentifierFromProvider,
+
 	/* BELLOW RESOURCES (22) ARE NOT IMPLEMENTED YET
-	
+
 	// HIGH PRIORITY (7)
-	"spectrocloud_cloudaccount_maas": config.IdentifierFromProvider,
+	"spectrocloud_cluster_custom_cloud": config.IdentifierFromProvider,
 	"spectrocloud_cluster_aks": config.IdentifierFromProvider,
 	"spectrocloud_cluster_aws": config.IdentifierFromProvider,
 	"spectrocloud_cluster_azure": config.IdentifierFromProvider,
@@ -45,7 +57,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"spectrocloud_workspace": config.IdentifierFromProvider,
 
 	// MEDIUM PRIORITY (4)
-	"spectrocloud_cluster_custom_cloud": config.IdentifierFromProvider,
+	"spectrocloud_cloudaccount_maas": config.IdentifierFromProvider,
 	"spectrocloud_cluster_gcp": config.IdentifierFromProvider,
 	"spectrocloud_cluster_gke": config.IdentifierFromProvider,
 	"spectrocloud_cluster_maas": config.IdentifierFromProvider,
