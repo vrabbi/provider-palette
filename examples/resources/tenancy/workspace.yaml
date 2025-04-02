@@ -1,0 +1,42 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: Workspace
+metadata:
+  name: demo-cp-workspace-01
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    clusterRbacBinding:
+    - role:
+        kind: ClusterRole
+        name: cluster-admin
+      subjects:
+      - name: demo-cp-user-01
+        type: User
+      - name: demo-cp-group-01
+        type: Group
+      - name: demo-cp-sa-01
+        namespace: demo-cp-namespace
+        type: ServiceAccount
+      type: ClusterRoleBinding
+    - namespace: demo-cp-namespace
+      role:
+        kind: ClusterRole
+        name: cluster-admin
+      subjects:
+      - name: demo-cp-user-01
+        type: User
+      - name: demo-cp-group-01
+        type: Group
+      - name: demo-cp-sa-01
+        namespace: demo-cp-namespace
+        type: ServiceAccount
+      type: RoleBinding
+    clusters:
+    - uid: 67ed87f8dae1538cca143429
+    name: demo-cp-workspace-01
+    namespaces:
+    - name: demo-cp-namespace
+      resourceAllocation:
+        cpu_cores: "2"
+        memory_MiB: "2048"

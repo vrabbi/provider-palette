@@ -7,10 +7,12 @@ package config
 import "github.com/crossplane/upjet/pkg/config"
 
 // ExternalNameConfigs contains all external name configurations for this
-// provider (24).
+// provider (26).
 var ExternalNameConfigs = map[string]config.ExternalName{
 	// TENANCY
-	"spectrocloud_project": config.IdentifierFromProvider,
+	"spectrocloud_project":       config.IdentifierFromProvider,
+	"spectrocloud_cluster_group": config.IdentifierFromProvider,
+	"spectrocloud_workspace":     config.IdentifierFromProvider,
 	// SECURITY
 	"spectrocloud_ssh_key": config.IdentifierFromProvider,
 	// REGISTRY
@@ -47,14 +49,13 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 
 	/* BELLOW RESOURCES (22) ARE NOT IMPLEMENTED YET
 
-	// HIGH PRIORITY (7)
+	// HIGH PRIORITY (5)
 	"spectrocloud_cluster_custom_cloud": config.IdentifierFromProvider,
 	"spectrocloud_cluster_aks": config.IdentifierFromProvider,
 	"spectrocloud_cluster_aws": config.IdentifierFromProvider,
 	"spectrocloud_cluster_azure": config.IdentifierFromProvider,
-	"spectrocloud_cluster_group": config.IdentifierFromProvider,
 	"spectrocloud_virtual_cluster": config.IdentifierFromProvider,
-	"spectrocloud_workspace": config.IdentifierFromProvider,
+
 
 	// MEDIUM PRIORITY (4)
 	"spectrocloud_cloudaccount_maas": config.IdentifierFromProvider,

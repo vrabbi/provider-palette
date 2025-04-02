@@ -1,0 +1,19 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: ClusterGroup
+metadata:
+  name: demo-cp-cluster-group-01
+spec:
+  providerConfigRef:
+    name: tenant
+  forProvider:
+    context: tenant
+    clusters:
+    - clusterUid: 67c6d7df30141f372950da0f
+      hostDns: '*'
+    config:
+    - cpuMillicore: 6000
+      hostEndpointType: LoadBalancer
+      memoryInMb: 8192
+      oversubscriptionPercent: 120
+      storageInGb: 10
+    name: demo-cp-cluster-group-01

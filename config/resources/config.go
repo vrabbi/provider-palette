@@ -106,4 +106,12 @@ func Configure(p *config.Provider) {
 
 		}
 	})
+	p.AddResourceConfigurator("spectrocloud_cluster_group", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "ClusterGroup"
+	})
+	p.AddResourceConfigurator("spectrocloud_workspace", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "Workspace"
+	})
 }

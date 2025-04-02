@@ -16,6 +16,9 @@ func (tr *AzureCloudAccount) Hub() {}
 func (tr *BackupStorageLocation) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *ClusterGroup) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *ClusterProfile) Hub() {}
 
 // Hub marks this type as a conversion hub.
@@ -77,3 +80,6 @@ func (tr *VSphereCloudAccount) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *VSphereCluster) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *Workspace) Hub() {}

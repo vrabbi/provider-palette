@@ -35,6 +35,15 @@ func (l *BackupStorageLocationList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this ClusterGroupList.
+func (l *ClusterGroupList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this ClusterProfileList.
 func (l *ClusterProfileList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
@@ -217,6 +226,15 @@ func (l *VSphereCloudAccountList) GetItems() []resource.Managed {
 
 // GetItems of this VSphereClusterList.
 func (l *VSphereClusterList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this WorkspaceList.
+func (l *WorkspaceList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

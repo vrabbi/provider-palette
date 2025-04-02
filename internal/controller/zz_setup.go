@@ -12,6 +12,7 @@ import (
 	awscloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/awscloudaccount"
 	azurecloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/azurecloudaccount"
 	backupstoragelocation "github.com/vrabbi/provider-palette/internal/controller/palette/backupstoragelocation"
+	clustergroup "github.com/vrabbi/provider-palette/internal/controller/palette/clustergroup"
 	clusterprofile "github.com/vrabbi/provider-palette/internal/controller/palette/clusterprofile"
 	customcloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/customcloudaccount"
 	developersetting "github.com/vrabbi/provider-palette/internal/controller/palette/developersetting"
@@ -33,6 +34,7 @@ import (
 	user "github.com/vrabbi/provider-palette/internal/controller/palette/user"
 	vspherecloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/vspherecloudaccount"
 	vspherecluster "github.com/vrabbi/provider-palette/internal/controller/palette/vspherecluster"
+	workspace "github.com/vrabbi/provider-palette/internal/controller/palette/workspace"
 	providerconfig "github.com/vrabbi/provider-palette/internal/controller/providerconfig"
 )
 
@@ -43,6 +45,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		awscloudaccount.Setup,
 		azurecloudaccount.Setup,
 		backupstoragelocation.Setup,
+		clustergroup.Setup,
 		clusterprofile.Setup,
 		customcloudaccount.Setup,
 		developersetting.Setup,
@@ -64,6 +67,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		user.Setup,
 		vspherecloudaccount.Setup,
 		vspherecluster.Setup,
+		workspace.Setup,
 		providerconfig.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
