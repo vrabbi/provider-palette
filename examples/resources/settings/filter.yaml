@@ -1,0 +1,24 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: Filter
+metadata:
+  name: demo-cp-filter
+spec:
+  providerConfigRef:
+    name: tenant
+  forProvider:
+    metadata:
+    - name: resourcefilter2
+    spec:
+    - filterGroup:
+      - conjunction: and
+        filters:
+        - key: testtag1
+          negation: false
+          operator: eq
+          values:
+          - spectro__tag
+        - key: testtag2
+          negation: true
+          operator: eq
+          values:
+          - spectro__tag

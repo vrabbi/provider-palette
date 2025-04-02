@@ -28,6 +28,9 @@ func (tr *DeveloperSetting) Hub() {}
 func (tr *EKSCluster) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *Filter) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *HelmRegistry) Hub() {}
 
 // Hub marks this type as a conversion hub.
@@ -35,6 +38,9 @@ func (tr *Macros) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *OCIRegistry) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *PasswordPolicy) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *PlatformSetting) Hub() {}
@@ -47,6 +53,12 @@ func (tr *PrivateCloudGatewayIPPool) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *Project) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ResourceLimit) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *Role) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *SSHKey) Hub() {}

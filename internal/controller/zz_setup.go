@@ -16,13 +16,17 @@ import (
 	customcloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/customcloudaccount"
 	developersetting "github.com/vrabbi/provider-palette/internal/controller/palette/developersetting"
 	ekscluster "github.com/vrabbi/provider-palette/internal/controller/palette/ekscluster"
+	filter "github.com/vrabbi/provider-palette/internal/controller/palette/filter"
 	helmregistry "github.com/vrabbi/provider-palette/internal/controller/palette/helmregistry"
 	macros "github.com/vrabbi/provider-palette/internal/controller/palette/macros"
 	ociregistry "github.com/vrabbi/provider-palette/internal/controller/palette/ociregistry"
+	passwordpolicy "github.com/vrabbi/provider-palette/internal/controller/palette/passwordpolicy"
 	platformsetting "github.com/vrabbi/provider-palette/internal/controller/palette/platformsetting"
 	privatecloudgatewaydnsmap "github.com/vrabbi/provider-palette/internal/controller/palette/privatecloudgatewaydnsmap"
 	privatecloudgatewayippool "github.com/vrabbi/provider-palette/internal/controller/palette/privatecloudgatewayippool"
 	project "github.com/vrabbi/provider-palette/internal/controller/palette/project"
+	resourcelimit "github.com/vrabbi/provider-palette/internal/controller/palette/resourcelimit"
+	role "github.com/vrabbi/provider-palette/internal/controller/palette/role"
 	sshkey "github.com/vrabbi/provider-palette/internal/controller/palette/sshkey"
 	team "github.com/vrabbi/provider-palette/internal/controller/palette/team"
 	user "github.com/vrabbi/provider-palette/internal/controller/palette/user"
@@ -42,13 +46,17 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		customcloudaccount.Setup,
 		developersetting.Setup,
 		ekscluster.Setup,
+		filter.Setup,
 		helmregistry.Setup,
 		macros.Setup,
 		ociregistry.Setup,
+		passwordpolicy.Setup,
 		platformsetting.Setup,
 		privatecloudgatewaydnsmap.Setup,
 		privatecloudgatewayippool.Setup,
 		project.Setup,
+		resourcelimit.Setup,
+		role.Setup,
 		sshkey.Setup,
 		team.Setup,
 		user.Setup,

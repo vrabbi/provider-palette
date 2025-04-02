@@ -7,7 +7,7 @@ package config
 import "github.com/crossplane/upjet/pkg/config"
 
 // ExternalNameConfigs contains all external name configurations for this
-// provider (19).
+// provider (23).
 var ExternalNameConfigs = map[string]config.ExternalName{
 	"spectrocloud_project":                     config.IdentifierFromProvider,
 	"spectrocloud_ssh_key":                     config.IdentifierFromProvider,
@@ -28,17 +28,17 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"spectrocloud_privatecloudgateway_dns_map": config.IdentifierFromProvider,
 	"spectrocloud_privatecloudgateway_ippool":  config.IdentifierFromProvider,
 	"spectrocloud_backup_storage_location":     config.IdentifierFromProvider,
-	/* BELLOW RESOURCES (27) ARE NOT IMPLEMENTED YET
+	"spectrocloud_filter":                      config.IdentifierFromProvider,
+	"spectrocloud_password_policy":             config.IdentifierFromProvider,
+	"spectrocloud_resource_limit":              config.IdentifierFromProvider,
+	"spectrocloud_role":                        config.IdentifierFromProvider,
+	/* BELLOW RESOURCES (23) ARE NOT IMPLEMENTED YET
 	// HIGH PRIORITY
 	"spectrocloud_cloudaccount_maas": config.IdentifierFromProvider,
 	"spectrocloud_cluster_aks": config.IdentifierFromProvider,
 	"spectrocloud_cluster_aws": config.IdentifierFromProvider,
 	"spectrocloud_cluster_azure": config.IdentifierFromProvider,
 	"spectrocloud_cluster_group": config.IdentifierFromProvider,
-	"spectrocloud_filter": config.IdentifierFromProvider,
-	"spectrocloud_password_policy": config.IdentifierFromProvider,
-	"spectrocloud_resource_limit": config.IdentifierFromProvider,
-	"spectrocloud_role": config.IdentifierFromProvider,
 	"spectrocloud_virtual_cluster": config.IdentifierFromProvider,
 	"spectrocloud_workspace": config.IdentifierFromProvider,
 

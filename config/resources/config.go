@@ -80,5 +80,21 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "palette"
 		r.Kind = "BackupStorageLocation"
 	})
+	p.AddResourceConfigurator("spectrocloud_filter", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "Filter"
+	})
+	p.AddResourceConfigurator("spectrocloud_password_policy", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "PasswordPolicy"
+	})
+	p.AddResourceConfigurator("spectrocloud_resource_limit", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "ResourceLimit"
+	})
+	p.AddResourceConfigurator("spectrocloud_role", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "Role"
+	})
 
 }

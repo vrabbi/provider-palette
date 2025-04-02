@@ -71,6 +71,15 @@ func (l *EKSClusterList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this FilterList.
+func (l *FilterList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this HelmRegistryList.
 func (l *HelmRegistryList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
@@ -91,6 +100,15 @@ func (l *MacrosList) GetItems() []resource.Managed {
 
 // GetItems of this OCIRegistryList.
 func (l *OCIRegistryList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this PasswordPolicyList.
+func (l *PasswordPolicyList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
@@ -127,6 +145,24 @@ func (l *PrivateCloudGatewayIPPoolList) GetItems() []resource.Managed {
 
 // GetItems of this ProjectList.
 func (l *ProjectList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this ResourceLimitList.
+func (l *ResourceLimitList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this RoleList.
+func (l *RoleList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
