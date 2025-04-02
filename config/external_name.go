@@ -7,7 +7,7 @@ package config
 import "github.com/crossplane/upjet/pkg/config"
 
 // ExternalNameConfigs contains all external name configurations for this
-// provider (18).
+// provider (19).
 var ExternalNameConfigs = map[string]config.ExternalName{
 	"spectrocloud_project":                     config.IdentifierFromProvider,
 	"spectrocloud_ssh_key":                     config.IdentifierFromProvider,
@@ -27,9 +27,9 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"spectrocloud_cluster_eks":                 config.IdentifierFromProvider,
 	"spectrocloud_privatecloudgateway_dns_map": config.IdentifierFromProvider,
 	"spectrocloud_privatecloudgateway_ippool":  config.IdentifierFromProvider,
-	/* BELLOW RESOURCES (28) ARE NOT IMPLEMENTED YET
+	"spectrocloud_backup_storage_location":     config.IdentifierFromProvider,
+	/* BELLOW RESOURCES (27) ARE NOT IMPLEMENTED YET
 	// HIGH PRIORITY
-	"spectrocloud_backup_storage_location": config.IdentifierFromProvider,
 	"spectrocloud_cloudaccount_maas": config.IdentifierFromProvider,
 	"spectrocloud_cluster_aks": config.IdentifierFromProvider,
 	"spectrocloud_cluster_aws": config.IdentifierFromProvider,

@@ -26,6 +26,15 @@ func (l *AzureCloudAccountList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this BackupStorageLocationList.
+func (l *BackupStorageLocationList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this ClusterProfileList.
 func (l *ClusterProfileList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))

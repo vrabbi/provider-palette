@@ -1,0 +1,20 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: BackupStorageLocation
+metadata:
+  name: demo-cp-minio-bsl   
+spec:
+  providerConfigRef:
+    name: tenant
+  forProvider:
+    bucketName: demo-cp-minio-bucket
+    context: tenant
+    isDefault: false
+    name: demo-cp-minio-bsl
+    region: us-east-2
+    storageProvider: minio
+    s3:
+    - accessKey: demo
+      credentialType: secret
+      s3ForcePathStyle: true
+      s3Url: https://minio.example.com
+      secretKey: demo

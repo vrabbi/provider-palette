@@ -13,6 +13,9 @@ func (tr *AWSCloudAccount) Hub() {}
 func (tr *AzureCloudAccount) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *BackupStorageLocation) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *ClusterProfile) Hub() {}
 
 // Hub marks this type as a conversion hub.

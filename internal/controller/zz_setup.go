@@ -11,6 +11,7 @@ import (
 
 	awscloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/awscloudaccount"
 	azurecloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/azurecloudaccount"
+	backupstoragelocation "github.com/vrabbi/provider-palette/internal/controller/palette/backupstoragelocation"
 	clusterprofile "github.com/vrabbi/provider-palette/internal/controller/palette/clusterprofile"
 	customcloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/customcloudaccount"
 	developersetting "github.com/vrabbi/provider-palette/internal/controller/palette/developersetting"
@@ -36,6 +37,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		awscloudaccount.Setup,
 		azurecloudaccount.Setup,
+		backupstoragelocation.Setup,
 		clusterprofile.Setup,
 		customcloudaccount.Setup,
 		developersetting.Setup,

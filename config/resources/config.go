@@ -76,5 +76,9 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "palette"
 		r.Kind = "PrivateCloudGatewayIPPool"
 	})
+	p.AddResourceConfigurator("spectrocloud_backup_storage_location", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "BackupStorageLocation"
+	})
 
 }
