@@ -32,6 +32,7 @@ import (
 	sshkey "github.com/vrabbi/provider-palette/internal/controller/palette/sshkey"
 	team "github.com/vrabbi/provider-palette/internal/controller/palette/team"
 	user "github.com/vrabbi/provider-palette/internal/controller/palette/user"
+	virtualcluster "github.com/vrabbi/provider-palette/internal/controller/palette/virtualcluster"
 	vspherecloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/vspherecloudaccount"
 	vspherecluster "github.com/vrabbi/provider-palette/internal/controller/palette/vspherecluster"
 	workspace "github.com/vrabbi/provider-palette/internal/controller/palette/workspace"
@@ -65,6 +66,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		sshkey.Setup,
 		team.Setup,
 		user.Setup,
+		virtualcluster.Setup,
 		vspherecloudaccount.Setup,
 		vspherecluster.Setup,
 		workspace.Setup,

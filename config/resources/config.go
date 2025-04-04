@@ -114,4 +114,8 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "palette"
 		r.Kind = "Workspace"
 	})
+	p.AddResourceConfigurator("spectrocloud_virtual_cluster", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "VirtualCluster"
+	})
 }

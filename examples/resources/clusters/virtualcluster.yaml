@@ -1,0 +1,16 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: VirtualCluster
+metadata:
+  name: demo-cp-vcluster-01
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    clusterGroupUid: 67ed902875815d89fc96802a
+    context: project
+    name: demo-cp-vcluster-01
+    resources:
+    - maxCpu: 4
+      maxMemInMb: 6000
+      minCpu: 0
+      minMemInMb: 0

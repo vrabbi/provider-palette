@@ -7,7 +7,7 @@ package config
 import "github.com/crossplane/upjet/pkg/config"
 
 // ExternalNameConfigs contains all external name configurations for this
-// provider (26).
+// provider (27).
 var ExternalNameConfigs = map[string]config.ExternalName{
 	// TENANCY
 	"spectrocloud_project":       config.IdentifierFromProvider,
@@ -33,6 +33,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// CLUSTERS
 	"spectrocloud_cluster_vsphere": config.IdentifierFromProvider,
 	"spectrocloud_cluster_eks":     config.IdentifierFromProvider,
+	"spectrocloud_virtual_cluster": config.IdentifierFromProvider,
 	// MACROS
 	"spectrocloud_macros": config.IdentifierFromProvider,
 	// SETTINGS
@@ -47,15 +48,13 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"spectrocloud_password_policy": config.IdentifierFromProvider,
 	"spectrocloud_resource_limit":  config.IdentifierFromProvider,
 
-	/* BELLOW RESOURCES (22) ARE NOT IMPLEMENTED YET
+	/* BELLOW RESOURCES (18) ARE NOT IMPLEMENTED YET
 
-	// HIGH PRIORITY (5)
+	// HIGH PRIORITY (4)
 	"spectrocloud_cluster_custom_cloud": config.IdentifierFromProvider,
 	"spectrocloud_cluster_aks": config.IdentifierFromProvider,
 	"spectrocloud_cluster_aws": config.IdentifierFromProvider,
 	"spectrocloud_cluster_azure": config.IdentifierFromProvider,
-	"spectrocloud_virtual_cluster": config.IdentifierFromProvider,
-
 
 	// MEDIUM PRIORITY (4)
 	"spectrocloud_cloudaccount_maas": config.IdentifierFromProvider,
@@ -63,13 +62,12 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"spectrocloud_cluster_gke": config.IdentifierFromProvider,
 	"spectrocloud_cluster_maas": config.IdentifierFromProvider,
 
-	// LOW PRIORITY (11)
+	// LOW PRIORITY (10)
 	"spectrocloud_cloudaccount_openstack": config.IdentifierFromProvider,
 	"spectrocloud_cluster_edge_native": config.IdentifierFromProvider,
 	"spectrocloud_cluster_edge_vsphere": config.IdentifierFromProvider,
 	"spectrocloud_cluster_openstack": config.IdentifierFromProvider,
 	"spectrocloud_datavolume": config.IdentifierFromProvider,
-	"spectrocloud_registration_token": config.IdentifierFromProvider,
 	"spectrocloud_virtual_machine": config.IdentifierFromProvider,
 	"spectrocloud_addon_deployment": config.IdentifierFromProvider,
 	"spectrocloud_appliance": config.IdentifierFromProvider,

@@ -76,6 +76,9 @@ func (tr *Team) Hub() {}
 func (tr *User) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *VirtualCluster) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *VSphereCloudAccount) Hub() {}
 
 // Hub marks this type as a conversion hub.
