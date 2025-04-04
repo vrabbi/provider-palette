@@ -1,0 +1,26 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: AKSCluster
+metadata:
+  name: demo-cp-aks-01
+spec:
+  providerConfigRef:
+    name: saas
+  forProvider:
+    cloudAccountId: "6776b93f84c2a19d2c9bf4c2"
+    cloudConfig:
+    - region: eastus
+      resourceGroup: "FILL ME IN"
+      sshKey: "FILL ME IN"
+      subscriptionId: "FILL ME IN"
+    clusterProfile:
+    - id: "678e2db94e8d6a03d3582b5a"
+    machinePool:
+    - count: 2
+      diskSizeGb: 60
+      instanceType: Standard_A4_V2
+      isSystemNodePool: true
+      name: worker-pool
+      storageAccountType: Standard_LRS
+    name: demo-cp-aks-01
+    tags:
+    - "owner:spectro"

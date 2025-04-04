@@ -34,6 +34,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"spectrocloud_cluster_vsphere": config.IdentifierFromProvider,
 	"spectrocloud_cluster_eks":     config.IdentifierFromProvider,
 	"spectrocloud_virtual_cluster": config.IdentifierFromProvider,
+	"spectrocloud_cluster_aks":     config.IdentifierFromProvider,
 	// MACROS
 	"spectrocloud_macros": config.IdentifierFromProvider,
 	// SETTINGS
@@ -52,7 +53,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 
 	// HIGH PRIORITY (4)
 	"spectrocloud_cluster_custom_cloud": config.IdentifierFromProvider,
-	"spectrocloud_cluster_aks": config.IdentifierFromProvider,
+
 	"spectrocloud_cluster_aws": config.IdentifierFromProvider,
 	"spectrocloud_cluster_azure": config.IdentifierFromProvider,
 

@@ -13,45 +13,6 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type ClusterRbacBindingSubjectsInitParameters struct {
-
-	// The name of the subject. Required if 'type' is set to 'User' or 'Group'.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// The Kubernetes namespace of the subject. Required if 'type' is set to 'ServiceAccount'.
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// The type of the subject. Can be one of the following values: `User`, `Group`, or `ServiceAccount`.
-	Type *string `json:"type,omitempty" tf:"type,omitempty"`
-}
-
-type ClusterRbacBindingSubjectsObservation struct {
-
-	// The name of the subject. Required if 'type' is set to 'User' or 'Group'.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// The Kubernetes namespace of the subject. Required if 'type' is set to 'ServiceAccount'.
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// The type of the subject. Can be one of the following values: `User`, `Group`, or `ServiceAccount`.
-	Type *string `json:"type,omitempty" tf:"type,omitempty"`
-}
-
-type ClusterRbacBindingSubjectsParameters struct {
-
-	// The name of the subject. Required if 'type' is set to 'User' or 'Group'.
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name" tf:"name,omitempty"`
-
-	// The Kubernetes namespace of the subject. Required if 'type' is set to 'ServiceAccount'.
-	// +kubebuilder:validation:Optional
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-
-	// The type of the subject. Can be one of the following values: `User`, `Group`, or `ServiceAccount`.
-	// +kubebuilder:validation:Optional
-	Type *string `json:"type" tf:"type,omitempty"`
-}
-
 type InstanceTypeInitParameters struct {
 
 	// The number of CPUs.
@@ -89,74 +50,6 @@ type InstanceTypeParameters struct {
 	// The amount of memory in MB.
 	// +kubebuilder:validation:Optional
 	MemoryMb *float64 `json:"memoryMb" tf:"memory_mb,omitempty"`
-}
-
-type MachinePoolNodeInitParameters struct {
-
-	// The action to perform on the node. Valid values are: `cordon`, `uncordon`.
-	Action *string `json:"action,omitempty" tf:"action,omitempty"`
-
-	// The node_id of the node, For example `i-07f899a33dee624f7`
-	NodeID *string `json:"nodeId,omitempty" tf:"node_id,omitempty"`
-}
-
-type MachinePoolNodeObservation struct {
-
-	// The action to perform on the node. Valid values are: `cordon`, `uncordon`.
-	Action *string `json:"action,omitempty" tf:"action,omitempty"`
-
-	// The node_id of the node, For example `i-07f899a33dee624f7`
-	NodeID *string `json:"nodeId,omitempty" tf:"node_id,omitempty"`
-}
-
-type MachinePoolNodeParameters struct {
-
-	// The action to perform on the node. Valid values are: `cordon`, `uncordon`.
-	// +kubebuilder:validation:Optional
-	Action *string `json:"action" tf:"action,omitempty"`
-
-	// The node_id of the node, For example `i-07f899a33dee624f7`
-	// +kubebuilder:validation:Optional
-	NodeID *string `json:"nodeId" tf:"node_id,omitempty"`
-}
-
-type MachinePoolTaintsInitParameters struct {
-
-	// The effect of the taint. Allowed values are: `NoSchedule`, `PreferNoSchedule` or `NoExecute`.
-	Effect *string `json:"effect,omitempty" tf:"effect,omitempty"`
-
-	// The key of the taint.
-	Key *string `json:"key,omitempty" tf:"key,omitempty"`
-
-	// The value of the taint.
-	Value *string `json:"value,omitempty" tf:"value,omitempty"`
-}
-
-type MachinePoolTaintsObservation struct {
-
-	// The effect of the taint. Allowed values are: `NoSchedule`, `PreferNoSchedule` or `NoExecute`.
-	Effect *string `json:"effect,omitempty" tf:"effect,omitempty"`
-
-	// The key of the taint.
-	Key *string `json:"key,omitempty" tf:"key,omitempty"`
-
-	// The value of the taint.
-	Value *string `json:"value,omitempty" tf:"value,omitempty"`
-}
-
-type MachinePoolTaintsParameters struct {
-
-	// The effect of the taint. Allowed values are: `NoSchedule`, `PreferNoSchedule` or `NoExecute`.
-	// +kubebuilder:validation:Optional
-	Effect *string `json:"effect" tf:"effect,omitempty"`
-
-	// The key of the taint.
-	// +kubebuilder:validation:Optional
-	Key *string `json:"key" tf:"key,omitempty"`
-
-	// The value of the taint.
-	// +kubebuilder:validation:Optional
-	Value *string `json:"value" tf:"value,omitempty"`
 }
 
 type PlacementInitParameters struct {
@@ -606,7 +499,7 @@ type VSphereClusterClusterRbacBindingInitParameters struct {
 	// +mapType=granular
 	Role map[string]*string `json:"role,omitempty" tf:"role,omitempty"`
 
-	Subjects []ClusterRbacBindingSubjectsInitParameters `json:"subjects,omitempty" tf:"subjects,omitempty"`
+	Subjects []VSphereClusterClusterRbacBindingSubjectsInitParameters `json:"subjects,omitempty" tf:"subjects,omitempty"`
 
 	// The type of the RBAC binding. Can be one of the following values: `RoleBinding`, or `ClusterRoleBinding`.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
@@ -621,7 +514,7 @@ type VSphereClusterClusterRbacBindingObservation struct {
 	// +mapType=granular
 	Role map[string]*string `json:"role,omitempty" tf:"role,omitempty"`
 
-	Subjects []ClusterRbacBindingSubjectsObservation `json:"subjects,omitempty" tf:"subjects,omitempty"`
+	Subjects []VSphereClusterClusterRbacBindingSubjectsObservation `json:"subjects,omitempty" tf:"subjects,omitempty"`
 
 	// The type of the RBAC binding. Can be one of the following values: `RoleBinding`, or `ClusterRoleBinding`.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
@@ -639,9 +532,48 @@ type VSphereClusterClusterRbacBindingParameters struct {
 	Role map[string]*string `json:"role,omitempty" tf:"role,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	Subjects []ClusterRbacBindingSubjectsParameters `json:"subjects,omitempty" tf:"subjects,omitempty"`
+	Subjects []VSphereClusterClusterRbacBindingSubjectsParameters `json:"subjects,omitempty" tf:"subjects,omitempty"`
 
 	// The type of the RBAC binding. Can be one of the following values: `RoleBinding`, or `ClusterRoleBinding`.
+	// +kubebuilder:validation:Optional
+	Type *string `json:"type" tf:"type,omitempty"`
+}
+
+type VSphereClusterClusterRbacBindingSubjectsInitParameters struct {
+
+	// The name of the subject. Required if 'type' is set to 'User' or 'Group'.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// The Kubernetes namespace of the subject. Required if 'type' is set to 'ServiceAccount'.
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// The type of the subject. Can be one of the following values: `User`, `Group`, or `ServiceAccount`.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+}
+
+type VSphereClusterClusterRbacBindingSubjectsObservation struct {
+
+	// The name of the subject. Required if 'type' is set to 'User' or 'Group'.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// The Kubernetes namespace of the subject. Required if 'type' is set to 'ServiceAccount'.
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// The type of the subject. Can be one of the following values: `User`, `Group`, or `ServiceAccount`.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+}
+
+type VSphereClusterClusterRbacBindingSubjectsParameters struct {
+
+	// The name of the subject. Required if 'type' is set to 'User' or 'Group'.
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name" tf:"name,omitempty"`
+
+	// The Kubernetes namespace of the subject. Required if 'type' is set to 'ServiceAccount'.
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// The type of the subject. Can be one of the following values: `User`, `Group`, or `ServiceAccount`.
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type" tf:"type,omitempty"`
 }
@@ -861,17 +793,46 @@ type VSphereClusterMachinePoolInitParameters struct {
 	// The name of the machine pool. This is used to identify the machine pool in the cluster.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	Node []MachinePoolNodeInitParameters `json:"node,omitempty" tf:"node,omitempty"`
+	Node []VSphereClusterMachinePoolNodeInitParameters `json:"node,omitempty" tf:"node,omitempty"`
 
 	// Minimum number of seconds node should be Ready, before the next node is selected for repave. Default value is `0`, Applicable only for worker pools.
 	NodeRepaveInterval *float64 `json:"nodeRepaveInterval,omitempty" tf:"node_repave_interval,omitempty"`
 
 	Placement []PlacementInitParameters `json:"placement,omitempty" tf:"placement,omitempty"`
 
-	Taints []MachinePoolTaintsInitParameters `json:"taints,omitempty" tf:"taints,omitempty"`
+	Taints []VSphereClusterMachinePoolTaintsInitParameters `json:"taints,omitempty" tf:"taints,omitempty"`
 
 	// Update strategy for the machine pool. Valid values are `RollingUpdateScaleOut` and `RollingUpdateScaleIn`.
 	UpdateStrategy *string `json:"updateStrategy,omitempty" tf:"update_strategy,omitempty"`
+}
+
+type VSphereClusterMachinePoolNodeInitParameters struct {
+
+	// The action to perform on the node. Valid values are: `cordon`, `uncordon`.
+	Action *string `json:"action,omitempty" tf:"action,omitempty"`
+
+	// The node_id of the node, For example `i-07f899a33dee624f7`
+	NodeID *string `json:"nodeId,omitempty" tf:"node_id,omitempty"`
+}
+
+type VSphereClusterMachinePoolNodeObservation struct {
+
+	// The action to perform on the node. Valid values are: `cordon`, `uncordon`.
+	Action *string `json:"action,omitempty" tf:"action,omitempty"`
+
+	// The node_id of the node, For example `i-07f899a33dee624f7`
+	NodeID *string `json:"nodeId,omitempty" tf:"node_id,omitempty"`
+}
+
+type VSphereClusterMachinePoolNodeParameters struct {
+
+	// The action to perform on the node. Valid values are: `cordon`, `uncordon`.
+	// +kubebuilder:validation:Optional
+	Action *string `json:"action" tf:"action,omitempty"`
+
+	// The node_id of the node, For example `i-07f899a33dee624f7`
+	// +kubebuilder:validation:Optional
+	NodeID *string `json:"nodeId" tf:"node_id,omitempty"`
 }
 
 type VSphereClusterMachinePoolObservation struct {
@@ -899,14 +860,14 @@ type VSphereClusterMachinePoolObservation struct {
 	// The name of the machine pool. This is used to identify the machine pool in the cluster.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	Node []MachinePoolNodeObservation `json:"node,omitempty" tf:"node,omitempty"`
+	Node []VSphereClusterMachinePoolNodeObservation `json:"node,omitempty" tf:"node,omitempty"`
 
 	// Minimum number of seconds node should be Ready, before the next node is selected for repave. Default value is `0`, Applicable only for worker pools.
 	NodeRepaveInterval *float64 `json:"nodeRepaveInterval,omitempty" tf:"node_repave_interval,omitempty"`
 
 	Placement []PlacementObservation `json:"placement,omitempty" tf:"placement,omitempty"`
 
-	Taints []MachinePoolTaintsObservation `json:"taints,omitempty" tf:"taints,omitempty"`
+	Taints []VSphereClusterMachinePoolTaintsObservation `json:"taints,omitempty" tf:"taints,omitempty"`
 
 	// Update strategy for the machine pool. Valid values are `RollingUpdateScaleOut` and `RollingUpdateScaleIn`.
 	UpdateStrategy *string `json:"updateStrategy,omitempty" tf:"update_strategy,omitempty"`
@@ -946,7 +907,7 @@ type VSphereClusterMachinePoolParameters struct {
 	Name *string `json:"name" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	Node []MachinePoolNodeParameters `json:"node,omitempty" tf:"node,omitempty"`
+	Node []VSphereClusterMachinePoolNodeParameters `json:"node,omitempty" tf:"node,omitempty"`
 
 	// Minimum number of seconds node should be Ready, before the next node is selected for repave. Default value is `0`, Applicable only for worker pools.
 	// +kubebuilder:validation:Optional
@@ -956,11 +917,50 @@ type VSphereClusterMachinePoolParameters struct {
 	Placement []PlacementParameters `json:"placement" tf:"placement,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	Taints []MachinePoolTaintsParameters `json:"taints,omitempty" tf:"taints,omitempty"`
+	Taints []VSphereClusterMachinePoolTaintsParameters `json:"taints,omitempty" tf:"taints,omitempty"`
 
 	// Update strategy for the machine pool. Valid values are `RollingUpdateScaleOut` and `RollingUpdateScaleIn`.
 	// +kubebuilder:validation:Optional
 	UpdateStrategy *string `json:"updateStrategy,omitempty" tf:"update_strategy,omitempty"`
+}
+
+type VSphereClusterMachinePoolTaintsInitParameters struct {
+
+	// The effect of the taint. Allowed values are: `NoSchedule`, `PreferNoSchedule` or `NoExecute`.
+	Effect *string `json:"effect,omitempty" tf:"effect,omitempty"`
+
+	// The key of the taint.
+	Key *string `json:"key,omitempty" tf:"key,omitempty"`
+
+	// The value of the taint.
+	Value *string `json:"value,omitempty" tf:"value,omitempty"`
+}
+
+type VSphereClusterMachinePoolTaintsObservation struct {
+
+	// The effect of the taint. Allowed values are: `NoSchedule`, `PreferNoSchedule` or `NoExecute`.
+	Effect *string `json:"effect,omitempty" tf:"effect,omitempty"`
+
+	// The key of the taint.
+	Key *string `json:"key,omitempty" tf:"key,omitempty"`
+
+	// The value of the taint.
+	Value *string `json:"value,omitempty" tf:"value,omitempty"`
+}
+
+type VSphereClusterMachinePoolTaintsParameters struct {
+
+	// The effect of the taint. Allowed values are: `NoSchedule`, `PreferNoSchedule` or `NoExecute`.
+	// +kubebuilder:validation:Optional
+	Effect *string `json:"effect" tf:"effect,omitempty"`
+
+	// The key of the taint.
+	// +kubebuilder:validation:Optional
+	Key *string `json:"key" tf:"key,omitempty"`
+
+	// The value of the taint.
+	// +kubebuilder:validation:Optional
+	Value *string `json:"value" tf:"value,omitempty"`
 }
 
 type VSphereClusterNamespacesInitParameters struct {

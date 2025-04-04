@@ -118,4 +118,8 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "palette"
 		r.Kind = "VirtualCluster"
 	})
+	p.AddResourceConfigurator("spectrocloud_cluster_aks", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "AKSCluster"
+	})
 }

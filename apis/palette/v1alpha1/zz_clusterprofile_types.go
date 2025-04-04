@@ -95,7 +95,7 @@ type ClusterProfileObservation_2 struct {
 type ClusterProfilePackInitParameters_2 struct {
 
 	// (Block List) (see below for nested schema)
-	Manifest []ClusterProfilePackManifestInitParameters `json:"manifest,omitempty" tf:"manifest,omitempty"`
+	Manifest []ClusterProfilePackManifestInitParameters_2 `json:"manifest,omitempty" tf:"manifest,omitempty"`
 
 	// (String)
 	// The name of the pack. The name must be unique within the cluster profile.
@@ -122,7 +122,7 @@ type ClusterProfilePackInitParameters_2 struct {
 	Values *string `json:"values,omitempty" tf:"values,omitempty"`
 }
 
-type ClusterProfilePackManifestInitParameters struct {
+type ClusterProfilePackManifestInitParameters_2 struct {
 
 	// (String) The content of the manifest. The content is the YAML content of the manifest.
 	// The content of the manifest. The content is the YAML content of the manifest.
@@ -133,7 +133,7 @@ type ClusterProfilePackManifestInitParameters struct {
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 }
 
-type ClusterProfilePackManifestObservation struct {
+type ClusterProfilePackManifestObservation_2 struct {
 
 	// (String) The content of the manifest. The content is the YAML content of the manifest.
 	// The content of the manifest. The content is the YAML content of the manifest.
@@ -147,7 +147,7 @@ type ClusterProfilePackManifestObservation struct {
 	UID *string `json:"uid,omitempty" tf:"uid,omitempty"`
 }
 
-type ClusterProfilePackManifestParameters struct {
+type ClusterProfilePackManifestParameters_2 struct {
 
 	// (String) The content of the manifest. The content is the YAML content of the manifest.
 	// The content of the manifest. The content is the YAML content of the manifest.
@@ -163,7 +163,7 @@ type ClusterProfilePackManifestParameters struct {
 type ClusterProfilePackObservation_2 struct {
 
 	// (Block List) (see below for nested schema)
-	Manifest []ClusterProfilePackManifestObservation `json:"manifest,omitempty" tf:"manifest,omitempty"`
+	Manifest []ClusterProfilePackManifestObservation_2 `json:"manifest,omitempty" tf:"manifest,omitempty"`
 
 	// (String)
 	// The name of the pack. The name must be unique within the cluster profile.
@@ -194,7 +194,7 @@ type ClusterProfilePackParameters_2 struct {
 
 	// (Block List) (see below for nested schema)
 	// +kubebuilder:validation:Optional
-	Manifest []ClusterProfilePackManifestParameters `json:"manifest,omitempty" tf:"manifest,omitempty"`
+	Manifest []ClusterProfilePackManifestParameters_2 `json:"manifest,omitempty" tf:"manifest,omitempty"`
 
 	// (String)
 	// The name of the pack. The name must be unique within the cluster profile.
