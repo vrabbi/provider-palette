@@ -26,6 +26,15 @@ func (l *AWSCloudAccountList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this ApplicationProfileList.
+func (l *ApplicationProfileList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this AzureCloudAccountList.
 func (l *AzureCloudAccountList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
@@ -109,6 +118,15 @@ func (l *GCPCloudAccountList) GetItems() []resource.Managed {
 
 // GetItems of this HelmRegistryList.
 func (l *HelmRegistryList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this MAASCloudAccountList.
+func (l *MAASCloudAccountList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

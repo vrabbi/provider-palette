@@ -10,6 +10,9 @@ package v1alpha1
 func (tr *AKSCluster) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *ApplicationProfile) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *AWSCloudAccount) Hub() {}
 
 // Hub marks this type as a conversion hub.
@@ -41,6 +44,9 @@ func (tr *GCPCloudAccount) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *HelmRegistry) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *MAASCloudAccount) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *Macros) Hub() {}

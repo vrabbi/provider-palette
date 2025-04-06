@@ -28,8 +28,10 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"spectrocloud_cloudaccount_custom":  config.IdentifierFromProvider,
 	"spectrocloud_cloudaccount_gcp":     config.IdentifierFromProvider,
 	"spectrocloud_cloudaccount_vsphere": config.IdentifierFromProvider,
+	"spectrocloud_cloudaccount_maas":    config.IdentifierFromProvider,
 	// PROFILES
 	"spectrocloud_cluster_profile": config.TemplatedStringAsIdentifier("id", "{{ .external_name }}:{{ .parameters.context }}"),
+	"spectrocloud_application_profile": config.IdentifierFromProvider,
 	// CLUSTERS
 	"spectrocloud_cluster_vsphere": config.IdentifierFromProvider,
 	"spectrocloud_cluster_eks":     config.IdentifierFromProvider,
@@ -57,7 +59,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"spectrocloud_cluster_azure": config.IdentifierFromProvider,
 
 	// MEDIUM PRIORITY (4)
-	"spectrocloud_cloudaccount_maas": config.IdentifierFromProvider,
+
 	"spectrocloud_cluster_gcp": config.IdentifierFromProvider,
 	"spectrocloud_cluster_gke": config.IdentifierFromProvider,
 	"spectrocloud_cluster_maas": config.IdentifierFromProvider,
@@ -72,7 +74,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"spectrocloud_addon_deployment": config.IdentifierFromProvider,
 	"spectrocloud_appliance": config.IdentifierFromProvider,
 	"spectrocloud_application": config.IdentifierFromProvider,
-	"spectrocloud_application_profile": config.IdentifierFromProvider,
+	
 	*/
 }
 

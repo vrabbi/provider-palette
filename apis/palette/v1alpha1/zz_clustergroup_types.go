@@ -48,7 +48,7 @@ type ClusterGroupClusterProfileObservation struct {
 type ClusterGroupClusterProfilePackInitParameters struct {
 
 	// (Block List) (see below for nested schema)
-	Manifest []ClusterProfilePackManifestInitParameters `json:"manifest,omitempty" tf:"manifest,omitempty"`
+	Manifest []ClusterGroupClusterProfilePackManifestInitParameters `json:"manifest,omitempty" tf:"manifest,omitempty"`
 
 	// (String) Name of the cluster group
 	// The name of the pack. The name must be unique within the cluster profile.
@@ -75,10 +75,48 @@ type ClusterGroupClusterProfilePackInitParameters struct {
 	Values *string `json:"values,omitempty" tf:"values,omitempty"`
 }
 
+type ClusterGroupClusterProfilePackManifestInitParameters struct {
+
+	// (String) The content of the manifest. The content is the YAML content of the manifest.
+	// The content of the manifest. The content is the YAML content of the manifest.
+	Content *string `json:"content,omitempty" tf:"content,omitempty"`
+
+	// (String) Name of the cluster group
+	// The name of the manifest. The name must be unique within the pack.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+}
+
+type ClusterGroupClusterProfilePackManifestObservation struct {
+
+	// (String) The content of the manifest. The content is the YAML content of the manifest.
+	// The content of the manifest. The content is the YAML content of the manifest.
+	Content *string `json:"content,omitempty" tf:"content,omitempty"`
+
+	// (String) Name of the cluster group
+	// The name of the manifest. The name must be unique within the pack.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// (String) The unique identifier of the pack. The value can be looked up using the spectrocloud_pack data source. This value is required if the pack type is spectro and for helm if the chart is from a public helm registry.
+	UID *string `json:"uid,omitempty" tf:"uid,omitempty"`
+}
+
+type ClusterGroupClusterProfilePackManifestParameters struct {
+
+	// (String) The content of the manifest. The content is the YAML content of the manifest.
+	// The content of the manifest. The content is the YAML content of the manifest.
+	// +kubebuilder:validation:Optional
+	Content *string `json:"content" tf:"content,omitempty"`
+
+	// (String) Name of the cluster group
+	// The name of the manifest. The name must be unique within the pack.
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name" tf:"name,omitempty"`
+}
+
 type ClusterGroupClusterProfilePackObservation struct {
 
 	// (Block List) (see below for nested schema)
-	Manifest []ClusterProfilePackManifestObservation `json:"manifest,omitempty" tf:"manifest,omitempty"`
+	Manifest []ClusterGroupClusterProfilePackManifestObservation `json:"manifest,omitempty" tf:"manifest,omitempty"`
 
 	// (String) Name of the cluster group
 	// The name of the pack. The name must be unique within the cluster profile.
@@ -109,7 +147,7 @@ type ClusterGroupClusterProfilePackParameters struct {
 
 	// (Block List) (see below for nested schema)
 	// +kubebuilder:validation:Optional
-	Manifest []ClusterProfilePackManifestParameters `json:"manifest,omitempty" tf:"manifest,omitempty"`
+	Manifest []ClusterGroupClusterProfilePackManifestParameters `json:"manifest,omitempty" tf:"manifest,omitempty"`
 
 	// (String) Name of the cluster group
 	// The name of the pack. The name must be unique within the cluster profile.
@@ -259,44 +297,6 @@ type ClusterGroupParameters struct {
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
-}
-
-type ClusterProfilePackManifestInitParameters struct {
-
-	// (String) The content of the manifest. The content is the YAML content of the manifest.
-	// The content of the manifest. The content is the YAML content of the manifest.
-	Content *string `json:"content,omitempty" tf:"content,omitempty"`
-
-	// (String) Name of the cluster group
-	// The name of the manifest. The name must be unique within the pack.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-}
-
-type ClusterProfilePackManifestObservation struct {
-
-	// (String) The content of the manifest. The content is the YAML content of the manifest.
-	// The content of the manifest. The content is the YAML content of the manifest.
-	Content *string `json:"content,omitempty" tf:"content,omitempty"`
-
-	// (String) Name of the cluster group
-	// The name of the manifest. The name must be unique within the pack.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// (String) The unique identifier of the pack. The value can be looked up using the spectrocloud_pack data source. This value is required if the pack type is spectro and for helm if the chart is from a public helm registry.
-	UID *string `json:"uid,omitempty" tf:"uid,omitempty"`
-}
-
-type ClusterProfilePackManifestParameters struct {
-
-	// (String) The content of the manifest. The content is the YAML content of the manifest.
-	// The content of the manifest. The content is the YAML content of the manifest.
-	// +kubebuilder:validation:Optional
-	Content *string `json:"content" tf:"content,omitempty"`
-
-	// (String) Name of the cluster group
-	// The name of the manifest. The name must be unique within the pack.
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name" tf:"name,omitempty"`
 }
 
 type ClustersInitParameters struct {

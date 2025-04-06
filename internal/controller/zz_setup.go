@@ -10,6 +10,7 @@ import (
 	"github.com/crossplane/upjet/pkg/controller"
 
 	akscluster "github.com/vrabbi/provider-palette/internal/controller/palette/akscluster"
+	applicationprofile "github.com/vrabbi/provider-palette/internal/controller/palette/applicationprofile"
 	awscloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/awscloudaccount"
 	azurecloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/azurecloudaccount"
 	backupstoragelocation "github.com/vrabbi/provider-palette/internal/controller/palette/backupstoragelocation"
@@ -21,6 +22,7 @@ import (
 	filter "github.com/vrabbi/provider-palette/internal/controller/palette/filter"
 	gcpcloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/gcpcloudaccount"
 	helmregistry "github.com/vrabbi/provider-palette/internal/controller/palette/helmregistry"
+	maascloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/maascloudaccount"
 	macros "github.com/vrabbi/provider-palette/internal/controller/palette/macros"
 	ociregistry "github.com/vrabbi/provider-palette/internal/controller/palette/ociregistry"
 	passwordpolicy "github.com/vrabbi/provider-palette/internal/controller/palette/passwordpolicy"
@@ -45,6 +47,7 @@ import (
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		akscluster.Setup,
+		applicationprofile.Setup,
 		awscloudaccount.Setup,
 		azurecloudaccount.Setup,
 		backupstoragelocation.Setup,
@@ -56,6 +59,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		filter.Setup,
 		gcpcloudaccount.Setup,
 		helmregistry.Setup,
+		maascloudaccount.Setup,
 		macros.Setup,
 		ociregistry.Setup,
 		passwordpolicy.Setup,

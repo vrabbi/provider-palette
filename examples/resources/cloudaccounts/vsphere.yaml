@@ -7,15 +7,15 @@ spec:
     name: saas-tenant
   forProvider:
     context: tenant
-    name: vsphere-demo
-    privateCloudGatewayId: "65fc061d96c13cd453bc7679"
+    name: demo-cp-vsphere
+    privateCloudGatewayId: "FILL ME IN"
     vsphereIgnoreInsecureError: true
     vspherePasswordSecretRef:
       key: password
       name: demo-cp-vsphere-creds
       namespace: crossplane-system
-    vsphereUsername: administrator@vsphere.local
-    vsphereVcenter: demo-vc-01.terasky.demo
+    vsphereUsername: "FILL ME IN"
+    vsphereVcenter: "FILL ME IN"
 #! ---
 #! apiVersion: v1
 #! kind: Secret
