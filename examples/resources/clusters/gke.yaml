@@ -1,0 +1,28 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: GKECluster
+metadata:
+  name: demo-cp-gke-01
+spec:
+  forProvider:
+    name: demo-cp-gke-01
+    cloudAccountId: 6702714706174ed9652a6ec7
+    context: project
+    osPatchOnBoot: false
+    pauseAgentUpgrades: lock
+    skipCompletion: false
+    tags: []
+    cloudConfig:
+      - project: skywiz-sandbox
+        region: us-east1
+    clusterProfile:
+      - id: 67f26a70b2cc84b2a3fd08c5
+        variables: {}
+    machinePool:
+      - name: basic-workers
+        count: 3
+        diskSizeGb: 60
+        instanceType: c2d-standard-4
+        updateStrategy: RollingUpdateScaleOut
+        additionalLabels: {}
+  providerConfigRef:
+    name: saas-scott-eks

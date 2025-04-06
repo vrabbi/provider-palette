@@ -45,3 +45,15 @@ spec:
       name: spectrocloud-scott-saas-creds
       namespace: crossplane-system
       key: credentials
+---
+apiVersion: palette.crossplane.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: scott-saas-eks
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      name: spectrocloud-scott-saas-eks-creds
+      namespace: crossplane-system
+      key: credentials

@@ -8,8 +8,8 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "palette"
 		r.Kind = "BackupStorageLocation"
 	})
-	
-    //Cloud Accounts
+
+	//Cloud Accounts
 	p.AddResourceConfigurator("spectrocloud_cloudaccount_custom", func(r *config.Resource) {
 		r.ShortGroup = "palette"
 		r.Kind = "CustomCloudAccount"
@@ -18,7 +18,7 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "palette"
 		r.Kind = "MAASCloudAccount"
 	})
-    p.AddResourceConfigurator("spectrocloud_cloudaccount_vsphere", func(r *config.Resource) {
+	p.AddResourceConfigurator("spectrocloud_cloudaccount_vsphere", func(r *config.Resource) {
 		r.ShortGroup = "palette"
 		r.Kind = "VSphereCloudAccount"
 	})
@@ -41,7 +41,7 @@ func Configure(p *config.Provider) {
 		}
 	})
 
-    // Clusters
+	// Clusters
 	p.AddResourceConfigurator("spectrocloud_cluster_vsphere", func(r *config.Resource) {
 		r.ShortGroup = "palette"
 		r.Kind = "VSphereCluster"
@@ -58,9 +58,25 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "palette"
 		r.Kind = "AKSCluster"
 	})
-
-    // IPAM
-    p.AddResourceConfigurator("spectrocloud_privatecloudgateway_dns_map", func(r *config.Resource) {
+	p.AddResourceConfigurator("spectrocloud_cluster_gke", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "GKECluster"
+	})
+	p.AddResourceConfigurator("spectrocloud_cluster_gcp", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "GCPCluster"
+	})
+	p.AddResourceConfigurator("spectrocloud_cluster_azure", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "AzureCluster"
+	})
+	p.AddResourceConfigurator("spectrocloud_cluster_aws", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "AWSCluster"
+	})
+	
+	// IPAM
+	p.AddResourceConfigurator("spectrocloud_privatecloudgateway_dns_map", func(r *config.Resource) {
 		r.ShortGroup = "palette"
 		r.Kind = "PrivateCloudGatewayDNSMap"
 	})
@@ -69,14 +85,14 @@ func Configure(p *config.Provider) {
 		r.Kind = "PrivateCloudGatewayIPPool"
 	})
 
-    // Macros
-    p.AddResourceConfigurator("spectrocloud_macros", func(r *config.Resource) {
+	// Macros
+	p.AddResourceConfigurator("spectrocloud_macros", func(r *config.Resource) {
 		r.ShortGroup = "palette"
 		r.Kind = "Macros"
 	})
 
-    // Policy
-    p.AddResourceConfigurator("spectrocloud_password_policy", func(r *config.Resource) {
+	// Policy
+	p.AddResourceConfigurator("spectrocloud_password_policy", func(r *config.Resource) {
 		r.ShortGroup = "palette"
 		r.Kind = "PasswordPolicy"
 	})
@@ -112,7 +128,7 @@ func Configure(p *config.Provider) {
 	})
 
 	// Registries
-    p.AddResourceConfigurator("spectrocloud_registry_helm", func(r *config.Resource) {
+	p.AddResourceConfigurator("spectrocloud_registry_helm", func(r *config.Resource) {
 		r.ShortGroup = "palette"
 		r.Kind = "HelmRegistry"
 	})
@@ -127,8 +143,8 @@ func Configure(p *config.Provider) {
 		r.Kind = "SSHKey"
 	})
 
-    // Settings
-    p.AddResourceConfigurator("spectrocloud_developer_setting", func(r *config.Resource) {
+	// Settings
+	p.AddResourceConfigurator("spectrocloud_developer_setting", func(r *config.Resource) {
 		r.ShortGroup = "palette"
 		r.Kind = "DeveloperSetting"
 	})
@@ -141,7 +157,7 @@ func Configure(p *config.Provider) {
 		r.Kind = "Filter"
 	})
 
-    // Tenancy
+	// Tenancy
 	p.AddResourceConfigurator("spectrocloud_project", func(r *config.Resource) {
 		r.ShortGroup = "palette"
 		r.Kind = "Project"

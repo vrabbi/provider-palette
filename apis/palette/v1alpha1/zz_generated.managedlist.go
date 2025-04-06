@@ -26,6 +26,15 @@ func (l *AWSCloudAccountList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this AWSClusterList.
+func (l *AWSClusterList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this ApplicationProfileList.
 func (l *ApplicationProfileList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
@@ -37,6 +46,15 @@ func (l *ApplicationProfileList) GetItems() []resource.Managed {
 
 // GetItems of this AzureCloudAccountList.
 func (l *AzureCloudAccountList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this AzureClusterList.
+func (l *AzureClusterList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
@@ -109,6 +127,24 @@ func (l *FilterList) GetItems() []resource.Managed {
 
 // GetItems of this GCPCloudAccountList.
 func (l *GCPCloudAccountList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this GCPClusterList.
+func (l *GCPClusterList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this GKEClusterList.
+func (l *GKEClusterList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

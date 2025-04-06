@@ -7,74 +7,87 @@ package config
 import "github.com/crossplane/upjet/pkg/config"
 
 // ExternalNameConfigs contains all external name configurations for this
-// provider (28).
+// provider (34).
 var ExternalNameConfigs = map[string]config.ExternalName{
-	// TENANCY
+	// TENANCY (3)
 	"spectrocloud_project":       config.IdentifierFromProvider,
 	"spectrocloud_cluster_group": config.IdentifierFromProvider,
 	"spectrocloud_workspace":     config.IdentifierFromProvider,
-	// SECURITY
+	// SECURITY (1)
 	"spectrocloud_ssh_key": config.IdentifierFromProvider,
-	// REGISTRY
+	// REGISTRY (2)
 	"spectrocloud_registry_helm": config.IdentifierFromProvider,
 	"spectrocloud_registry_oci":  config.IdentifierFromProvider,
-	// RBAC
+	// RBAC (3)
 	"spectrocloud_user": config.IdentifierFromProvider,
 	"spectrocloud_team": config.IdentifierFromProvider,
 	"spectrocloud_role": config.IdentifierFromProvider,
-	// CLOUD ACCOUNTS
+	// CLOUD ACCOUNTS (6)
 	"spectrocloud_cloudaccount_aws":     config.IdentifierFromProvider,
 	"spectrocloud_cloudaccount_azure":   config.IdentifierFromProvider,
 	"spectrocloud_cloudaccount_custom":  config.IdentifierFromProvider,
 	"spectrocloud_cloudaccount_gcp":     config.IdentifierFromProvider,
 	"spectrocloud_cloudaccount_vsphere": config.IdentifierFromProvider,
 	"spectrocloud_cloudaccount_maas":    config.IdentifierFromProvider,
-	// PROFILES
-	"spectrocloud_cluster_profile": config.TemplatedStringAsIdentifier("id", "{{ .external_name }}:{{ .parameters.context }}"),
+	// PROFILES (2)	
+	"spectrocloud_cluster_profile":     config.TemplatedStringAsIdentifier("id", "{{ .external_name }}:{{ .parameters.context }}"),
 	"spectrocloud_application_profile": config.IdentifierFromProvider,
-	// CLUSTERS
+	// CLUSTERS (8)
 	"spectrocloud_cluster_vsphere": config.IdentifierFromProvider,
 	"spectrocloud_cluster_eks":     config.IdentifierFromProvider,
+	"spectrocloud_cluster_aws": config.IdentifierFromProvider,
 	"spectrocloud_virtual_cluster": config.IdentifierFromProvider,
 	"spectrocloud_cluster_aks":     config.IdentifierFromProvider,
-	// MACROS
+	"spectrocloud_cluster_azure": config.IdentifierFromProvider,
+	"spectrocloud_cluster_gke":     config.IdentifierFromProvider,
+	"spectrocloud_cluster_gcp": config.IdentifierFromProvider,
+	// MACROS (1)
 	"spectrocloud_macros": config.IdentifierFromProvider,
-	// SETTINGS
+	// SETTINGS (3)
 	"spectrocloud_developer_setting": config.IdentifierFromProvider,
 	"spectrocloud_platform_setting":  config.IdentifierFromProvider,
 	"spectrocloud_filter":            config.IdentifierFromProvider,
-	// IPAM + DNS
+	// IPAM + DNS (2)
 	"spectrocloud_privatecloudgateway_dns_map": config.IdentifierFromProvider,
 	"spectrocloud_privatecloudgateway_ippool":  config.IdentifierFromProvider,
+
+	// Backups (1)
 	"spectrocloud_backup_storage_location":     config.IdentifierFromProvider,
-	// POLICIES
+
+	// POLICIES (2)
 	"spectrocloud_password_policy": config.IdentifierFromProvider,
 	"spectrocloud_resource_limit":  config.IdentifierFromProvider,
 
-	/* BELLOW RESOURCES (17) ARE NOT IMPLEMENTED YET
+	/* 10 RESOURCES ARE NOT IMPLEMENTED YET
 
-	// HIGH PRIORITY (3)
+	// Custom Cloud Support
 	"spectrocloud_cluster_custom_cloud": config.IdentifierFromProvider,
-	"spectrocloud_cluster_aws": config.IdentifierFromProvider,
-	"spectrocloud_cluster_azure": config.IdentifierFromProvider,
 
-	// MEDIUM PRIORITY (4)
-
-	"spectrocloud_cluster_gcp": config.IdentifierFromProvider,
-	"spectrocloud_cluster_gke": config.IdentifierFromProvider,
+	// MAAS Support
 	"spectrocloud_cluster_maas": config.IdentifierFromProvider,
 
-	// LOW PRIORITY (10)
+	// OpenStack Support
 	"spectrocloud_cloudaccount_openstack": config.IdentifierFromProvider,
-	"spectrocloud_cluster_edge_native": config.IdentifierFromProvider,
-	"spectrocloud_cluster_edge_vsphere": config.IdentifierFromProvider,
 	"spectrocloud_cluster_openstack": config.IdentifierFromProvider,
+
+	// VMO Support
 	"spectrocloud_datavolume": config.IdentifierFromProvider,
 	"spectrocloud_virtual_machine": config.IdentifierFromProvider,
-	"spectrocloud_addon_deployment": config.IdentifierFromProvider,
-	"spectrocloud_appliance": config.IdentifierFromProvider,
+
+	// App Mode Support
 	"spectrocloud_application": config.IdentifierFromProvider,
-	
+
+	// Edge Support
+	"spectrocloud_appliance": config.IdentifierFromProvider,
+	"spectrocloud_cluster_edge_native": config.IdentifierFromProvider,
+	"spectrocloud_cluster_edge_vsphere": config.IdentifierFromProvider,
+
+	// 5 RESOURCES WILL NOT BE IMPLEMENTED AT ALL
+	// "spectrocloud_addon_deployment": config.IdentifierFromProvider, - NOT RELEVANT FOR CROSSPLANE
+	// "spectrocloud_macro: config.IdentifierFromProvider, - DEPRECATED
+	// "spectrocloud_alert: config.IdentifierFromProvider, - DEPRECATED
+	// "spectrocloud_registration_token: config.IdentifierFromProvider, - NOT RELEVANT FOR CROSSPLANE
+	// "spectrocloud_cluster_profile_import: config.IdentifierFromProvider" - NOT RELEVANT FOR CROSSPLANE
 	*/
 }
 

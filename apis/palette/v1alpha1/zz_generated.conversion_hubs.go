@@ -16,7 +16,13 @@ func (tr *ApplicationProfile) Hub() {}
 func (tr *AWSCloudAccount) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *AWSCluster) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *AzureCloudAccount) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *AzureCluster) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *BackupStorageLocation) Hub() {}
@@ -41,6 +47,12 @@ func (tr *Filter) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *GCPCloudAccount) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *GCPCluster) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *GKECluster) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *HelmRegistry) Hub() {}

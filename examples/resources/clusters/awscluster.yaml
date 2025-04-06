@@ -1,0 +1,32 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: AWSCluster
+metadata:
+  name: demo-cp-aws-01
+spec:
+  providerConfigRef:
+    name: scott-saas-eks
+  forProvider:
+    context: project
+    cloudAccountId: "6702714706174ed9652a6ec7"
+    cloudConfig:
+    - region: us-east-1
+      sshKeyName: spectro
+    clusterProfile:
+    - id: "67f26cfeb14a1b99fab4d20d"
+    machinePool:
+    - additionalLabels:
+        owner: scott
+      controlPlane: true
+      controlPlaneAsWorker: false
+      count: 1
+      diskSizeGb: 60
+      instanceType: m5.xlarge
+      name: cp-pool
+    - additionalLabels:
+        owner: scott
+      count: 2
+      instanceType: m5.xlarge
+      name: worker-basic
+    name: demo-cp-aws-01
+    tags:
+    - owner:scott

@@ -1,0 +1,36 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: GCPCluster
+metadata:
+  name: demo-cp-gcp-01
+spec:
+  providerConfigRef:
+    name: saas-tenant
+  forProvider:
+    cloudAccountId: "67f26a33b14a1b87416d88b9"
+    cloudConfig:
+    - project: skywiz-sandbox
+      region: us-east1
+    clusterProfile:
+    - id: "67f26af9b2cc84b64fb889a7"
+    machinePool:
+    - controlPlane: true
+      controlPlaneAsWorker: false
+      count: 1
+      diskSizeGb: 60
+      instanceType: e2-standard-4
+      name: cp-pool
+      azs:
+      - us-east1-d
+      - us-east1-b
+      - us-east1-c
+    - count: 2
+      instanceType: e2-standard-2
+      name: worker-basic
+      diskSizeGb: 60
+      azs:
+      - us-east1-d
+      - us-east1-b
+      - us-east1-c
+    name: demo-cp-gcp-01
+    tags:
+    - owner:scott

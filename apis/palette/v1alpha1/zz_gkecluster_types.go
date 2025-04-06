@@ -13,7 +13,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type EKSClusterBackupPolicyInitParameters struct {
+type GKEClusterBackupPolicyInitParameters struct {
 
 	// (String) The ID of the backup location to use for the backup.
 	// The ID of the backup location to use for the backup.
@@ -58,7 +58,7 @@ type EKSClusterBackupPolicyInitParameters struct {
 	Schedule *string `json:"schedule,omitempty" tf:"schedule,omitempty"`
 }
 
-type EKSClusterBackupPolicyObservation struct {
+type GKEClusterBackupPolicyObservation struct {
 
 	// (String) The ID of the backup location to use for the backup.
 	// The ID of the backup location to use for the backup.
@@ -103,7 +103,7 @@ type EKSClusterBackupPolicyObservation struct {
 	Schedule *string `json:"schedule,omitempty" tf:"schedule,omitempty"`
 }
 
-type EKSClusterBackupPolicyParameters struct {
+type GKEClusterBackupPolicyParameters struct {
 
 	// (String) The ID of the backup location to use for the backup.
 	// The ID of the backup location to use for the backup.
@@ -158,136 +158,39 @@ type EKSClusterBackupPolicyParameters struct {
 	Schedule *string `json:"schedule" tf:"schedule,omitempty"`
 }
 
-type EKSClusterCloudConfigInitParameters struct {
+type GKEClusterCloudConfigInitParameters struct {
 
-	// (Map of String) Mutually exclusive with azs. Use for Static provisioning.
-	// Mutually exclusive with `azs`. Use for Static provisioning.
-	// +mapType=granular
-	AzSubnets map[string]*string `json:"azSubnets,omitempty" tf:"az_subnets,omitempty"`
-
-	// (List of String) Mutually exclusive with az_subnets. Use for Dynamic provisioning.
-	// Mutually exclusive with `az_subnets`. Use for Dynamic provisioning.
-	Azs []*string `json:"azs,omitempty" tf:"azs,omitempty"`
-
-	// (String) The ARN of the KMS encryption key to use for the cluster. Refer to the Enable Secrets Encryption for EKS Cluster for additional guidance.
-	// The ARN of the KMS encryption key to use for the cluster. Refer to the [Enable Secrets Encryption for EKS Cluster](https://docs.spectrocloud.com/clusters/public-cloud/aws/enable-secrets-encryption-kms-key/) for additional guidance.
-	EncryptionConfigArn *string `json:"encryptionConfigArn,omitempty" tf:"encryption_config_arn,omitempty"`
-
-	// (String) Choose between private, public, or private_and_public to define how communication is established with the endpoint for the managed Kubernetes API server and your cluster. The default value is public.
-	// Choose between `private`, `public`, or `private_and_public` to define how communication is established with the endpoint for the managed Kubernetes API server and your cluster. The default value is `public`.
-	EndpointAccess *string `json:"endpointAccess,omitempty" tf:"endpoint_access,omitempty"`
-
-	// (Set of String) List of CIDR blocks that define the allowed private access to the resource. Only requests originating from addresses within these CIDR blocks will be permitted to access the resource.
-	// List of CIDR blocks that define the allowed private access to the resource. Only requests originating from addresses within these CIDR blocks will be permitted to access the resource.
-	// +listType=set
-	PrivateAccessCidrs []*string `json:"privateAccessCidrs,omitempty" tf:"private_access_cidrs,omitempty"`
-
-	// (Set of String) List of CIDR blocks that define the allowed public access to the resource. Requests originating from addresses within these CIDR blocks will be permitted to access the resource. All other addresses will be denied access.
-	// List of CIDR blocks that define the allowed public access to the resource. Requests originating from addresses within these CIDR blocks will be permitted to access the resource. All other addresses will be denied access.
-	// +listType=set
-	PublicAccessCidrs []*string `json:"publicAccessCidrs,omitempty" tf:"public_access_cidrs,omitempty"`
+	// (String) GCP project name.
+	// GCP project name.
+	Project *string `json:"project,omitempty" tf:"project,omitempty"`
 
 	// (String)
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
-
-	// (String) Public SSH key to be used for the cluster nodes.
-	// Public SSH key to be used for the cluster nodes.
-	SSHKeyName *string `json:"sshKeyName,omitempty" tf:"ssh_key_name,omitempty"`
-
-	// (String)
-	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
-type EKSClusterCloudConfigObservation struct {
+type GKEClusterCloudConfigObservation struct {
 
-	// (Map of String) Mutually exclusive with azs. Use for Static provisioning.
-	// Mutually exclusive with `azs`. Use for Static provisioning.
-	// +mapType=granular
-	AzSubnets map[string]*string `json:"azSubnets,omitempty" tf:"az_subnets,omitempty"`
-
-	// (List of String) Mutually exclusive with az_subnets. Use for Dynamic provisioning.
-	// Mutually exclusive with `az_subnets`. Use for Dynamic provisioning.
-	Azs []*string `json:"azs,omitempty" tf:"azs,omitempty"`
-
-	// (String) The ARN of the KMS encryption key to use for the cluster. Refer to the Enable Secrets Encryption for EKS Cluster for additional guidance.
-	// The ARN of the KMS encryption key to use for the cluster. Refer to the [Enable Secrets Encryption for EKS Cluster](https://docs.spectrocloud.com/clusters/public-cloud/aws/enable-secrets-encryption-kms-key/) for additional guidance.
-	EncryptionConfigArn *string `json:"encryptionConfigArn,omitempty" tf:"encryption_config_arn,omitempty"`
-
-	// (String) Choose between private, public, or private_and_public to define how communication is established with the endpoint for the managed Kubernetes API server and your cluster. The default value is public.
-	// Choose between `private`, `public`, or `private_and_public` to define how communication is established with the endpoint for the managed Kubernetes API server and your cluster. The default value is `public`.
-	EndpointAccess *string `json:"endpointAccess,omitempty" tf:"endpoint_access,omitempty"`
-
-	// (Set of String) List of CIDR blocks that define the allowed private access to the resource. Only requests originating from addresses within these CIDR blocks will be permitted to access the resource.
-	// List of CIDR blocks that define the allowed private access to the resource. Only requests originating from addresses within these CIDR blocks will be permitted to access the resource.
-	// +listType=set
-	PrivateAccessCidrs []*string `json:"privateAccessCidrs,omitempty" tf:"private_access_cidrs,omitempty"`
-
-	// (Set of String) List of CIDR blocks that define the allowed public access to the resource. Requests originating from addresses within these CIDR blocks will be permitted to access the resource. All other addresses will be denied access.
-	// List of CIDR blocks that define the allowed public access to the resource. Requests originating from addresses within these CIDR blocks will be permitted to access the resource. All other addresses will be denied access.
-	// +listType=set
-	PublicAccessCidrs []*string `json:"publicAccessCidrs,omitempty" tf:"public_access_cidrs,omitempty"`
+	// (String) GCP project name.
+	// GCP project name.
+	Project *string `json:"project,omitempty" tf:"project,omitempty"`
 
 	// (String)
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
-
-	// (String) Public SSH key to be used for the cluster nodes.
-	// Public SSH key to be used for the cluster nodes.
-	SSHKeyName *string `json:"sshKeyName,omitempty" tf:"ssh_key_name,omitempty"`
-
-	// (String)
-	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
-type EKSClusterCloudConfigParameters struct {
+type GKEClusterCloudConfigParameters struct {
 
-	// (Map of String) Mutually exclusive with azs. Use for Static provisioning.
-	// Mutually exclusive with `azs`. Use for Static provisioning.
+	// (String) GCP project name.
+	// GCP project name.
 	// +kubebuilder:validation:Optional
-	// +mapType=granular
-	AzSubnets map[string]*string `json:"azSubnets,omitempty" tf:"az_subnets,omitempty"`
-
-	// (List of String) Mutually exclusive with az_subnets. Use for Dynamic provisioning.
-	// Mutually exclusive with `az_subnets`. Use for Dynamic provisioning.
-	// +kubebuilder:validation:Optional
-	Azs []*string `json:"azs,omitempty" tf:"azs,omitempty"`
-
-	// (String) The ARN of the KMS encryption key to use for the cluster. Refer to the Enable Secrets Encryption for EKS Cluster for additional guidance.
-	// The ARN of the KMS encryption key to use for the cluster. Refer to the [Enable Secrets Encryption for EKS Cluster](https://docs.spectrocloud.com/clusters/public-cloud/aws/enable-secrets-encryption-kms-key/) for additional guidance.
-	// +kubebuilder:validation:Optional
-	EncryptionConfigArn *string `json:"encryptionConfigArn,omitempty" tf:"encryption_config_arn,omitempty"`
-
-	// (String) Choose between private, public, or private_and_public to define how communication is established with the endpoint for the managed Kubernetes API server and your cluster. The default value is public.
-	// Choose between `private`, `public`, or `private_and_public` to define how communication is established with the endpoint for the managed Kubernetes API server and your cluster. The default value is `public`.
-	// +kubebuilder:validation:Optional
-	EndpointAccess *string `json:"endpointAccess,omitempty" tf:"endpoint_access,omitempty"`
-
-	// (Set of String) List of CIDR blocks that define the allowed private access to the resource. Only requests originating from addresses within these CIDR blocks will be permitted to access the resource.
-	// List of CIDR blocks that define the allowed private access to the resource. Only requests originating from addresses within these CIDR blocks will be permitted to access the resource.
-	// +kubebuilder:validation:Optional
-	// +listType=set
-	PrivateAccessCidrs []*string `json:"privateAccessCidrs,omitempty" tf:"private_access_cidrs,omitempty"`
-
-	// (Set of String) List of CIDR blocks that define the allowed public access to the resource. Requests originating from addresses within these CIDR blocks will be permitted to access the resource. All other addresses will be denied access.
-	// List of CIDR blocks that define the allowed public access to the resource. Requests originating from addresses within these CIDR blocks will be permitted to access the resource. All other addresses will be denied access.
-	// +kubebuilder:validation:Optional
-	// +listType=set
-	PublicAccessCidrs []*string `json:"publicAccessCidrs,omitempty" tf:"public_access_cidrs,omitempty"`
+	Project *string `json:"project" tf:"project,omitempty"`
 
 	// (String)
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region" tf:"region,omitempty"`
-
-	// (String) Public SSH key to be used for the cluster nodes.
-	// Public SSH key to be used for the cluster nodes.
-	// +kubebuilder:validation:Optional
-	SSHKeyName *string `json:"sshKeyName,omitempty" tf:"ssh_key_name,omitempty"`
-
-	// (String)
-	// +kubebuilder:validation:Optional
-	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
-type EKSClusterClusterProfileInitParameters struct {
+type GKEClusterClusterProfileInitParameters struct {
 
 	// (String) The ID of this resource.
 	// The ID of the cluster profile.
@@ -295,7 +198,7 @@ type EKSClusterClusterProfileInitParameters struct {
 
 	// (Block List) For packs of type spectro, helm, and manifest, at least one pack must be specified. (see below for nested schema)
 	// For packs of type `spectro`, `helm`, and `manifest`, at least one pack must be specified.
-	Pack []EKSClusterClusterProfilePackInitParameters `json:"pack,omitempty" tf:"pack,omitempty"`
+	Pack []GKEClusterClusterProfilePackInitParameters `json:"pack,omitempty" tf:"pack,omitempty"`
 
 	// value pairs. For example: priority = "5".
 	// A map of cluster profile variables, specified as key-value pairs. For example: `priority = "5"`.
@@ -303,7 +206,7 @@ type EKSClusterClusterProfileInitParameters struct {
 	Variables map[string]*string `json:"variables,omitempty" tf:"variables,omitempty"`
 }
 
-type EKSClusterClusterProfileObservation struct {
+type GKEClusterClusterProfileObservation struct {
 
 	// (String) The ID of this resource.
 	// The ID of the cluster profile.
@@ -311,7 +214,7 @@ type EKSClusterClusterProfileObservation struct {
 
 	// (Block List) For packs of type spectro, helm, and manifest, at least one pack must be specified. (see below for nested schema)
 	// For packs of type `spectro`, `helm`, and `manifest`, at least one pack must be specified.
-	Pack []EKSClusterClusterProfilePackObservation `json:"pack,omitempty" tf:"pack,omitempty"`
+	Pack []GKEClusterClusterProfilePackObservation `json:"pack,omitempty" tf:"pack,omitempty"`
 
 	// value pairs. For example: priority = "5".
 	// A map of cluster profile variables, specified as key-value pairs. For example: `priority = "5"`.
@@ -319,10 +222,10 @@ type EKSClusterClusterProfileObservation struct {
 	Variables map[string]*string `json:"variables,omitempty" tf:"variables,omitempty"`
 }
 
-type EKSClusterClusterProfilePackInitParameters struct {
+type GKEClusterClusterProfilePackInitParameters struct {
 
 	// (Block List) (see below for nested schema)
-	Manifest []EKSClusterClusterProfilePackManifestInitParameters `json:"manifest,omitempty" tf:"manifest,omitempty"`
+	Manifest []GKEClusterClusterProfilePackManifestInitParameters `json:"manifest,omitempty" tf:"manifest,omitempty"`
 
 	// (String) The name of the cluster.
 	// The name of the pack. The name must be unique within the cluster profile.
@@ -349,7 +252,7 @@ type EKSClusterClusterProfilePackInitParameters struct {
 	Values *string `json:"values,omitempty" tf:"values,omitempty"`
 }
 
-type EKSClusterClusterProfilePackManifestInitParameters struct {
+type GKEClusterClusterProfilePackManifestInitParameters struct {
 
 	// (String) The content of the manifest. The content is the YAML content of the manifest.
 	// The content of the manifest. The content is the YAML content of the manifest.
@@ -360,7 +263,7 @@ type EKSClusterClusterProfilePackManifestInitParameters struct {
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 }
 
-type EKSClusterClusterProfilePackManifestObservation struct {
+type GKEClusterClusterProfilePackManifestObservation struct {
 
 	// (String) The content of the manifest. The content is the YAML content of the manifest.
 	// The content of the manifest. The content is the YAML content of the manifest.
@@ -374,7 +277,7 @@ type EKSClusterClusterProfilePackManifestObservation struct {
 	UID *string `json:"uid,omitempty" tf:"uid,omitempty"`
 }
 
-type EKSClusterClusterProfilePackManifestParameters struct {
+type GKEClusterClusterProfilePackManifestParameters struct {
 
 	// (String) The content of the manifest. The content is the YAML content of the manifest.
 	// The content of the manifest. The content is the YAML content of the manifest.
@@ -387,10 +290,10 @@ type EKSClusterClusterProfilePackManifestParameters struct {
 	Name *string `json:"name" tf:"name,omitempty"`
 }
 
-type EKSClusterClusterProfilePackObservation struct {
+type GKEClusterClusterProfilePackObservation struct {
 
 	// (Block List) (see below for nested schema)
-	Manifest []EKSClusterClusterProfilePackManifestObservation `json:"manifest,omitempty" tf:"manifest,omitempty"`
+	Manifest []GKEClusterClusterProfilePackManifestObservation `json:"manifest,omitempty" tf:"manifest,omitempty"`
 
 	// (String) The name of the cluster.
 	// The name of the pack. The name must be unique within the cluster profile.
@@ -417,11 +320,11 @@ type EKSClusterClusterProfilePackObservation struct {
 	Values *string `json:"values,omitempty" tf:"values,omitempty"`
 }
 
-type EKSClusterClusterProfilePackParameters struct {
+type GKEClusterClusterProfilePackParameters struct {
 
 	// (Block List) (see below for nested schema)
 	// +kubebuilder:validation:Optional
-	Manifest []EKSClusterClusterProfilePackManifestParameters `json:"manifest,omitempty" tf:"manifest,omitempty"`
+	Manifest []GKEClusterClusterProfilePackManifestParameters `json:"manifest,omitempty" tf:"manifest,omitempty"`
 
 	// (String) The name of the cluster.
 	// The name of the pack. The name must be unique within the cluster profile.
@@ -454,7 +357,7 @@ type EKSClusterClusterProfilePackParameters struct {
 	Values *string `json:"values,omitempty" tf:"values,omitempty"`
 }
 
-type EKSClusterClusterProfileParameters struct {
+type GKEClusterClusterProfileParameters struct {
 
 	// (String) The ID of this resource.
 	// The ID of the cluster profile.
@@ -464,7 +367,7 @@ type EKSClusterClusterProfileParameters struct {
 	// (Block List) For packs of type spectro, helm, and manifest, at least one pack must be specified. (see below for nested schema)
 	// For packs of type `spectro`, `helm`, and `manifest`, at least one pack must be specified.
 	// +kubebuilder:validation:Optional
-	Pack []EKSClusterClusterProfilePackParameters `json:"pack,omitempty" tf:"pack,omitempty"`
+	Pack []GKEClusterClusterProfilePackParameters `json:"pack,omitempty" tf:"pack,omitempty"`
 
 	// value pairs. For example: priority = "5".
 	// A map of cluster profile variables, specified as key-value pairs. For example: `priority = "5"`.
@@ -473,7 +376,7 @@ type EKSClusterClusterProfileParameters struct {
 	Variables map[string]*string `json:"variables,omitempty" tf:"variables,omitempty"`
 }
 
-type EKSClusterClusterRbacBindingInitParameters struct {
+type GKEClusterClusterRbacBindingInitParameters struct {
 
 	// (String) The Kubernetes namespace of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
 	// The Kubernetes namespace of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
@@ -485,14 +388,14 @@ type EKSClusterClusterRbacBindingInitParameters struct {
 	Role map[string]*string `json:"role,omitempty" tf:"role,omitempty"`
 
 	// (Block List) (see below for nested schema)
-	Subjects []EKSClusterClusterRbacBindingSubjectsInitParameters `json:"subjects,omitempty" tf:"subjects,omitempty"`
+	Subjects []GKEClusterClusterRbacBindingSubjectsInitParameters `json:"subjects,omitempty" tf:"subjects,omitempty"`
 
 	// (String) The type of the pack. Allowed values are spectro, manifest, helm, or oci. The default value is spectro. If using an OCI registry for pack, set the type to oci.
 	// The type of the RBAC binding. Can be one of the following values: `RoleBinding`, or `ClusterRoleBinding`.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
-type EKSClusterClusterRbacBindingObservation struct {
+type GKEClusterClusterRbacBindingObservation struct {
 
 	// (String) The Kubernetes namespace of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
 	// The Kubernetes namespace of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
@@ -504,14 +407,14 @@ type EKSClusterClusterRbacBindingObservation struct {
 	Role map[string]*string `json:"role,omitempty" tf:"role,omitempty"`
 
 	// (Block List) (see below for nested schema)
-	Subjects []EKSClusterClusterRbacBindingSubjectsObservation `json:"subjects,omitempty" tf:"subjects,omitempty"`
+	Subjects []GKEClusterClusterRbacBindingSubjectsObservation `json:"subjects,omitempty" tf:"subjects,omitempty"`
 
 	// (String) The type of the pack. Allowed values are spectro, manifest, helm, or oci. The default value is spectro. If using an OCI registry for pack, set the type to oci.
 	// The type of the RBAC binding. Can be one of the following values: `RoleBinding`, or `ClusterRoleBinding`.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
-type EKSClusterClusterRbacBindingParameters struct {
+type GKEClusterClusterRbacBindingParameters struct {
 
 	// (String) The Kubernetes namespace of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
 	// The Kubernetes namespace of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
@@ -526,7 +429,7 @@ type EKSClusterClusterRbacBindingParameters struct {
 
 	// (Block List) (see below for nested schema)
 	// +kubebuilder:validation:Optional
-	Subjects []EKSClusterClusterRbacBindingSubjectsParameters `json:"subjects,omitempty" tf:"subjects,omitempty"`
+	Subjects []GKEClusterClusterRbacBindingSubjectsParameters `json:"subjects,omitempty" tf:"subjects,omitempty"`
 
 	// (String) The type of the pack. Allowed values are spectro, manifest, helm, or oci. The default value is spectro. If using an OCI registry for pack, set the type to oci.
 	// The type of the RBAC binding. Can be one of the following values: `RoleBinding`, or `ClusterRoleBinding`.
@@ -534,7 +437,7 @@ type EKSClusterClusterRbacBindingParameters struct {
 	Type *string `json:"type" tf:"type,omitempty"`
 }
 
-type EKSClusterClusterRbacBindingSubjectsInitParameters struct {
+type GKEClusterClusterRbacBindingSubjectsInitParameters struct {
 
 	// (String) The name of the cluster.
 	// The name of the subject. Required if 'type' is set to 'User' or 'Group'.
@@ -549,7 +452,7 @@ type EKSClusterClusterRbacBindingSubjectsInitParameters struct {
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
-type EKSClusterClusterRbacBindingSubjectsObservation struct {
+type GKEClusterClusterRbacBindingSubjectsObservation struct {
 
 	// (String) The name of the cluster.
 	// The name of the subject. Required if 'type' is set to 'User' or 'Group'.
@@ -564,7 +467,7 @@ type EKSClusterClusterRbacBindingSubjectsObservation struct {
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
-type EKSClusterClusterRbacBindingSubjectsParameters struct {
+type GKEClusterClusterRbacBindingSubjectsParameters struct {
 
 	// (String) The name of the cluster.
 	// The name of the subject. Required if 'type' is set to 'User' or 'Group'.
@@ -582,7 +485,7 @@ type EKSClusterClusterRbacBindingSubjectsParameters struct {
 	Type *string `json:"type" tf:"type,omitempty"`
 }
 
-type EKSClusterHostConfigInitParameters struct {
+type GKEClusterHostConfigInitParameters struct {
 
 	// (String) The external traffic policy for the cluster.
 	// The external traffic policy for the cluster.
@@ -601,7 +504,7 @@ type EKSClusterHostConfigInitParameters struct {
 	LoadBalancerSourceRanges *string `json:"loadBalancerSourceRanges,omitempty" tf:"load_balancer_source_ranges,omitempty"`
 }
 
-type EKSClusterHostConfigObservation struct {
+type GKEClusterHostConfigObservation struct {
 
 	// (String) The external traffic policy for the cluster.
 	// The external traffic policy for the cluster.
@@ -620,7 +523,7 @@ type EKSClusterHostConfigObservation struct {
 	LoadBalancerSourceRanges *string `json:"loadBalancerSourceRanges,omitempty" tf:"load_balancer_source_ranges,omitempty"`
 }
 
-type EKSClusterHostConfigParameters struct {
+type GKEClusterHostConfigParameters struct {
 
 	// (String) The external traffic policy for the cluster.
 	// The external traffic policy for the cluster.
@@ -643,7 +546,7 @@ type EKSClusterHostConfigParameters struct {
 	LoadBalancerSourceRanges *string `json:"loadBalancerSourceRanges,omitempty" tf:"load_balancer_source_ranges,omitempty"`
 }
 
-type EKSClusterInitParameters struct {
+type GKEClusterInitParameters struct {
 
 	// (String) The setting to apply the cluster profile. DownloadAndInstall will download and install packs in one action. DownloadAndInstallLater will only download artifact and postpone install for later. Default value is DownloadAndInstall.
 	// The setting to apply the cluster profile. `DownloadAndInstall` will download and install packs in one action. `DownloadAndInstallLater` will only download artifact and postpone install for later. Default value is `DownloadAndInstall`.
@@ -651,37 +554,33 @@ type EKSClusterInitParameters struct {
 
 	// (Block List, Max: 1) The backup policy for the cluster. If not specified, no backups will be taken. (see below for nested schema)
 	// The backup policy for the cluster. If not specified, no backups will be taken.
-	BackupPolicy []EKSClusterBackupPolicyInitParameters `json:"backupPolicy,omitempty" tf:"backup_policy,omitempty"`
+	BackupPolicy []GKEClusterBackupPolicyInitParameters `json:"backupPolicy,omitempty" tf:"backup_policy,omitempty"`
 
-	// (String) The AWS cloud account id to use for this cluster.
-	// The AWS cloud account id to use for this cluster.
+	// (String)
 	CloudAccountID *string `json:"cloudAccountId,omitempty" tf:"cloud_account_id,omitempty"`
 
-	// (Block List, Min: 1, Max: 1) The AWS environment configuration settings such as network parameters and encryption parameters that apply to this cluster. (see below for nested schema)
-	// The AWS environment configuration settings such as network parameters and encryption parameters that apply to this cluster.
-	CloudConfig []EKSClusterCloudConfigInitParameters `json:"cloudConfig,omitempty" tf:"cloud_config,omitempty"`
+	// (Block List, Min: 1, Max: 1) The GKE environment configuration settings such as project parameters and region parameters that apply to this cluster. (see below for nested schema)
+	// The GKE environment configuration settings such as project parameters and region parameters that apply to this cluster.
+	CloudConfig []GKEClusterCloudConfigInitParameters `json:"cloudConfig,omitempty" tf:"cloud_config,omitempty"`
 
 	// (String) cluster_meta_attribute can be used to set additional cluster metadata information, eg {'nic_name': 'test', 'env': 'stage'}
 	// `cluster_meta_attribute` can be used to set additional cluster metadata information, eg `{'nic_name': 'test', 'env': 'stage'}`
 	ClusterMetaAttribute *string `json:"clusterMetaAttribute,omitempty" tf:"cluster_meta_attribute,omitempty"`
 
 	// (Block List) (see below for nested schema)
-	ClusterProfile []EKSClusterClusterProfileInitParameters `json:"clusterProfile,omitempty" tf:"cluster_profile,omitempty"`
+	ClusterProfile []GKEClusterClusterProfileInitParameters `json:"clusterProfile,omitempty" tf:"cluster_profile,omitempty"`
 
 	// (Block List) The RBAC binding for the cluster. (see below for nested schema)
 	// The RBAC binding for the cluster.
-	ClusterRbacBinding []EKSClusterClusterRbacBindingInitParameters `json:"clusterRbacBinding,omitempty" tf:"cluster_rbac_binding,omitempty"`
+	ClusterRbacBinding []GKEClusterClusterRbacBindingInitParameters `json:"clusterRbacBinding,omitempty" tf:"cluster_rbac_binding,omitempty"`
 
-	// (String) The context of the EKS cluster. Allowed values are project or tenant. Default is project. If  the project context is specified, the project name will sourced from the provider configuration parameter project_name.
-	// The context of the EKS cluster. Allowed values are `project` or `tenant`. Default is `project`. If  the `project` context is specified, the project name will sourced from the provider configuration parameter [`project_name`](https://registry.io/providers/spectrocloud/spectrocloud/latest/docs#schema).
+	// (String) The context of the GKE cluster. Allowed values are project or tenant. Default is project. If  the project context is specified, the project name will sourced from the provider configuration parameter project_name.
+	// The context of the GKE cluster. Allowed values are `project` or `tenant`. Default is `project`. If  the `project` context is specified, the project name will sourced from the provider configuration parameter [`project_name`](https://registry.io/providers/spectrocloud/spectrocloud/latest/docs#schema).
 	Context *string `json:"context,omitempty" tf:"context,omitempty"`
 
 	// (String) The description of the cluster. Default value is empty string.
 	// The description of the cluster. Default value is empty string.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
-
-	// (Block List) (see below for nested schema)
-	FargateProfile []FargateProfileInitParameters `json:"fargateProfile,omitempty" tf:"fargate_profile,omitempty"`
 
 	// (Boolean) If set to true, the cluster will be force deleted and user has to manually clean up the provisioned cloud resources.
 	// If set to `true`, the cluster will be force deleted and user has to manually clean up the provisioned cloud resources.
@@ -693,11 +592,11 @@ type EKSClusterInitParameters struct {
 
 	// (Block List) The host configuration for the cluster. (see below for nested schema)
 	// The host configuration for the cluster.
-	HostConfig []EKSClusterHostConfigInitParameters `json:"hostConfig,omitempty" tf:"host_config,omitempty"`
+	HostConfig []GKEClusterHostConfigInitParameters `json:"hostConfig,omitempty" tf:"host_config,omitempty"`
 
 	// (Block List, Min: 1) The machine pool configuration for the cluster. (see below for nested schema)
 	// The machine pool configuration for the cluster.
-	MachinePool []EKSClusterMachinePoolInitParameters `json:"machinePool,omitempty" tf:"machine_pool,omitempty"`
+	MachinePool []GKEClusterMachinePoolInitParameters `json:"machinePool,omitempty" tf:"machine_pool,omitempty"`
 
 	// (String) The name of the cluster.
 	// The name of the cluster.
@@ -705,7 +604,7 @@ type EKSClusterInitParameters struct {
 
 	// (Block List) The namespaces for the cluster. (see below for nested schema)
 	// The namespaces for the cluster.
-	Namespaces []EKSClusterNamespacesInitParameters `json:"namespaces,omitempty" tf:"namespaces,omitempty"`
+	Namespaces []GKEClusterNamespacesInitParameters `json:"namespaces,omitempty" tf:"namespaces,omitempty"`
 
 	// 01-02T15:04:05Z07:00
 	// Date and time after which to patch cluster `RFC3339: 2006-01-02T15:04:05Z07:00`
@@ -729,7 +628,7 @@ type EKSClusterInitParameters struct {
 
 	// (Block List, Max: 1) The scan policy for the cluster. (see below for nested schema)
 	// The scan policy for the cluster.
-	ScanPolicy []EKSClusterScanPolicyInitParameters `json:"scanPolicy,omitempty" tf:"scan_policy,omitempty"`
+	ScanPolicy []GKEClusterScanPolicyInitParameters `json:"scanPolicy,omitempty" tf:"scan_policy,omitempty"`
 
 	// (Boolean) If true, the cluster will be created asynchronously. Default value is false.
 	// If `true`, the cluster will be created asynchronously. Default value is `false`.
@@ -739,12 +638,15 @@ type EKSClusterInitParameters struct {
 	// A list of tags to be applied to the cluster. Tags must be in the form of `key:value`.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// (Boolean)
+	UpdateWorkerPoolInParallel *bool `json:"updateWorkerPoolInParallel,omitempty" tf:"update_worker_pool_in_parallel,omitempty"`
 }
 
-type EKSClusterLocationConfigInitParameters struct {
+type GKEClusterLocationConfigInitParameters struct {
 }
 
-type EKSClusterLocationConfigObservation struct {
+type GKEClusterLocationConfigObservation struct {
 
 	// (String)
 	CountryCode *string `json:"countryCode,omitempty" tf:"country_code,omitempty"`
@@ -765,25 +667,14 @@ type EKSClusterLocationConfigObservation struct {
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 }
 
-type EKSClusterLocationConfigParameters struct {
+type GKEClusterLocationConfigParameters struct {
 }
 
-type EKSClusterMachinePoolInitParameters struct {
+type GKEClusterMachinePoolInitParameters struct {
 
 	// (Map of String)
 	// +mapType=granular
 	AdditionalLabels map[string]*string `json:"additionalLabels,omitempty" tf:"additional_labels,omitempty"`
-
-	// (Map of String) Mutually exclusive with azs. Use for Static provisioning.
-	// +mapType=granular
-	AzSubnets map[string]*string `json:"azSubnets,omitempty" tf:"az_subnets,omitempty"`
-
-	// (List of String) Mutually exclusive with az_subnets. Use for Dynamic provisioning.
-	Azs []*string `json:"azs,omitempty" tf:"azs,omitempty"`
-
-	// demand' or 'spot'. Defaults to 'on-demand'.
-	// Capacity type is an instance type,  can be 'on-demand' or 'spot'. Defaults to 'on-demand'.
-	CapacityType *string `json:"capacityType,omitempty" tf:"capacity_type,omitempty"`
 
 	// (Number) Number of nodes in the machine pool.
 	// Number of nodes in the machine pool.
@@ -792,38 +683,24 @@ type EKSClusterMachinePoolInitParameters struct {
 	// (Number)
 	DiskSizeGb *float64 `json:"diskSizeGb,omitempty" tf:"disk_size_gb,omitempty"`
 
-	// (Block List, Max: 1) (see below for nested schema)
-	EksLaunchTemplate []EksLaunchTemplateInitParameters `json:"eksLaunchTemplate,omitempty" tf:"eks_launch_template,omitempty"`
-
 	// (String)
 	InstanceType *string `json:"instanceType,omitempty" tf:"instance_type,omitempty"`
-
-	// (Number) Maximum number of nodes in the machine pool. This is used for autoscaling the machine pool.
-	// Maximum number of nodes in the machine pool. This is used for autoscaling the machine pool.
-	Max *float64 `json:"max,omitempty" tf:"max,omitempty"`
-
-	// (String)
-	MaxPrice *string `json:"maxPrice,omitempty" tf:"max_price,omitempty"`
-
-	// (Number) Minimum number of nodes in the machine pool. This is used for autoscaling the machine pool.
-	// Minimum number of nodes in the machine pool. This is used for autoscaling the machine pool.
-	Min *float64 `json:"min,omitempty" tf:"min,omitempty"`
 
 	// (String) The name of the cluster.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (Block List) (see below for nested schema)
-	Node []EKSClusterMachinePoolNodeInitParameters `json:"node,omitempty" tf:"node,omitempty"`
+	Node []GKEClusterMachinePoolNodeInitParameters `json:"node,omitempty" tf:"node,omitempty"`
 
 	// (Block List) (see below for nested schema)
-	Taints []EKSClusterMachinePoolTaintsInitParameters `json:"taints,omitempty" tf:"taints,omitempty"`
+	Taints []GKEClusterMachinePoolTaintsInitParameters `json:"taints,omitempty" tf:"taints,omitempty"`
 
 	// (String) Update strategy for the machine pool. Valid values are RollingUpdateScaleOut and RollingUpdateScaleIn.
 	// Update strategy for the machine pool. Valid values are `RollingUpdateScaleOut` and `RollingUpdateScaleIn`.
 	UpdateStrategy *string `json:"updateStrategy,omitempty" tf:"update_strategy,omitempty"`
 }
 
-type EKSClusterMachinePoolNodeInitParameters struct {
+type GKEClusterMachinePoolNodeInitParameters struct {
 
 	// (String) The action to perform on the node. Valid values are: cordon, uncordon.
 	// The action to perform on the node. Valid values are: `cordon`, `uncordon`.
@@ -834,7 +711,7 @@ type EKSClusterMachinePoolNodeInitParameters struct {
 	NodeID *string `json:"nodeId,omitempty" tf:"node_id,omitempty"`
 }
 
-type EKSClusterMachinePoolNodeObservation struct {
+type GKEClusterMachinePoolNodeObservation struct {
 
 	// (String) The action to perform on the node. Valid values are: cordon, uncordon.
 	// The action to perform on the node. Valid values are: `cordon`, `uncordon`.
@@ -845,7 +722,7 @@ type EKSClusterMachinePoolNodeObservation struct {
 	NodeID *string `json:"nodeId,omitempty" tf:"node_id,omitempty"`
 }
 
-type EKSClusterMachinePoolNodeParameters struct {
+type GKEClusterMachinePoolNodeParameters struct {
 
 	// (String) The action to perform on the node. Valid values are: cordon, uncordon.
 	// The action to perform on the node. Valid values are: `cordon`, `uncordon`.
@@ -858,22 +735,11 @@ type EKSClusterMachinePoolNodeParameters struct {
 	NodeID *string `json:"nodeId" tf:"node_id,omitempty"`
 }
 
-type EKSClusterMachinePoolObservation struct {
+type GKEClusterMachinePoolObservation struct {
 
 	// (Map of String)
 	// +mapType=granular
 	AdditionalLabels map[string]*string `json:"additionalLabels,omitempty" tf:"additional_labels,omitempty"`
-
-	// (Map of String) Mutually exclusive with azs. Use for Static provisioning.
-	// +mapType=granular
-	AzSubnets map[string]*string `json:"azSubnets,omitempty" tf:"az_subnets,omitempty"`
-
-	// (List of String) Mutually exclusive with az_subnets. Use for Dynamic provisioning.
-	Azs []*string `json:"azs,omitempty" tf:"azs,omitempty"`
-
-	// demand' or 'spot'. Defaults to 'on-demand'.
-	// Capacity type is an instance type,  can be 'on-demand' or 'spot'. Defaults to 'on-demand'.
-	CapacityType *string `json:"capacityType,omitempty" tf:"capacity_type,omitempty"`
 
 	// (Number) Number of nodes in the machine pool.
 	// Number of nodes in the machine pool.
@@ -882,57 +748,29 @@ type EKSClusterMachinePoolObservation struct {
 	// (Number)
 	DiskSizeGb *float64 `json:"diskSizeGb,omitempty" tf:"disk_size_gb,omitempty"`
 
-	// (Block List, Max: 1) (see below for nested schema)
-	EksLaunchTemplate []EksLaunchTemplateObservation `json:"eksLaunchTemplate,omitempty" tf:"eks_launch_template,omitempty"`
-
 	// (String)
 	InstanceType *string `json:"instanceType,omitempty" tf:"instance_type,omitempty"`
-
-	// (Number) Maximum number of nodes in the machine pool. This is used for autoscaling the machine pool.
-	// Maximum number of nodes in the machine pool. This is used for autoscaling the machine pool.
-	Max *float64 `json:"max,omitempty" tf:"max,omitempty"`
-
-	// (String)
-	MaxPrice *string `json:"maxPrice,omitempty" tf:"max_price,omitempty"`
-
-	// (Number) Minimum number of nodes in the machine pool. This is used for autoscaling the machine pool.
-	// Minimum number of nodes in the machine pool. This is used for autoscaling the machine pool.
-	Min *float64 `json:"min,omitempty" tf:"min,omitempty"`
 
 	// (String) The name of the cluster.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (Block List) (see below for nested schema)
-	Node []EKSClusterMachinePoolNodeObservation `json:"node,omitempty" tf:"node,omitempty"`
+	Node []GKEClusterMachinePoolNodeObservation `json:"node,omitempty" tf:"node,omitempty"`
 
 	// (Block List) (see below for nested schema)
-	Taints []EKSClusterMachinePoolTaintsObservation `json:"taints,omitempty" tf:"taints,omitempty"`
+	Taints []GKEClusterMachinePoolTaintsObservation `json:"taints,omitempty" tf:"taints,omitempty"`
 
 	// (String) Update strategy for the machine pool. Valid values are RollingUpdateScaleOut and RollingUpdateScaleIn.
 	// Update strategy for the machine pool. Valid values are `RollingUpdateScaleOut` and `RollingUpdateScaleIn`.
 	UpdateStrategy *string `json:"updateStrategy,omitempty" tf:"update_strategy,omitempty"`
 }
 
-type EKSClusterMachinePoolParameters struct {
+type GKEClusterMachinePoolParameters struct {
 
 	// (Map of String)
 	// +kubebuilder:validation:Optional
 	// +mapType=granular
 	AdditionalLabels map[string]*string `json:"additionalLabels,omitempty" tf:"additional_labels,omitempty"`
-
-	// (Map of String) Mutually exclusive with azs. Use for Static provisioning.
-	// +kubebuilder:validation:Optional
-	// +mapType=granular
-	AzSubnets map[string]*string `json:"azSubnets,omitempty" tf:"az_subnets,omitempty"`
-
-	// (List of String) Mutually exclusive with az_subnets. Use for Dynamic provisioning.
-	// +kubebuilder:validation:Optional
-	Azs []*string `json:"azs,omitempty" tf:"azs,omitempty"`
-
-	// demand' or 'spot'. Defaults to 'on-demand'.
-	// Capacity type is an instance type,  can be 'on-demand' or 'spot'. Defaults to 'on-demand'.
-	// +kubebuilder:validation:Optional
-	CapacityType *string `json:"capacityType,omitempty" tf:"capacity_type,omitempty"`
 
 	// (Number) Number of nodes in the machine pool.
 	// Number of nodes in the machine pool.
@@ -941,29 +779,11 @@ type EKSClusterMachinePoolParameters struct {
 
 	// (Number)
 	// +kubebuilder:validation:Optional
-	DiskSizeGb *float64 `json:"diskSizeGb" tf:"disk_size_gb,omitempty"`
-
-	// (Block List, Max: 1) (see below for nested schema)
-	// +kubebuilder:validation:Optional
-	EksLaunchTemplate []EksLaunchTemplateParameters `json:"eksLaunchTemplate,omitempty" tf:"eks_launch_template,omitempty"`
+	DiskSizeGb *float64 `json:"diskSizeGb,omitempty" tf:"disk_size_gb,omitempty"`
 
 	// (String)
 	// +kubebuilder:validation:Optional
 	InstanceType *string `json:"instanceType" tf:"instance_type,omitempty"`
-
-	// (Number) Maximum number of nodes in the machine pool. This is used for autoscaling the machine pool.
-	// Maximum number of nodes in the machine pool. This is used for autoscaling the machine pool.
-	// +kubebuilder:validation:Optional
-	Max *float64 `json:"max,omitempty" tf:"max,omitempty"`
-
-	// (String)
-	// +kubebuilder:validation:Optional
-	MaxPrice *string `json:"maxPrice,omitempty" tf:"max_price,omitempty"`
-
-	// (Number) Minimum number of nodes in the machine pool. This is used for autoscaling the machine pool.
-	// Minimum number of nodes in the machine pool. This is used for autoscaling the machine pool.
-	// +kubebuilder:validation:Optional
-	Min *float64 `json:"min,omitempty" tf:"min,omitempty"`
 
 	// (String) The name of the cluster.
 	// +kubebuilder:validation:Optional
@@ -971,11 +791,11 @@ type EKSClusterMachinePoolParameters struct {
 
 	// (Block List) (see below for nested schema)
 	// +kubebuilder:validation:Optional
-	Node []EKSClusterMachinePoolNodeParameters `json:"node,omitempty" tf:"node,omitempty"`
+	Node []GKEClusterMachinePoolNodeParameters `json:"node,omitempty" tf:"node,omitempty"`
 
 	// (Block List) (see below for nested schema)
 	// +kubebuilder:validation:Optional
-	Taints []EKSClusterMachinePoolTaintsParameters `json:"taints,omitempty" tf:"taints,omitempty"`
+	Taints []GKEClusterMachinePoolTaintsParameters `json:"taints,omitempty" tf:"taints,omitempty"`
 
 	// (String) Update strategy for the machine pool. Valid values are RollingUpdateScaleOut and RollingUpdateScaleIn.
 	// Update strategy for the machine pool. Valid values are `RollingUpdateScaleOut` and `RollingUpdateScaleIn`.
@@ -983,7 +803,7 @@ type EKSClusterMachinePoolParameters struct {
 	UpdateStrategy *string `json:"updateStrategy,omitempty" tf:"update_strategy,omitempty"`
 }
 
-type EKSClusterMachinePoolTaintsInitParameters struct {
+type GKEClusterMachinePoolTaintsInitParameters struct {
 
 	// (String) The effect of the taint. Allowed values are: NoSchedule, PreferNoSchedule or NoExecute.
 	// The effect of the taint. Allowed values are: `NoSchedule`, `PreferNoSchedule` or `NoExecute`.
@@ -998,7 +818,7 @@ type EKSClusterMachinePoolTaintsInitParameters struct {
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
 
-type EKSClusterMachinePoolTaintsObservation struct {
+type GKEClusterMachinePoolTaintsObservation struct {
 
 	// (String) The effect of the taint. Allowed values are: NoSchedule, PreferNoSchedule or NoExecute.
 	// The effect of the taint. Allowed values are: `NoSchedule`, `PreferNoSchedule` or `NoExecute`.
@@ -1013,7 +833,7 @@ type EKSClusterMachinePoolTaintsObservation struct {
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
 
-type EKSClusterMachinePoolTaintsParameters struct {
+type GKEClusterMachinePoolTaintsParameters struct {
 
 	// (String) The effect of the taint. Allowed values are: NoSchedule, PreferNoSchedule or NoExecute.
 	// The effect of the taint. Allowed values are: `NoSchedule`, `PreferNoSchedule` or `NoExecute`.
@@ -1031,7 +851,7 @@ type EKSClusterMachinePoolTaintsParameters struct {
 	Value *string `json:"value" tf:"value,omitempty"`
 }
 
-type EKSClusterNamespacesInitParameters struct {
+type GKEClusterNamespacesInitParameters struct {
 
 	// (List of String) List of images to disallow for the namespace. For example, ['nginx:latest', 'redis:latest']
 	// List of images to disallow for the namespace. For example, `['nginx:latest', 'redis:latest']`
@@ -1047,7 +867,7 @@ type EKSClusterNamespacesInitParameters struct {
 	ResourceAllocation map[string]*string `json:"resourceAllocation,omitempty" tf:"resource_allocation,omitempty"`
 }
 
-type EKSClusterNamespacesObservation struct {
+type GKEClusterNamespacesObservation struct {
 
 	// (List of String) List of images to disallow for the namespace. For example, ['nginx:latest', 'redis:latest']
 	// List of images to disallow for the namespace. For example, `['nginx:latest', 'redis:latest']`
@@ -1063,7 +883,7 @@ type EKSClusterNamespacesObservation struct {
 	ResourceAllocation map[string]*string `json:"resourceAllocation,omitempty" tf:"resource_allocation,omitempty"`
 }
 
-type EKSClusterNamespacesParameters struct {
+type GKEClusterNamespacesParameters struct {
 
 	// (List of String) List of images to disallow for the namespace. For example, ['nginx:latest', 'redis:latest']
 	// List of images to disallow for the namespace. For example, `['nginx:latest', 'redis:latest']`
@@ -1082,7 +902,7 @@ type EKSClusterNamespacesParameters struct {
 	ResourceAllocation map[string]*string `json:"resourceAllocation" tf:"resource_allocation,omitempty"`
 }
 
-type EKSClusterObservation struct {
+type GKEClusterObservation struct {
 
 	// config for the cluster. This can be used to connect to the cluster using kubectl, With admin privilege.
 	// Admin Kube-config for the cluster. This can be used to connect to the cluster using `kubectl`, With admin privilege.
@@ -1094,15 +914,14 @@ type EKSClusterObservation struct {
 
 	// (Block List, Max: 1) The backup policy for the cluster. If not specified, no backups will be taken. (see below for nested schema)
 	// The backup policy for the cluster. If not specified, no backups will be taken.
-	BackupPolicy []EKSClusterBackupPolicyObservation `json:"backupPolicy,omitempty" tf:"backup_policy,omitempty"`
+	BackupPolicy []GKEClusterBackupPolicyObservation `json:"backupPolicy,omitempty" tf:"backup_policy,omitempty"`
 
-	// (String) The AWS cloud account id to use for this cluster.
-	// The AWS cloud account id to use for this cluster.
+	// (String)
 	CloudAccountID *string `json:"cloudAccountId,omitempty" tf:"cloud_account_id,omitempty"`
 
-	// (Block List, Min: 1, Max: 1) The AWS environment configuration settings such as network parameters and encryption parameters that apply to this cluster. (see below for nested schema)
-	// The AWS environment configuration settings such as network parameters and encryption parameters that apply to this cluster.
-	CloudConfig []EKSClusterCloudConfigObservation `json:"cloudConfig,omitempty" tf:"cloud_config,omitempty"`
+	// (Block List, Min: 1, Max: 1) The GKE environment configuration settings such as project parameters and region parameters that apply to this cluster. (see below for nested schema)
+	// The GKE environment configuration settings such as project parameters and region parameters that apply to this cluster.
+	CloudConfig []GKEClusterCloudConfigObservation `json:"cloudConfig,omitempty" tf:"cloud_config,omitempty"`
 
 	// (String, Deprecated) ID of the cloud config used for the cluster. This cloud config must be of type azure.
 	// ID of the cloud config used for the cluster. This cloud config must be of type `azure`.
@@ -1113,22 +932,19 @@ type EKSClusterObservation struct {
 	ClusterMetaAttribute *string `json:"clusterMetaAttribute,omitempty" tf:"cluster_meta_attribute,omitempty"`
 
 	// (Block List) (see below for nested schema)
-	ClusterProfile []EKSClusterClusterProfileObservation `json:"clusterProfile,omitempty" tf:"cluster_profile,omitempty"`
+	ClusterProfile []GKEClusterClusterProfileObservation `json:"clusterProfile,omitempty" tf:"cluster_profile,omitempty"`
 
 	// (Block List) The RBAC binding for the cluster. (see below for nested schema)
 	// The RBAC binding for the cluster.
-	ClusterRbacBinding []EKSClusterClusterRbacBindingObservation `json:"clusterRbacBinding,omitempty" tf:"cluster_rbac_binding,omitempty"`
+	ClusterRbacBinding []GKEClusterClusterRbacBindingObservation `json:"clusterRbacBinding,omitempty" tf:"cluster_rbac_binding,omitempty"`
 
-	// (String) The context of the EKS cluster. Allowed values are project or tenant. Default is project. If  the project context is specified, the project name will sourced from the provider configuration parameter project_name.
-	// The context of the EKS cluster. Allowed values are `project` or `tenant`. Default is `project`. If  the `project` context is specified, the project name will sourced from the provider configuration parameter [`project_name`](https://registry.io/providers/spectrocloud/spectrocloud/latest/docs#schema).
+	// (String) The context of the GKE cluster. Allowed values are project or tenant. Default is project. If  the project context is specified, the project name will sourced from the provider configuration parameter project_name.
+	// The context of the GKE cluster. Allowed values are `project` or `tenant`. Default is `project`. If  the `project` context is specified, the project name will sourced from the provider configuration parameter [`project_name`](https://registry.io/providers/spectrocloud/spectrocloud/latest/docs#schema).
 	Context *string `json:"context,omitempty" tf:"context,omitempty"`
 
 	// (String) The description of the cluster. Default value is empty string.
 	// The description of the cluster. Default value is empty string.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
-
-	// (Block List) (see below for nested schema)
-	FargateProfile []FargateProfileObservation `json:"fargateProfile,omitempty" tf:"fargate_profile,omitempty"`
 
 	// (Boolean) If set to true, the cluster will be force deleted and user has to manually clean up the provisioned cloud resources.
 	// If set to `true`, the cluster will be force deleted and user has to manually clean up the provisioned cloud resources.
@@ -1140,7 +956,7 @@ type EKSClusterObservation struct {
 
 	// (Block List) The host configuration for the cluster. (see below for nested schema)
 	// The host configuration for the cluster.
-	HostConfig []EKSClusterHostConfigObservation `json:"hostConfig,omitempty" tf:"host_config,omitempty"`
+	HostConfig []GKEClusterHostConfigObservation `json:"hostConfig,omitempty" tf:"host_config,omitempty"`
 
 	// (String) The ID of this resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -1151,11 +967,11 @@ type EKSClusterObservation struct {
 
 	// (List of Object) The location of the cluster. (see below for nested schema)
 	// The location of the cluster.
-	LocationConfig []EKSClusterLocationConfigObservation `json:"locationConfig,omitempty" tf:"location_config,omitempty"`
+	LocationConfig []GKEClusterLocationConfigObservation `json:"locationConfig,omitempty" tf:"location_config,omitempty"`
 
 	// (Block List, Min: 1) The machine pool configuration for the cluster. (see below for nested schema)
 	// The machine pool configuration for the cluster.
-	MachinePool []EKSClusterMachinePoolObservation `json:"machinePool,omitempty" tf:"machine_pool,omitempty"`
+	MachinePool []GKEClusterMachinePoolObservation `json:"machinePool,omitempty" tf:"machine_pool,omitempty"`
 
 	// (String) The name of the cluster.
 	// The name of the cluster.
@@ -1163,7 +979,7 @@ type EKSClusterObservation struct {
 
 	// (Block List) The namespaces for the cluster. (see below for nested schema)
 	// The namespaces for the cluster.
-	Namespaces []EKSClusterNamespacesObservation `json:"namespaces,omitempty" tf:"namespaces,omitempty"`
+	Namespaces []GKEClusterNamespacesObservation `json:"namespaces,omitempty" tf:"namespaces,omitempty"`
 
 	// 01-02T15:04:05Z07:00
 	// Date and time after which to patch cluster `RFC3339: 2006-01-02T15:04:05Z07:00`
@@ -1187,7 +1003,7 @@ type EKSClusterObservation struct {
 
 	// (Block List, Max: 1) The scan policy for the cluster. (see below for nested schema)
 	// The scan policy for the cluster.
-	ScanPolicy []EKSClusterScanPolicyObservation `json:"scanPolicy,omitempty" tf:"scan_policy,omitempty"`
+	ScanPolicy []GKEClusterScanPolicyObservation `json:"scanPolicy,omitempty" tf:"scan_policy,omitempty"`
 
 	// (Boolean) If true, the cluster will be created asynchronously. Default value is false.
 	// If `true`, the cluster will be created asynchronously. Default value is `false`.
@@ -1197,9 +1013,12 @@ type EKSClusterObservation struct {
 	// A list of tags to be applied to the cluster. Tags must be in the form of `key:value`.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// (Boolean)
+	UpdateWorkerPoolInParallel *bool `json:"updateWorkerPoolInParallel,omitempty" tf:"update_worker_pool_in_parallel,omitempty"`
 }
 
-type EKSClusterParameters struct {
+type GKEClusterParameters struct {
 
 	// (String) The setting to apply the cluster profile. DownloadAndInstall will download and install packs in one action. DownloadAndInstallLater will only download artifact and postpone install for later. Default value is DownloadAndInstall.
 	// The setting to apply the cluster profile. `DownloadAndInstall` will download and install packs in one action. `DownloadAndInstallLater` will only download artifact and postpone install for later. Default value is `DownloadAndInstall`.
@@ -1209,17 +1028,16 @@ type EKSClusterParameters struct {
 	// (Block List, Max: 1) The backup policy for the cluster. If not specified, no backups will be taken. (see below for nested schema)
 	// The backup policy for the cluster. If not specified, no backups will be taken.
 	// +kubebuilder:validation:Optional
-	BackupPolicy []EKSClusterBackupPolicyParameters `json:"backupPolicy,omitempty" tf:"backup_policy,omitempty"`
+	BackupPolicy []GKEClusterBackupPolicyParameters `json:"backupPolicy,omitempty" tf:"backup_policy,omitempty"`
 
-	// (String) The AWS cloud account id to use for this cluster.
-	// The AWS cloud account id to use for this cluster.
+	// (String)
 	// +kubebuilder:validation:Optional
 	CloudAccountID *string `json:"cloudAccountId,omitempty" tf:"cloud_account_id,omitempty"`
 
-	// (Block List, Min: 1, Max: 1) The AWS environment configuration settings such as network parameters and encryption parameters that apply to this cluster. (see below for nested schema)
-	// The AWS environment configuration settings such as network parameters and encryption parameters that apply to this cluster.
+	// (Block List, Min: 1, Max: 1) The GKE environment configuration settings such as project parameters and region parameters that apply to this cluster. (see below for nested schema)
+	// The GKE environment configuration settings such as project parameters and region parameters that apply to this cluster.
 	// +kubebuilder:validation:Optional
-	CloudConfig []EKSClusterCloudConfigParameters `json:"cloudConfig,omitempty" tf:"cloud_config,omitempty"`
+	CloudConfig []GKEClusterCloudConfigParameters `json:"cloudConfig,omitempty" tf:"cloud_config,omitempty"`
 
 	// (String) cluster_meta_attribute can be used to set additional cluster metadata information, eg {'nic_name': 'test', 'env': 'stage'}
 	// `cluster_meta_attribute` can be used to set additional cluster metadata information, eg `{'nic_name': 'test', 'env': 'stage'}`
@@ -1228,15 +1046,15 @@ type EKSClusterParameters struct {
 
 	// (Block List) (see below for nested schema)
 	// +kubebuilder:validation:Optional
-	ClusterProfile []EKSClusterClusterProfileParameters `json:"clusterProfile,omitempty" tf:"cluster_profile,omitempty"`
+	ClusterProfile []GKEClusterClusterProfileParameters `json:"clusterProfile,omitempty" tf:"cluster_profile,omitempty"`
 
 	// (Block List) The RBAC binding for the cluster. (see below for nested schema)
 	// The RBAC binding for the cluster.
 	// +kubebuilder:validation:Optional
-	ClusterRbacBinding []EKSClusterClusterRbacBindingParameters `json:"clusterRbacBinding,omitempty" tf:"cluster_rbac_binding,omitempty"`
+	ClusterRbacBinding []GKEClusterClusterRbacBindingParameters `json:"clusterRbacBinding,omitempty" tf:"cluster_rbac_binding,omitempty"`
 
-	// (String) The context of the EKS cluster. Allowed values are project or tenant. Default is project. If  the project context is specified, the project name will sourced from the provider configuration parameter project_name.
-	// The context of the EKS cluster. Allowed values are `project` or `tenant`. Default is `project`. If  the `project` context is specified, the project name will sourced from the provider configuration parameter [`project_name`](https://registry.io/providers/spectrocloud/spectrocloud/latest/docs#schema).
+	// (String) The context of the GKE cluster. Allowed values are project or tenant. Default is project. If  the project context is specified, the project name will sourced from the provider configuration parameter project_name.
+	// The context of the GKE cluster. Allowed values are `project` or `tenant`. Default is `project`. If  the `project` context is specified, the project name will sourced from the provider configuration parameter [`project_name`](https://registry.io/providers/spectrocloud/spectrocloud/latest/docs#schema).
 	// +kubebuilder:validation:Optional
 	Context *string `json:"context,omitempty" tf:"context,omitempty"`
 
@@ -1244,10 +1062,6 @@ type EKSClusterParameters struct {
 	// The description of the cluster. Default value is empty string.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
-
-	// (Block List) (see below for nested schema)
-	// +kubebuilder:validation:Optional
-	FargateProfile []FargateProfileParameters `json:"fargateProfile,omitempty" tf:"fargate_profile,omitempty"`
 
 	// (Boolean) If set to true, the cluster will be force deleted and user has to manually clean up the provisioned cloud resources.
 	// If set to `true`, the cluster will be force deleted and user has to manually clean up the provisioned cloud resources.
@@ -1262,12 +1076,12 @@ type EKSClusterParameters struct {
 	// (Block List) The host configuration for the cluster. (see below for nested schema)
 	// The host configuration for the cluster.
 	// +kubebuilder:validation:Optional
-	HostConfig []EKSClusterHostConfigParameters `json:"hostConfig,omitempty" tf:"host_config,omitempty"`
+	HostConfig []GKEClusterHostConfigParameters `json:"hostConfig,omitempty" tf:"host_config,omitempty"`
 
 	// (Block List, Min: 1) The machine pool configuration for the cluster. (see below for nested schema)
 	// The machine pool configuration for the cluster.
 	// +kubebuilder:validation:Optional
-	MachinePool []EKSClusterMachinePoolParameters `json:"machinePool,omitempty" tf:"machine_pool,omitempty"`
+	MachinePool []GKEClusterMachinePoolParameters `json:"machinePool,omitempty" tf:"machine_pool,omitempty"`
 
 	// (String) The name of the cluster.
 	// The name of the cluster.
@@ -1277,7 +1091,7 @@ type EKSClusterParameters struct {
 	// (Block List) The namespaces for the cluster. (see below for nested schema)
 	// The namespaces for the cluster.
 	// +kubebuilder:validation:Optional
-	Namespaces []EKSClusterNamespacesParameters `json:"namespaces,omitempty" tf:"namespaces,omitempty"`
+	Namespaces []GKEClusterNamespacesParameters `json:"namespaces,omitempty" tf:"namespaces,omitempty"`
 
 	// 01-02T15:04:05Z07:00
 	// Date and time after which to patch cluster `RFC3339: 2006-01-02T15:04:05Z07:00`
@@ -1307,7 +1121,7 @@ type EKSClusterParameters struct {
 	// (Block List, Max: 1) The scan policy for the cluster. (see below for nested schema)
 	// The scan policy for the cluster.
 	// +kubebuilder:validation:Optional
-	ScanPolicy []EKSClusterScanPolicyParameters `json:"scanPolicy,omitempty" tf:"scan_policy,omitempty"`
+	ScanPolicy []GKEClusterScanPolicyParameters `json:"scanPolicy,omitempty" tf:"scan_policy,omitempty"`
 
 	// (Boolean) If true, the cluster will be created asynchronously. Default value is false.
 	// If `true`, the cluster will be created asynchronously. Default value is `false`.
@@ -1319,9 +1133,13 @@ type EKSClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// (Boolean)
+	// +kubebuilder:validation:Optional
+	UpdateWorkerPoolInParallel *bool `json:"updateWorkerPoolInParallel,omitempty" tf:"update_worker_pool_in_parallel,omitempty"`
 }
 
-type EKSClusterScanPolicyInitParameters struct {
+type GKEClusterScanPolicyInitParameters struct {
 
 	// (String) The schedule for configuration scan.
 	// The schedule for configuration scan.
@@ -1336,7 +1154,7 @@ type EKSClusterScanPolicyInitParameters struct {
 	PenetrationScanSchedule *string `json:"penetrationScanSchedule,omitempty" tf:"penetration_scan_schedule,omitempty"`
 }
 
-type EKSClusterScanPolicyObservation struct {
+type GKEClusterScanPolicyObservation struct {
 
 	// (String) The schedule for configuration scan.
 	// The schedule for configuration scan.
@@ -1351,7 +1169,7 @@ type EKSClusterScanPolicyObservation struct {
 	PenetrationScanSchedule *string `json:"penetrationScanSchedule,omitempty" tf:"penetration_scan_schedule,omitempty"`
 }
 
-type EKSClusterScanPolicyParameters struct {
+type GKEClusterScanPolicyParameters struct {
 
 	// (String) The schedule for configuration scan.
 	// The schedule for configuration scan.
@@ -1369,171 +1187,10 @@ type EKSClusterScanPolicyParameters struct {
 	PenetrationScanSchedule *string `json:"penetrationScanSchedule" tf:"penetration_scan_schedule,omitempty"`
 }
 
-type EksLaunchTemplateInitParameters struct {
-
-	// (String) The ID of the custom Amazon Machine Image (AMI).
-	// The ID of the custom Amazon Machine Image (AMI).
-	AMIID *string `json:"amiId,omitempty" tf:"ami_id,omitempty"`
-
-	// (Set of String) Additional security groups to attach to the instance.
-	// Additional security groups to attach to the instance.
-	// +listType=set
-	AdditionalSecurityGroups []*string `json:"additionalSecurityGroups,omitempty" tf:"additional_security_groups,omitempty"`
-
-	// (Number) The number of input/output operations per second (IOPS) for the root volume.
-	// The number of input/output operations per second (IOPS) for the root volume.
-	RootVolumeIops *float64 `json:"rootVolumeIops,omitempty" tf:"root_volume_iops,omitempty"`
-
-	// (Number) The throughput of the root volume in MiB/s.
-	// The throughput of the root volume in MiB/s.
-	RootVolumeThroughput *float64 `json:"rootVolumeThroughput,omitempty" tf:"root_volume_throughput,omitempty"`
-
-	// (String) The type of the root volume.
-	// The type of the root volume.
-	RootVolumeType *string `json:"rootVolumeType,omitempty" tf:"root_volume_type,omitempty"`
-}
-
-type EksLaunchTemplateObservation struct {
-
-	// (String) The ID of the custom Amazon Machine Image (AMI).
-	// The ID of the custom Amazon Machine Image (AMI).
-	AMIID *string `json:"amiId,omitempty" tf:"ami_id,omitempty"`
-
-	// (Set of String) Additional security groups to attach to the instance.
-	// Additional security groups to attach to the instance.
-	// +listType=set
-	AdditionalSecurityGroups []*string `json:"additionalSecurityGroups,omitempty" tf:"additional_security_groups,omitempty"`
-
-	// (Number) The number of input/output operations per second (IOPS) for the root volume.
-	// The number of input/output operations per second (IOPS) for the root volume.
-	RootVolumeIops *float64 `json:"rootVolumeIops,omitempty" tf:"root_volume_iops,omitempty"`
-
-	// (Number) The throughput of the root volume in MiB/s.
-	// The throughput of the root volume in MiB/s.
-	RootVolumeThroughput *float64 `json:"rootVolumeThroughput,omitempty" tf:"root_volume_throughput,omitempty"`
-
-	// (String) The type of the root volume.
-	// The type of the root volume.
-	RootVolumeType *string `json:"rootVolumeType,omitempty" tf:"root_volume_type,omitempty"`
-}
-
-type EksLaunchTemplateParameters struct {
-
-	// (String) The ID of the custom Amazon Machine Image (AMI).
-	// The ID of the custom Amazon Machine Image (AMI).
-	// +kubebuilder:validation:Optional
-	AMIID *string `json:"amiId,omitempty" tf:"ami_id,omitempty"`
-
-	// (Set of String) Additional security groups to attach to the instance.
-	// Additional security groups to attach to the instance.
-	// +kubebuilder:validation:Optional
-	// +listType=set
-	AdditionalSecurityGroups []*string `json:"additionalSecurityGroups,omitempty" tf:"additional_security_groups,omitempty"`
-
-	// (Number) The number of input/output operations per second (IOPS) for the root volume.
-	// The number of input/output operations per second (IOPS) for the root volume.
-	// +kubebuilder:validation:Optional
-	RootVolumeIops *float64 `json:"rootVolumeIops,omitempty" tf:"root_volume_iops,omitempty"`
-
-	// (Number) The throughput of the root volume in MiB/s.
-	// The throughput of the root volume in MiB/s.
-	// +kubebuilder:validation:Optional
-	RootVolumeThroughput *float64 `json:"rootVolumeThroughput,omitempty" tf:"root_volume_throughput,omitempty"`
-
-	// (String) The type of the root volume.
-	// The type of the root volume.
-	// +kubebuilder:validation:Optional
-	RootVolumeType *string `json:"rootVolumeType,omitempty" tf:"root_volume_type,omitempty"`
-}
-
-type FargateProfileInitParameters struct {
-
-	// (Map of String)
-	// +mapType=granular
-	AdditionalTags map[string]*string `json:"additionalTags,omitempty" tf:"additional_tags,omitempty"`
-
-	// (String) The name of the cluster.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// (Block List, Min: 1) (see below for nested schema)
-	Selector []SelectorInitParameters `json:"selector,omitempty" tf:"selector,omitempty"`
-
-	// (List of String)
-	Subnets []*string `json:"subnets,omitempty" tf:"subnets,omitempty"`
-}
-
-type FargateProfileObservation struct {
-
-	// (Map of String)
-	// +mapType=granular
-	AdditionalTags map[string]*string `json:"additionalTags,omitempty" tf:"additional_tags,omitempty"`
-
-	// (String) The name of the cluster.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// (Block List, Min: 1) (see below for nested schema)
-	Selector []SelectorObservation `json:"selector,omitempty" tf:"selector,omitempty"`
-
-	// (List of String)
-	Subnets []*string `json:"subnets,omitempty" tf:"subnets,omitempty"`
-}
-
-type FargateProfileParameters struct {
-
-	// (Map of String)
-	// +kubebuilder:validation:Optional
-	// +mapType=granular
-	AdditionalTags map[string]*string `json:"additionalTags,omitempty" tf:"additional_tags,omitempty"`
-
-	// (String) The name of the cluster.
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name" tf:"name,omitempty"`
-
-	// (Block List, Min: 1) (see below for nested schema)
-	// +kubebuilder:validation:Optional
-	Selector []SelectorParameters `json:"selector" tf:"selector,omitempty"`
-
-	// (List of String)
-	// +kubebuilder:validation:Optional
-	Subnets []*string `json:"subnets,omitempty" tf:"subnets,omitempty"`
-}
-
-type SelectorInitParameters struct {
-
-	// (Map of String)
-	// +mapType=granular
-	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
-
-	// (String) The Kubernetes namespace of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-}
-
-type SelectorObservation struct {
-
-	// (Map of String)
-	// +mapType=granular
-	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
-
-	// (String) The Kubernetes namespace of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
-	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
-}
-
-type SelectorParameters struct {
-
-	// (Map of String)
-	// +kubebuilder:validation:Optional
-	// +mapType=granular
-	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
-
-	// (String) The Kubernetes namespace of the RBAC binding. Required if 'type' is set to 'RoleBinding'.
-	// +kubebuilder:validation:Optional
-	Namespace *string `json:"namespace" tf:"namespace,omitempty"`
-}
-
-// EKSClusterSpec defines the desired state of EKSCluster
-type EKSClusterSpec struct {
+// GKEClusterSpec defines the desired state of GKECluster
+type GKEClusterSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     EKSClusterParameters `json:"forProvider"`
+	ForProvider     GKEClusterParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -1544,53 +1201,53 @@ type EKSClusterSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider EKSClusterInitParameters `json:"initProvider,omitempty"`
+	InitProvider GKEClusterInitParameters `json:"initProvider,omitempty"`
 }
 
-// EKSClusterStatus defines the observed state of EKSCluster.
-type EKSClusterStatus struct {
+// GKEClusterStatus defines the observed state of GKECluster.
+type GKEClusterStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        EKSClusterObservation `json:"atProvider,omitempty"`
+	AtProvider        GKEClusterObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// EKSCluster is the Schema for the EKSClusters API. Resource for managing EKS clusters in Spectro Cloud through Palette.
+// GKECluster is the Schema for the GKEClusters API. Resource for managing GKE clusters through Palette.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,palette}
-type EKSCluster struct {
+type GKECluster struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.cloudAccountId) || (has(self.initProvider) && has(self.initProvider.cloudAccountId))",message="spec.forProvider.cloudAccountId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.cloudConfig) || (has(self.initProvider) && has(self.initProvider.cloudConfig))",message="spec.forProvider.cloudConfig is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.machinePool) || (has(self.initProvider) && has(self.initProvider.machinePool))",message="spec.forProvider.machinePool is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
-	Spec   EKSClusterSpec   `json:"spec"`
-	Status EKSClusterStatus `json:"status,omitempty"`
+	Spec   GKEClusterSpec   `json:"spec"`
+	Status GKEClusterStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// EKSClusterList contains a list of EKSClusters
-type EKSClusterList struct {
+// GKEClusterList contains a list of GKEClusters
+type GKEClusterList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []EKSCluster `json:"items"`
+	Items           []GKECluster `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	EKSCluster_Kind             = "EKSCluster"
-	EKSCluster_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: EKSCluster_Kind}.String()
-	EKSCluster_KindAPIVersion   = EKSCluster_Kind + "." + CRDGroupVersion.String()
-	EKSCluster_GroupVersionKind = CRDGroupVersion.WithKind(EKSCluster_Kind)
+	GKECluster_Kind             = "GKECluster"
+	GKECluster_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: GKECluster_Kind}.String()
+	GKECluster_KindAPIVersion   = GKECluster_Kind + "." + CRDGroupVersion.String()
+	GKECluster_GroupVersionKind = CRDGroupVersion.WithKind(GKECluster_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&EKSCluster{}, &EKSClusterList{})
+	SchemeBuilder.Register(&GKECluster{}, &GKEClusterList{})
 }
