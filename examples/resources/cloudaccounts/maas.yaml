@@ -1,0 +1,24 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: MAASCloudAccount
+metadata:
+  name: demo-cp-maas-cloudaccount-01
+spec:
+  providerConfigRef:
+    name: tenant
+  forProvider:
+    name: demo-maas-01
+    privateCloudGatewayId: "FILL ME IN"
+    context: tenant
+    maasApiEndpoint: "FILL ME IN"
+    maasApiKeySecretRef:
+      key: api-key
+      name: demo-cp-maas-creds
+      namespace: crossplane-system
+#! ---
+#! apiVersion: v1
+#! kind: Secret
+#! metadata:
+#!   name: demo-cp-maas-creds
+#!   namespace: crossplane-system
+#! stringData:
+#!   api-key: "FILL ME IN"
