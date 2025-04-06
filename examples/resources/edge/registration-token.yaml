@@ -1,0 +1,12 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: RegistrationToken
+metadata:
+  name: demo-cp-registration-token-01
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    description: test token description updated
+    expiryDate: "2028-05-25"
+    name: demo-cp-registration-token-01
+    status: active

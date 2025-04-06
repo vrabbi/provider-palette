@@ -174,4 +174,10 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "palette"
 		r.Kind = "Workspace"
 	})
+
+	// Edge Management
+	p.AddResourceConfigurator("spectrocloud_registration_token", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "RegistrationToken"
+	})
 }

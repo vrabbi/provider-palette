@@ -35,6 +35,7 @@ import (
 	privatecloudgatewaydnsmap "github.com/vrabbi/provider-palette/internal/controller/palette/privatecloudgatewaydnsmap"
 	privatecloudgatewayippool "github.com/vrabbi/provider-palette/internal/controller/palette/privatecloudgatewayippool"
 	project "github.com/vrabbi/provider-palette/internal/controller/palette/project"
+	registrationtoken "github.com/vrabbi/provider-palette/internal/controller/palette/registrationtoken"
 	resourcelimit "github.com/vrabbi/provider-palette/internal/controller/palette/resourcelimit"
 	role "github.com/vrabbi/provider-palette/internal/controller/palette/role"
 	sshkey "github.com/vrabbi/provider-palette/internal/controller/palette/sshkey"
@@ -77,6 +78,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		privatecloudgatewaydnsmap.Setup,
 		privatecloudgatewayippool.Setup,
 		project.Setup,
+		registrationtoken.Setup,
 		resourcelimit.Setup,
 		role.Setup,
 		sshkey.Setup,

@@ -1,0 +1,15 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: RegistrationToken
+metadata:
+  annotations:
+    meta.upbound.io/example-id: palette/v1alpha1/registrationtoken
+  labels:
+    testing.upbound.io/example-name: tf_token
+  name: tf-token
+spec:
+  forProvider:
+    description: test token description updated
+    expiryDate: "2025-03-25"
+    name: tf_siva
+    projectUid: 6514216503b
+    status: active

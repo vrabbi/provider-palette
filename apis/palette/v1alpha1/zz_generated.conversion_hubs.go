@@ -85,6 +85,9 @@ func (tr *PrivateCloudGatewayIPPool) Hub() {}
 func (tr *Project) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *RegistrationToken) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *ResourceLimit) Hub() {}
 
 // Hub marks this type as a conversion hub.
