@@ -12,7 +12,7 @@ TERRAFORM_VERSION_VALID := $(shell [ "$(TERRAFORM_VERSION)" = "`printf "$(TERRAF
 
 export TERRAFORM_PROVIDER_SOURCE ?= spectrocloud/spectrocloud
 export TERRAFORM_PROVIDER_REPO ?= https://github.com/spectrocloud/terraform-provider-spectrocloud
-export TERRAFORM_PROVIDER_VERSION ?= 0.23.3
+export TERRAFORM_PROVIDER_VERSION ?= 0.23.4
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME ?= terraform-provider-spectrocloud
 export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX ?= ${TERRAFORM_PROVIDER_REPO}/releases/download/v${TERRAFORM_PROVIDER_VERSION}
 export TERRAFORM_NATIVE_PROVIDER_BINARY ?= terraform-provider-spectrocloud_${TERRAFORM_PROVIDER_VERSION}
