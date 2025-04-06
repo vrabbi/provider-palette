@@ -7,7 +7,7 @@ package config
 import "github.com/crossplane/upjet/pkg/config"
 
 // ExternalNameConfigs contains all external name configurations for this provider
-// Currently 37 resources are supported.
+// Currently 37 out of 45 resources are supported.
 var ExternalNameConfigs = map[string]config.ExternalName{
 	// TENANCY (3)
 	"spectrocloud_project":       config.IdentifierFromProvider,
