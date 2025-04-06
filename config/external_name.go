@@ -7,7 +7,7 @@ package config
 import "github.com/crossplane/upjet/pkg/config"
 
 // ExternalNameConfigs contains all external name configurations for this provider
-// Currently 36 resources are supported.
+// Currently 37 resources are supported.
 var ExternalNameConfigs = map[string]config.ExternalName{
 	// TENANCY (3)
 	"spectrocloud_project":       config.IdentifierFromProvider,
@@ -61,7 +61,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// App Mode (1)
 	"spectrocloud_application": config.IdentifierFromProvider,
 
-	/* 9 RESOURCES ARE NOT IMPLEMENTED YET
+	/* 8 RESOURCES ARE NOT IMPLEMENTED YET
 	// MAAS Support
 	"spectrocloud_cluster_maas": config.IdentifierFromProvider,
 	// OpenStack Support
@@ -70,20 +70,12 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// VMO Support
 	"spectrocloud_datavolume": config.IdentifierFromProvider,
 	"spectrocloud_virtual_machine": config.IdentifierFromProvider,
-	// App Mode Support
-	"spectrocloud_application": config.IdentifierFromProvider,
 	// Edge Support
 	"spectrocloud_appliance": config.IdentifierFromProvider,
 	"spectrocloud_cluster_edge_native": config.IdentifierFromProvider,
 	"spectrocloud_cluster_edge_vsphere": config.IdentifierFromProvider,
 	*/
 
-	/* 4 RESOURCES WILL NOT BE IMPLEMENTED AT ALL
-	"spectrocloud_addon_deployment" - NOT RELEVANT FOR CROSSPLANE
-	"spectrocloud_macro" - DEPRECATED
-	"spectrocloud_alert" - DEPRECATED
-	"spectrocloud_cluster_profile_import" - NOT RELEVANT FOR CROSSPLANE
-	*/
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the
