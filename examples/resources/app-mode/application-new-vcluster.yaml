@@ -1,0 +1,18 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-cp-application-03
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    applicationProfileUid: 67f2a6182bf7ea376554be9d
+    config:
+    - clusterGroupUid: 67ed902875815d89fc96802a
+      clusterContext: project
+      clusterName: demo-vc-03
+      limits:
+      - cpu: 4
+        memory: 8192
+        storage: 10
+    name: demo-cp-application-03

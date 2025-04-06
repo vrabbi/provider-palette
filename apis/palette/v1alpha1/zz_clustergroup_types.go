@@ -199,6 +199,103 @@ type ClusterGroupClusterProfileParameters struct {
 	Variables map[string]*string `json:"variables,omitempty" tf:"variables,omitempty"`
 }
 
+type ClusterGroupConfigInitParameters struct {
+
+	// (Number) The CPU limit in millicores.
+	// The CPU limit in millicores.
+	CPUMillicore *float64 `json:"cpuMillicore,omitempty" tf:"cpu_millicore,omitempty"`
+
+	// (String) The host endpoint type. Allowed values are 'Ingress' or 'LoadBalancer'. Defaults to 'Ingress'.
+	// The host endpoint type. Allowed values are 'Ingress' or 'LoadBalancer'. Defaults to 'Ingress'.
+	HostEndpointType *string `json:"hostEndpointType,omitempty" tf:"host_endpoint_type,omitempty"`
+
+	// (String) The Kubernetes distribution, allowed values are k3s and cncf_k8s.
+	// The Kubernetes distribution, allowed values are `k3s` and `cncf_k8s`.
+	K8SDistribution *string `json:"k8sDistribution,omitempty" tf:"k8s_distribution,omitempty"`
+
+	// (Number) The memory limit in megabytes (MB).
+	// The memory limit in megabytes (MB).
+	MemoryInMb *float64 `json:"memoryInMb,omitempty" tf:"memory_in_mb,omitempty"`
+
+	// (Number) The allowed oversubscription percentage.
+	// The allowed oversubscription percentage.
+	OversubscriptionPercent *float64 `json:"oversubscriptionPercent,omitempty" tf:"oversubscription_percent,omitempty"`
+
+	// (Number) The storage limit in gigabytes (GB).
+	// The storage limit in gigabytes (GB).
+	StorageInGb *float64 `json:"storageInGb,omitempty" tf:"storage_in_gb,omitempty"`
+
+	// (String)
+	Values *string `json:"values,omitempty" tf:"values,omitempty"`
+}
+
+type ClusterGroupConfigObservation struct {
+
+	// (Number) The CPU limit in millicores.
+	// The CPU limit in millicores.
+	CPUMillicore *float64 `json:"cpuMillicore,omitempty" tf:"cpu_millicore,omitempty"`
+
+	// (String) The host endpoint type. Allowed values are 'Ingress' or 'LoadBalancer'. Defaults to 'Ingress'.
+	// The host endpoint type. Allowed values are 'Ingress' or 'LoadBalancer'. Defaults to 'Ingress'.
+	HostEndpointType *string `json:"hostEndpointType,omitempty" tf:"host_endpoint_type,omitempty"`
+
+	// (String) The Kubernetes distribution, allowed values are k3s and cncf_k8s.
+	// The Kubernetes distribution, allowed values are `k3s` and `cncf_k8s`.
+	K8SDistribution *string `json:"k8sDistribution,omitempty" tf:"k8s_distribution,omitempty"`
+
+	// (Number) The memory limit in megabytes (MB).
+	// The memory limit in megabytes (MB).
+	MemoryInMb *float64 `json:"memoryInMb,omitempty" tf:"memory_in_mb,omitempty"`
+
+	// (Number) The allowed oversubscription percentage.
+	// The allowed oversubscription percentage.
+	OversubscriptionPercent *float64 `json:"oversubscriptionPercent,omitempty" tf:"oversubscription_percent,omitempty"`
+
+	// (Number) The storage limit in gigabytes (GB).
+	// The storage limit in gigabytes (GB).
+	StorageInGb *float64 `json:"storageInGb,omitempty" tf:"storage_in_gb,omitempty"`
+
+	// (String)
+	Values *string `json:"values,omitempty" tf:"values,omitempty"`
+}
+
+type ClusterGroupConfigParameters struct {
+
+	// (Number) The CPU limit in millicores.
+	// The CPU limit in millicores.
+	// +kubebuilder:validation:Optional
+	CPUMillicore *float64 `json:"cpuMillicore,omitempty" tf:"cpu_millicore,omitempty"`
+
+	// (String) The host endpoint type. Allowed values are 'Ingress' or 'LoadBalancer'. Defaults to 'Ingress'.
+	// The host endpoint type. Allowed values are 'Ingress' or 'LoadBalancer'. Defaults to 'Ingress'.
+	// +kubebuilder:validation:Optional
+	HostEndpointType *string `json:"hostEndpointType,omitempty" tf:"host_endpoint_type,omitempty"`
+
+	// (String) The Kubernetes distribution, allowed values are k3s and cncf_k8s.
+	// The Kubernetes distribution, allowed values are `k3s` and `cncf_k8s`.
+	// +kubebuilder:validation:Optional
+	K8SDistribution *string `json:"k8sDistribution,omitempty" tf:"k8s_distribution,omitempty"`
+
+	// (Number) The memory limit in megabytes (MB).
+	// The memory limit in megabytes (MB).
+	// +kubebuilder:validation:Optional
+	MemoryInMb *float64 `json:"memoryInMb,omitempty" tf:"memory_in_mb,omitempty"`
+
+	// (Number) The allowed oversubscription percentage.
+	// The allowed oversubscription percentage.
+	// +kubebuilder:validation:Optional
+	OversubscriptionPercent *float64 `json:"oversubscriptionPercent,omitempty" tf:"oversubscription_percent,omitempty"`
+
+	// (Number) The storage limit in gigabytes (GB).
+	// The storage limit in gigabytes (GB).
+	// +kubebuilder:validation:Optional
+	StorageInGb *float64 `json:"storageInGb,omitempty" tf:"storage_in_gb,omitempty"`
+
+	// (String)
+	// +kubebuilder:validation:Optional
+	Values *string `json:"values,omitempty" tf:"values,omitempty"`
+}
+
 type ClusterGroupInitParameters struct {
 
 	// (Block List) (see below for nested schema)
@@ -209,7 +306,7 @@ type ClusterGroupInitParameters struct {
 	Clusters []ClustersInitParameters `json:"clusters,omitempty" tf:"clusters,omitempty"`
 
 	// (Block List, Min: 1, Max: 1) (see below for nested schema)
-	Config []ConfigInitParameters `json:"config,omitempty" tf:"config,omitempty"`
+	Config []ClusterGroupConfigInitParameters `json:"config,omitempty" tf:"config,omitempty"`
 
 	// (String) The context of the Cluster group. Allowed values are project or tenant. Defaults to tenant. If  the project context is specified, the project name will sourced from the provider configuration parameter project_name.
 	// The context of the Cluster group. Allowed values are `project` or `tenant`. Defaults to `tenant`. If  the `project` context is specified, the project name will sourced from the provider configuration parameter [`project_name`](https://registry.io/providers/spectrocloud/spectrocloud/latest/docs#schema).
@@ -239,7 +336,7 @@ type ClusterGroupObservation struct {
 	Clusters []ClustersObservation `json:"clusters,omitempty" tf:"clusters,omitempty"`
 
 	// (Block List, Min: 1, Max: 1) (see below for nested schema)
-	Config []ConfigObservation `json:"config,omitempty" tf:"config,omitempty"`
+	Config []ClusterGroupConfigObservation `json:"config,omitempty" tf:"config,omitempty"`
 
 	// (String) The context of the Cluster group. Allowed values are project or tenant. Defaults to tenant. If  the project context is specified, the project name will sourced from the provider configuration parameter project_name.
 	// The context of the Cluster group. Allowed values are `project` or `tenant`. Defaults to `tenant`. If  the `project` context is specified, the project name will sourced from the provider configuration parameter [`project_name`](https://registry.io/providers/spectrocloud/spectrocloud/latest/docs#schema).
@@ -275,7 +372,7 @@ type ClusterGroupParameters struct {
 
 	// (Block List, Min: 1, Max: 1) (see below for nested schema)
 	// +kubebuilder:validation:Optional
-	Config []ConfigParameters `json:"config,omitempty" tf:"config,omitempty"`
+	Config []ClusterGroupConfigParameters `json:"config,omitempty" tf:"config,omitempty"`
 
 	// (String) The context of the Cluster group. Allowed values are project or tenant. Defaults to tenant. If  the project context is specified, the project name will sourced from the provider configuration parameter project_name.
 	// The context of the Cluster group. Allowed values are `project` or `tenant`. Defaults to `tenant`. If  the `project` context is specified, the project name will sourced from the provider configuration parameter [`project_name`](https://registry.io/providers/spectrocloud/spectrocloud/latest/docs#schema).
@@ -332,103 +429,6 @@ type ClustersParameters struct {
 	// The host DNS wildcard for the cluster. i.e. `*.dev` or `*test.com`
 	// +kubebuilder:validation:Optional
 	HostDNS *string `json:"hostDns,omitempty" tf:"host_dns,omitempty"`
-}
-
-type ConfigInitParameters struct {
-
-	// (Number) The CPU limit in millicores.
-	// The CPU limit in millicores.
-	CPUMillicore *float64 `json:"cpuMillicore,omitempty" tf:"cpu_millicore,omitempty"`
-
-	// (String) The host endpoint type. Allowed values are 'Ingress' or 'LoadBalancer'. Defaults to 'Ingress'.
-	// The host endpoint type. Allowed values are 'Ingress' or 'LoadBalancer'. Defaults to 'Ingress'.
-	HostEndpointType *string `json:"hostEndpointType,omitempty" tf:"host_endpoint_type,omitempty"`
-
-	// (String) The Kubernetes distribution, allowed values are k3s and cncf_k8s.
-	// The Kubernetes distribution, allowed values are `k3s` and `cncf_k8s`.
-	K8SDistribution *string `json:"k8sDistribution,omitempty" tf:"k8s_distribution,omitempty"`
-
-	// (Number) The memory limit in megabytes (MB).
-	// The memory limit in megabytes (MB).
-	MemoryInMb *float64 `json:"memoryInMb,omitempty" tf:"memory_in_mb,omitempty"`
-
-	// (Number) The allowed oversubscription percentage.
-	// The allowed oversubscription percentage.
-	OversubscriptionPercent *float64 `json:"oversubscriptionPercent,omitempty" tf:"oversubscription_percent,omitempty"`
-
-	// (Number) The storage limit in gigabytes (GB).
-	// The storage limit in gigabytes (GB).
-	StorageInGb *float64 `json:"storageInGb,omitempty" tf:"storage_in_gb,omitempty"`
-
-	// (String)
-	Values *string `json:"values,omitempty" tf:"values,omitempty"`
-}
-
-type ConfigObservation struct {
-
-	// (Number) The CPU limit in millicores.
-	// The CPU limit in millicores.
-	CPUMillicore *float64 `json:"cpuMillicore,omitempty" tf:"cpu_millicore,omitempty"`
-
-	// (String) The host endpoint type. Allowed values are 'Ingress' or 'LoadBalancer'. Defaults to 'Ingress'.
-	// The host endpoint type. Allowed values are 'Ingress' or 'LoadBalancer'. Defaults to 'Ingress'.
-	HostEndpointType *string `json:"hostEndpointType,omitempty" tf:"host_endpoint_type,omitempty"`
-
-	// (String) The Kubernetes distribution, allowed values are k3s and cncf_k8s.
-	// The Kubernetes distribution, allowed values are `k3s` and `cncf_k8s`.
-	K8SDistribution *string `json:"k8sDistribution,omitempty" tf:"k8s_distribution,omitempty"`
-
-	// (Number) The memory limit in megabytes (MB).
-	// The memory limit in megabytes (MB).
-	MemoryInMb *float64 `json:"memoryInMb,omitempty" tf:"memory_in_mb,omitempty"`
-
-	// (Number) The allowed oversubscription percentage.
-	// The allowed oversubscription percentage.
-	OversubscriptionPercent *float64 `json:"oversubscriptionPercent,omitempty" tf:"oversubscription_percent,omitempty"`
-
-	// (Number) The storage limit in gigabytes (GB).
-	// The storage limit in gigabytes (GB).
-	StorageInGb *float64 `json:"storageInGb,omitempty" tf:"storage_in_gb,omitempty"`
-
-	// (String)
-	Values *string `json:"values,omitempty" tf:"values,omitempty"`
-}
-
-type ConfigParameters struct {
-
-	// (Number) The CPU limit in millicores.
-	// The CPU limit in millicores.
-	// +kubebuilder:validation:Optional
-	CPUMillicore *float64 `json:"cpuMillicore,omitempty" tf:"cpu_millicore,omitempty"`
-
-	// (String) The host endpoint type. Allowed values are 'Ingress' or 'LoadBalancer'. Defaults to 'Ingress'.
-	// The host endpoint type. Allowed values are 'Ingress' or 'LoadBalancer'. Defaults to 'Ingress'.
-	// +kubebuilder:validation:Optional
-	HostEndpointType *string `json:"hostEndpointType,omitempty" tf:"host_endpoint_type,omitempty"`
-
-	// (String) The Kubernetes distribution, allowed values are k3s and cncf_k8s.
-	// The Kubernetes distribution, allowed values are `k3s` and `cncf_k8s`.
-	// +kubebuilder:validation:Optional
-	K8SDistribution *string `json:"k8sDistribution,omitempty" tf:"k8s_distribution,omitempty"`
-
-	// (Number) The memory limit in megabytes (MB).
-	// The memory limit in megabytes (MB).
-	// +kubebuilder:validation:Optional
-	MemoryInMb *float64 `json:"memoryInMb,omitempty" tf:"memory_in_mb,omitempty"`
-
-	// (Number) The allowed oversubscription percentage.
-	// The allowed oversubscription percentage.
-	// +kubebuilder:validation:Optional
-	OversubscriptionPercent *float64 `json:"oversubscriptionPercent,omitempty" tf:"oversubscription_percent,omitempty"`
-
-	// (Number) The storage limit in gigabytes (GB).
-	// The storage limit in gigabytes (GB).
-	// +kubebuilder:validation:Optional
-	StorageInGb *float64 `json:"storageInGb,omitempty" tf:"storage_in_gb,omitempty"`
-
-	// (String)
-	// +kubebuilder:validation:Optional
-	Values *string `json:"values,omitempty" tf:"values,omitempty"`
 }
 
 // ClusterGroupSpec defines the desired state of ClusterGroup

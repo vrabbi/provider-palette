@@ -58,6 +58,8 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"spectrocloud_resource_limit":  config.IdentifierFromProvider,
 	// Edge Management (1)
 	"spectrocloud_registration_token": config.IdentifierFromProvider,
+	// App Mode (1)
+	"spectrocloud_application": config.IdentifierFromProvider,
 
 	/* 9 RESOURCES ARE NOT IMPLEMENTED YET
 	// MAAS Support

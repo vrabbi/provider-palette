@@ -180,4 +180,10 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "palette"
 		r.Kind = "RegistrationToken"
 	})
+
+	// App Mode
+	p.AddResourceConfigurator("spectrocloud_application", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "Application"
+	})
 }
