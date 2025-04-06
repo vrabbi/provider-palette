@@ -1,0 +1,27 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: ApplicationProfile
+metadata:
+  name: demo-cp-app-profile-01
+spec:
+  forProvider:
+    name: demo-cp-app-profile-01
+    description: Demo Application Profile for a simple container app
+    pack:
+      - name: hello-universe-ui
+        type: container
+        sourceAppTier: 67a0b38e451c8c45069b6c2e
+        values: |
+          {
+            "containerService": {
+              "serviceName": "hello-universe-ui-test",
+              "registryUrl": "",
+              "image": "ghcr.io/spectrocloud/hello-universe:1.0.8",
+              "access": "private",
+              "ports": ["8080"],
+              "serviceType": "ClusterIP"
+            }
+          }
+    tags:
+      - scenario-1
+  providerConfigRef:
+    name: default
