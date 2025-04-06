@@ -7,7 +7,7 @@ package config
 import "github.com/crossplane/upjet/pkg/config"
 
 // ExternalNameConfigs contains all external name configurations for this
-// provider (34).
+// provider (35).
 var ExternalNameConfigs = map[string]config.ExternalName{
 	// TENANCY (3)
 	"spectrocloud_project":       config.IdentifierFromProvider,
@@ -29,18 +29,19 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"spectrocloud_cloudaccount_gcp":     config.IdentifierFromProvider,
 	"spectrocloud_cloudaccount_vsphere": config.IdentifierFromProvider,
 	"spectrocloud_cloudaccount_maas":    config.IdentifierFromProvider,
-	// PROFILES (2)	
+	// PROFILES (2)
 	"spectrocloud_cluster_profile":     config.TemplatedStringAsIdentifier("id", "{{ .external_name }}:{{ .parameters.context }}"),
 	"spectrocloud_application_profile": config.IdentifierFromProvider,
-	// CLUSTERS (8)
-	"spectrocloud_cluster_vsphere": config.IdentifierFromProvider,
-	"spectrocloud_cluster_eks":     config.IdentifierFromProvider,
-	"spectrocloud_cluster_aws": config.IdentifierFromProvider,
-	"spectrocloud_virtual_cluster": config.IdentifierFromProvider,
-	"spectrocloud_cluster_aks":     config.IdentifierFromProvider,
-	"spectrocloud_cluster_azure": config.IdentifierFromProvider,
-	"spectrocloud_cluster_gke":     config.IdentifierFromProvider,
-	"spectrocloud_cluster_gcp": config.IdentifierFromProvider,
+	// CLUSTERS (9)
+	"spectrocloud_cluster_vsphere":      config.IdentifierFromProvider,
+	"spectrocloud_cluster_eks":          config.IdentifierFromProvider,
+	"spectrocloud_cluster_aws":          config.IdentifierFromProvider,
+	"spectrocloud_virtual_cluster":      config.IdentifierFromProvider,
+	"spectrocloud_cluster_aks":          config.IdentifierFromProvider,
+	"spectrocloud_cluster_azure":        config.IdentifierFromProvider,
+	"spectrocloud_cluster_gke":          config.IdentifierFromProvider,
+	"spectrocloud_cluster_gcp":          config.IdentifierFromProvider,
+	"spectrocloud_cluster_custom_cloud": config.IdentifierFromProvider,
 	// MACROS (1)
 	"spectrocloud_macros": config.IdentifierFromProvider,
 	// SETTINGS (3)
@@ -50,44 +51,34 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// IPAM + DNS (2)
 	"spectrocloud_privatecloudgateway_dns_map": config.IdentifierFromProvider,
 	"spectrocloud_privatecloudgateway_ippool":  config.IdentifierFromProvider,
-
 	// Backups (1)
-	"spectrocloud_backup_storage_location":     config.IdentifierFromProvider,
-
+	"spectrocloud_backup_storage_location": config.IdentifierFromProvider,
 	// POLICIES (2)
 	"spectrocloud_password_policy": config.IdentifierFromProvider,
 	"spectrocloud_resource_limit":  config.IdentifierFromProvider,
 
-	/* 10 RESOURCES ARE NOT IMPLEMENTED YET
-
-	// Custom Cloud Support
-	"spectrocloud_cluster_custom_cloud": config.IdentifierFromProvider,
-
+	/* 9 RESOURCES ARE NOT IMPLEMENTED YET
 	// MAAS Support
 	"spectrocloud_cluster_maas": config.IdentifierFromProvider,
-
 	// OpenStack Support
 	"spectrocloud_cloudaccount_openstack": config.IdentifierFromProvider,
 	"spectrocloud_cluster_openstack": config.IdentifierFromProvider,
-
 	// VMO Support
 	"spectrocloud_datavolume": config.IdentifierFromProvider,
 	"spectrocloud_virtual_machine": config.IdentifierFromProvider,
-
 	// App Mode Support
 	"spectrocloud_application": config.IdentifierFromProvider,
-
 	// Edge Support
 	"spectrocloud_appliance": config.IdentifierFromProvider,
 	"spectrocloud_cluster_edge_native": config.IdentifierFromProvider,
 	"spectrocloud_cluster_edge_vsphere": config.IdentifierFromProvider,
-
-	// 5 RESOURCES WILL NOT BE IMPLEMENTED AT ALL
-	// "spectrocloud_addon_deployment": config.IdentifierFromProvider, - NOT RELEVANT FOR CROSSPLANE
-	// "spectrocloud_macro: config.IdentifierFromProvider, - DEPRECATED
-	// "spectrocloud_alert: config.IdentifierFromProvider, - DEPRECATED
-	// "spectrocloud_registration_token: config.IdentifierFromProvider, - NOT RELEVANT FOR CROSSPLANE
-	// "spectrocloud_cluster_profile_import: config.IdentifierFromProvider" - NOT RELEVANT FOR CROSSPLANE
+    */
+	/* 5 RESOURCES WILL NOT BE IMPLEMENTED AT ALL
+	"spectrocloud_addon_deployment" - NOT RELEVANT FOR CROSSPLANE
+	"spectrocloud_macro" - DEPRECATED
+	"spectrocloud_alert" - DEPRECATED
+	"spectrocloud_registration_token" - NOT RELEVANT FOR CROSSPLANE
+	"spectrocloud_cluster_profile_import" - NOT RELEVANT FOR CROSSPLANE
 	*/
 }
 

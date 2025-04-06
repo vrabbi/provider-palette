@@ -74,7 +74,11 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "palette"
 		r.Kind = "AWSCluster"
 	})
-	
+	p.AddResourceConfigurator("spectrocloud_cluster_custom_cloud", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "CustomCloudCluster"
+	})
+
 	// IPAM
 	p.AddResourceConfigurator("spectrocloud_privatecloudgateway_dns_map", func(r *config.Resource) {
 		r.ShortGroup = "palette"

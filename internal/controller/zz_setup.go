@@ -19,6 +19,7 @@ import (
 	clustergroup "github.com/vrabbi/provider-palette/internal/controller/palette/clustergroup"
 	clusterprofile "github.com/vrabbi/provider-palette/internal/controller/palette/clusterprofile"
 	customcloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/customcloudaccount"
+	customcloudcluster "github.com/vrabbi/provider-palette/internal/controller/palette/customcloudcluster"
 	developersetting "github.com/vrabbi/provider-palette/internal/controller/palette/developersetting"
 	ekscluster "github.com/vrabbi/provider-palette/internal/controller/palette/ekscluster"
 	filter "github.com/vrabbi/provider-palette/internal/controller/palette/filter"
@@ -60,6 +61,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		clustergroup.Setup,
 		clusterprofile.Setup,
 		customcloudaccount.Setup,
+		customcloudcluster.Setup,
 		developersetting.Setup,
 		ekscluster.Setup,
 		filter.Setup,

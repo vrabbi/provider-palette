@@ -37,6 +37,9 @@ func (tr *ClusterProfile) Hub() {}
 func (tr *CustomCloudAccount) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *CustomCloudCluster) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *DeveloperSetting) Hub() {}
 
 // Hub marks this type as a conversion hub.

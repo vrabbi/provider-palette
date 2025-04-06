@@ -1,0 +1,194 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: CustomCloudCluster
+metadata:
+  name: demo-cp-vultr-01
+spec:
+  forProvider:
+    applySetting: DownloadAndInstall
+    cloud: vultr
+    cloudAccountId: 67f2861475815e6921060929
+    cloudConfig:
+    - values: |
+        apiVersion: v1
+        kind: Secret
+        metadata:
+          name: capvultr-manager-credentials
+        stringData:
+          apiKey: 1234567890
+        type: Opaque
+        ---
+        apiVersion: cluster.x-k8s.io/v1beta1
+        kind: MachineHealthCheck
+        metadata:
+          name: demo-cp-vultr-01-mhc
+        spec:
+          clusterName: demo-cp-vultr-01
+          maxUnhealthy: 40%
+          nodeStartupTimeout: 20m0s
+          selector:
+            matchLabels:
+              cluster.x-k8s.io/cluster-name: demo-cp-vultr-01
+          unhealthyConditions:
+            - status: "False"
+              timeout: 5m0s
+              type: Ready
+            - status: Unknown
+              timeout: 5m0s
+              type: Ready
+            - status: "True"
+              timeout: 5m0s
+              type: MemoryPressure
+            - status: "True"
+              timeout: 5m0s
+              type: DiskPressure
+            - status: "True"
+              timeout: 5m0s
+              type: PIDPressure
+            - status: "True"
+              timeout: 5m0s
+              type: NetworkUnavailable
+        ---
+        apiVersion: cluster.x-k8s.io/v1beta1
+        kind: Cluster
+        metadata:
+          name: "demo-cp-vultr-01"
+          labels:
+            cloud: vultr
+        spec:
+          clusterNetwork:
+            pods:
+              cidrBlocks:
+                - 172.25.0.0/16
+            services:
+              cidrBlocks:
+                - 172.26.0.0/16
+          infrastructureRef:
+            apiVersion: infrastructure.cluster.x-k8s.io/v1
+            kind: VultrCluster
+            name: "demo-cp-vultr-01"
+          controlPlaneRef:
+            kind: KubeadmControlPlane
+            apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+            name: "control-plane-pool"
+        ---
+        apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+        kind: VultrCluster
+        metadata:
+          name: "demo-cp-vultr-01"
+        spec:
+          region: "fra"
+    clusterProfile:
+    - id: 
+    context: tenant
+    description: A Vultr cluster with k8 infra profile test
+    machinePool:
+    - controlPlane: true
+      controlPlaneAsWorker: true
+      nodePoolConfig: |
+        kind: KubeadmControlPlane
+        apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+        metadata:
+          name: "control-plane-pool"
+        spec:
+          replicas: 1
+          version: "v1.31.4"
+          machineTemplate:
+            infrastructureRef:
+              kind: VultrMachineTemplate
+              apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+              name: "demo-cp-vultr-01-control-plane"
+          kubeadmConfigSpec:
+            initConfiguration:
+              nodeRegistration:
+                # We have to set the criSocket to containerd as kubeadm defaults to Vultr runtime if both containerd and Vultr sockets are found
+                criSocket: unix:///var/run/containerd/containerd.sock
+                kubeletExtraArgs:
+                  cgroup-driver: systemd
+                  eviction-hard: nodefs.available<0%,nodefs.inodesFree<0%,imagefs.available<0%
+                  cloud-provider: external
+                  provider-id: vultr://'{{ ds.meta_data["instance_id"] }}'
+            clusterConfiguration:
+              controllerManager:
+                extraArgs: { enable-hostpath-provisioner: 'true' }
+            joinConfiguration:
+              nodeRegistration:
+                # We have to set the criSocket to containerd as kubeadm defaults to Vultr runtime if both containerd and Vultr sockets are found
+                criSocket: unix:///var/run/containerd/containerd.sock
+                kubeletExtraArgs:
+                  cgroup-driver: systemd
+                  eviction-hard: nodefs.available<0%,nodefs.inodesFree<0%,imagefs.available<0%
+        
+        ---
+        kind: VultrMachineTemplate
+        apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+        metadata:
+          name: "demo-cp-vultr-01-control-plane"
+        spec:
+          template:
+            spec:
+              region: "fra"
+              planID: "vc2-4c-8gb"
+              vpc_id: "755ef6ae-e14f-4d02-8bbc-c836fabd02a4"
+              snapshot_id: "95fbe447-cced-4f02-a3a0-dc12fd56a77d"
+              sshKey:
+                - "8011df2e-4ae4-4aab-8059-90d9f2e0a36a"
+    - controlPlane: false
+      controlPlaneAsWorker: false
+      nodePoolConfig: |
+        apiVersion: cluster.x-k8s.io/v1beta1
+        kind: MachineDeployment
+        metadata:
+          name: "worker-pool"
+        spec:
+          clusterName: "demo-cp-vultr-01"
+          replicas: 3
+          selector:
+            matchLabels:
+          template:
+            spec:
+              clusterName: "demo-cp-vultr-01"
+              version: "v1.31.4"
+              bootstrap:
+                configRef:
+                  name: "worker-pool"
+                  apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+                  kind: KubeadmConfigTemplate
+              infrastructureRef:
+                name: "worker-pool"
+                apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+                kind: VultrMachineTemplate
+        ---
+        apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+        kind: VultrMachineTemplate
+        metadata:
+          name: "worker-pool"
+        spec:
+          template:
+            spec:
+              region: "fra"
+              planID: "vc2-4c-8gb"
+              vpc_id: "755ef6ae-e14f-4d02-8bbc-c836fabd02a4"
+              snapshot_id: "95fbe447-cced-4f02-a3a0-dc12fd56a77d"
+              sshKey:
+                - "8011df2e-4ae4-4aab-8059-90d9f2e0a36a"
+        ---
+        apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+        kind: KubeadmConfigTemplate
+        metadata:
+          name: "worker-pool"
+        spec:
+          template:
+            spec:
+              joinConfiguration:
+                nodeRegistration:
+                  # We have to set the criSocket to containerd as kubeadm defaults to Vultr runtime if both containerd and Vultr sockets are found
+                  criSocket: unix:///var/run/containerd/containerd.sock
+                  kubeletExtraArgs:
+                    cloud-provider: external
+                    cgroup-driver: systemd
+                    eviction-hard: nodefs.available<0%,nodefs.inodesFree<0%,imagefs.available<0%
+    name: demo-cp-vultr-01
+    tags:
+    - environment:dev
+    - department:crossplane
+    - owner:admin
