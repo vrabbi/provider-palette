@@ -1,0 +1,10 @@
+apiVersion: palette.crossplane.io/v1alpha1
+kind: Appliance
+metadata:
+  name: demo-cp-appliance-01
+spec:
+  forProvider:
+    tags:
+      owner: scott
+    uid: demo-cp-appliance-01
+    wait: false

@@ -354,6 +354,11 @@ func Configure(p *config.Provider) {
 			TerraformName: "spectrocloud_project",
 		}
 	})
+	p.AddResourceConfigurator("spectrocloud_appliance", func(r *config.Resource) {
+		r.ShortGroup = "palette"
+		r.Kind = "Appliance"
+		r.ExternalName = config.IdentifierFromProvider
+	})
 
 	// App Mode
 	p.AddResourceConfigurator("spectrocloud_application", func(r *config.Resource) {

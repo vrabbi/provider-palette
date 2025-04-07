@@ -10,6 +10,7 @@ import (
 	"github.com/crossplane/upjet/pkg/controller"
 
 	akscluster "github.com/vrabbi/provider-palette/internal/controller/palette/akscluster"
+	appliance "github.com/vrabbi/provider-palette/internal/controller/palette/appliance"
 	application "github.com/vrabbi/provider-palette/internal/controller/palette/application"
 	applicationprofile "github.com/vrabbi/provider-palette/internal/controller/palette/applicationprofile"
 	awscloudaccount "github.com/vrabbi/provider-palette/internal/controller/palette/awscloudaccount"
@@ -54,6 +55,7 @@ import (
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		akscluster.Setup,
+		appliance.Setup,
 		application.Setup,
 		applicationprofile.Setup,
 		awscloudaccount.Setup,

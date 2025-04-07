@@ -58,6 +58,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"spectrocloud_resource_limit":  config.IdentifierFromProvider,
 	// Edge Management (1)
 	"spectrocloud_registration_token": config.IdentifierFromProvider,
+	"spectrocloud_appliance": config.IdentifierFromProvider,
 	// App Mode (1)
 	"spectrocloud_application": config.IdentifierFromProvider,
 
@@ -71,7 +72,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"spectrocloud_datavolume": config.IdentifierFromProvider,
 	"spectrocloud_virtual_machine": config.IdentifierFromProvider,
 	// Edge Support
-	"spectrocloud_appliance": config.IdentifierFromProvider,
+	
 	"spectrocloud_cluster_edge_native": config.IdentifierFromProvider,
 	"spectrocloud_cluster_edge_vsphere": config.IdentifierFromProvider,
 	*/
