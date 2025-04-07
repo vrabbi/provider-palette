@@ -3,11 +3,9 @@ kind: Team
 metadata:
   name: demo-cp-team
 spec:
-  providerConfigRef:
-    name: tenant
   forProvider:
     name: demo-cp-team
     tenantRoleMapping:
-    - 67a0a7550819137e6069c364
+    - "FILL ME IN"
     users:
-    - 67a0a954fae18a8bfa078368
+    - "FILL ME IN"

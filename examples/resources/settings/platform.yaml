@@ -3,8 +3,6 @@ kind: PlatformSetting
 metadata:
   name: demo-cp-platform-settings
 spec:
-  providerConfigRef:
-    name: tenant
   forProvider:
     context: tenant
     enableAutoRemediation: true

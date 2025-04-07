@@ -3,8 +3,6 @@ kind: MAASCloudAccount
 metadata:
   name: demo-cp-maas-cloudaccount-01
 spec:
-  providerConfigRef:
-    name: tenant
   forProvider:
     name: demo-maas-01
     privateCloudGatewayId: "FILL ME IN"

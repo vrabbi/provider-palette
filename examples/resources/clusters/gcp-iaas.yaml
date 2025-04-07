@@ -3,15 +3,13 @@ kind: GCPCluster
 metadata:
   name: demo-cp-gcp-01
 spec:
-  providerConfigRef:
-    name: saas-tenant
   forProvider:
-    cloudAccountId: "67f26a33b14a1b87416d88b9"
+    cloudAccountId: "FILL ME IN"
     cloudConfig:
-    - project: skywiz-sandbox
+    - project: "FILL ME IN"
       region: us-east1
     clusterProfile:
-    - id: "67f26af9b2cc84b64fb889a7"
+    - id: "FILL ME IN"
     machinePool:
     - controlPlane: true
       controlPlaneAsWorker: false

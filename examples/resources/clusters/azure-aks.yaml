@@ -3,17 +3,16 @@ kind: AKSCluster
 metadata:
   name: demo-cp-aks-01
 spec:
-  providerConfigRef:
-    name: saas
   forProvider:
-    cloudAccountId: "6776b93f84c2a19d2c9bf4c2"
+    context: project
+    cloudAccountId: "FILL ME IN"
     cloudConfig:
-    - region: eastus
+    - region: "FILL ME IN"
       resourceGroup: "FILL ME IN"
       sshKey: "FILL ME IN"
       subscriptionId: "FILL ME IN"
     clusterProfile:
-    - id: "678e2db94e8d6a03d3582b5a"
+    - id: "FILL ME IN"
     machinePool:
     - count: 2
       diskSizeGb: 60
@@ -23,4 +22,4 @@ spec:
       storageAccountType: Standard_LRS
     name: demo-cp-aks-01
     tags:
-    - "owner:spectro"
+    - "owner:crossplane"

@@ -17,7 +17,16 @@ type EKSClusterBackupPolicyInitParameters struct {
 
 	// (String) The ID of the backup location to use for the backup.
 	// The ID of the backup location to use for the backup.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.BackupStorageLocation
 	BackupLocationID *string `json:"backupLocationId,omitempty" tf:"backup_location_id,omitempty"`
+
+	// Reference to a BackupStorageLocation in palette to populate backupLocationId.
+	// +kubebuilder:validation:Optional
+	BackupLocationIDRef *v1.Reference `json:"backupLocationIdRef,omitempty" tf:"-"`
+
+	// Selector for a BackupStorageLocation in palette to populate backupLocationId.
+	// +kubebuilder:validation:Optional
+	BackupLocationIDSelector *v1.Selector `json:"backupLocationIdSelector,omitempty" tf:"-"`
 
 	// (Set of String) The list of cluster UIDs to include in the backup. If include_all_clusters is set to true, then all clusters will be included.
 	// The list of cluster UIDs to include in the backup. If `include_all_clusters` is set to `true`, then all clusters will be included.
@@ -107,8 +116,17 @@ type EKSClusterBackupPolicyParameters struct {
 
 	// (String) The ID of the backup location to use for the backup.
 	// The ID of the backup location to use for the backup.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.BackupStorageLocation
 	// +kubebuilder:validation:Optional
-	BackupLocationID *string `json:"backupLocationId" tf:"backup_location_id,omitempty"`
+	BackupLocationID *string `json:"backupLocationId,omitempty" tf:"backup_location_id,omitempty"`
+
+	// Reference to a BackupStorageLocation in palette to populate backupLocationId.
+	// +kubebuilder:validation:Optional
+	BackupLocationIDRef *v1.Reference `json:"backupLocationIdRef,omitempty" tf:"-"`
+
+	// Selector for a BackupStorageLocation in palette to populate backupLocationId.
+	// +kubebuilder:validation:Optional
+	BackupLocationIDSelector *v1.Selector `json:"backupLocationIdSelector,omitempty" tf:"-"`
 
 	// (Set of String) The list of cluster UIDs to include in the backup. If include_all_clusters is set to true, then all clusters will be included.
 	// The list of cluster UIDs to include in the backup. If `include_all_clusters` is set to `true`, then all clusters will be included.
@@ -291,7 +309,16 @@ type EKSClusterClusterProfileInitParameters struct {
 
 	// (String) The ID of this resource.
 	// The ID of the cluster profile.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.ClusterProfile
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a ClusterProfile in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v1.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a ClusterProfile in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v1.Selector `json:"idSelector,omitempty" tf:"-"`
 
 	// (Block List) For packs of type spectro, helm, and manifest, at least one pack must be specified. (see below for nested schema)
 	// For packs of type `spectro`, `helm`, and `manifest`, at least one pack must be specified.
@@ -330,7 +357,16 @@ type EKSClusterClusterProfilePackInitParameters struct {
 
 	// (String) The registry UID of the pack. The registry UID is the unique identifier of the registry. This attribute is required if there is more than one registry that contains a pack with the same name.
 	// The registry UID of the pack. The registry UID is the unique identifier of the registry. This attribute is required if there is more than one registry that contains a pack with the same name.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.OCIRegistry
 	RegistryUID *string `json:"registryUid,omitempty" tf:"registry_uid,omitempty"`
+
+	// Reference to a OCIRegistry in palette to populate registryUid.
+	// +kubebuilder:validation:Optional
+	RegistryUIDRef *v1.Reference `json:"registryUidRef,omitempty" tf:"-"`
+
+	// Selector for a OCIRegistry in palette to populate registryUid.
+	// +kubebuilder:validation:Optional
+	RegistryUIDSelector *v1.Selector `json:"registryUidSelector,omitempty" tf:"-"`
 
 	// (String) The tag of the pack. The tag is the version of the pack. This attribute is required if the pack type is spectro or helm.
 	// The tag of the pack. The tag is the version of the pack. This attribute is required if the pack type is `spectro` or `helm`.
@@ -430,8 +466,17 @@ type EKSClusterClusterProfilePackParameters struct {
 
 	// (String) The registry UID of the pack. The registry UID is the unique identifier of the registry. This attribute is required if there is more than one registry that contains a pack with the same name.
 	// The registry UID of the pack. The registry UID is the unique identifier of the registry. This attribute is required if there is more than one registry that contains a pack with the same name.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.OCIRegistry
 	// +kubebuilder:validation:Optional
 	RegistryUID *string `json:"registryUid,omitempty" tf:"registry_uid,omitempty"`
+
+	// Reference to a OCIRegistry in palette to populate registryUid.
+	// +kubebuilder:validation:Optional
+	RegistryUIDRef *v1.Reference `json:"registryUidRef,omitempty" tf:"-"`
+
+	// Selector for a OCIRegistry in palette to populate registryUid.
+	// +kubebuilder:validation:Optional
+	RegistryUIDSelector *v1.Selector `json:"registryUidSelector,omitempty" tf:"-"`
 
 	// (String) The tag of the pack. The tag is the version of the pack. This attribute is required if the pack type is spectro or helm.
 	// The tag of the pack. The tag is the version of the pack. This attribute is required if the pack type is `spectro` or `helm`.
@@ -458,8 +503,17 @@ type EKSClusterClusterProfileParameters struct {
 
 	// (String) The ID of this resource.
 	// The ID of the cluster profile.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.ClusterProfile
 	// +kubebuilder:validation:Optional
-	ID *string `json:"id" tf:"id,omitempty"`
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a ClusterProfile in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v1.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a ClusterProfile in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v1.Selector `json:"idSelector,omitempty" tf:"-"`
 
 	// (Block List) For packs of type spectro, helm, and manifest, at least one pack must be specified. (see below for nested schema)
 	// For packs of type `spectro`, `helm`, and `manifest`, at least one pack must be specified.
@@ -655,7 +709,16 @@ type EKSClusterInitParameters struct {
 
 	// (String) The AWS cloud account id to use for this cluster.
 	// The AWS cloud account id to use for this cluster.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.AWSCloudAccount
 	CloudAccountID *string `json:"cloudAccountId,omitempty" tf:"cloud_account_id,omitempty"`
+
+	// Reference to a AWSCloudAccount in palette to populate cloudAccountId.
+	// +kubebuilder:validation:Optional
+	CloudAccountIDRef *v1.Reference `json:"cloudAccountIdRef,omitempty" tf:"-"`
+
+	// Selector for a AWSCloudAccount in palette to populate cloudAccountId.
+	// +kubebuilder:validation:Optional
+	CloudAccountIDSelector *v1.Selector `json:"cloudAccountIdSelector,omitempty" tf:"-"`
 
 	// (Block List, Min: 1, Max: 1) The AWS environment configuration settings such as network parameters and encryption parameters that apply to this cluster. (see below for nested schema)
 	// The AWS environment configuration settings such as network parameters and encryption parameters that apply to this cluster.
@@ -1213,8 +1276,17 @@ type EKSClusterParameters struct {
 
 	// (String) The AWS cloud account id to use for this cluster.
 	// The AWS cloud account id to use for this cluster.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.AWSCloudAccount
 	// +kubebuilder:validation:Optional
 	CloudAccountID *string `json:"cloudAccountId,omitempty" tf:"cloud_account_id,omitempty"`
+
+	// Reference to a AWSCloudAccount in palette to populate cloudAccountId.
+	// +kubebuilder:validation:Optional
+	CloudAccountIDRef *v1.Reference `json:"cloudAccountIdRef,omitempty" tf:"-"`
+
+	// Selector for a AWSCloudAccount in palette to populate cloudAccountId.
+	// +kubebuilder:validation:Optional
+	CloudAccountIDSelector *v1.Selector `json:"cloudAccountIdSelector,omitempty" tf:"-"`
 
 	// (Block List, Min: 1, Max: 1) The AWS environment configuration settings such as network parameters and encryption parameters that apply to this cluster. (see below for nested schema)
 	// The AWS environment configuration settings such as network parameters and encryption parameters that apply to this cluster.
@@ -1566,7 +1638,6 @@ type EKSClusterStatus struct {
 type EKSCluster struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.cloudAccountId) || (has(self.initProvider) && has(self.initProvider.cloudAccountId))",message="spec.forProvider.cloudAccountId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.cloudConfig) || (has(self.initProvider) && has(self.initProvider.cloudConfig))",message="spec.forProvider.cloudConfig is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.machinePool) || (has(self.initProvider) && has(self.initProvider.machinePool))",message="spec.forProvider.machinePool is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"

@@ -3,12 +3,10 @@ kind: ClusterGroup
 metadata:
   name: demo-cp-cluster-group-01
 spec:
-  providerConfigRef:
-    name: tenant
   forProvider:
     context: tenant
     clusters:
-    - clusterUid: 67c6d7df30141f372950da0f
+    - clusterUid: "FILL ME IN"
       hostDns: '*'
     config:
     - cpuMillicore: 6000

@@ -3,8 +3,6 @@ kind: AzureCloudAccount
 metadata:
   name: demo-cp-azure-01
 spec:
-  providerConfigRef:
-    name: tenant
   forProvider:
     context: tenant
     cloud: AzurePublicCloud
@@ -15,12 +13,12 @@ spec:
       namespace: crossplane-system
     azureTenantId: "FILL ME IN"
     name: demo-cp-azure-01
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: demo-cp-azure-creds
-  namespace: crossplane-system
-type: Opaque
-stringData:
-  password: "FILL ME IN"
+#! ---
+#! apiVersion: v1
+#! kind: Secret
+#! metadata:
+#!   name: demo-cp-azure-creds
+#!   namespace: crossplane-system
+#! type: Opaque
+#! stringData:
+#!   password: "FILL ME IN"

@@ -3,8 +3,6 @@ kind: BackupStorageLocation
 metadata:
   name: demo-cp-minio-bsl   
 spec:
-  providerConfigRef:
-    name: tenant
   forProvider:
     bucketName: demo-cp-minio-bucket
     context: tenant
@@ -13,8 +11,8 @@ spec:
     region: us-east-2
     storageProvider: minio
     s3:
-    - accessKey: demo
+    - accessKey: "FILL ME IN"
       credentialType: secret
       s3ForcePathStyle: true
-      s3Url: https://minio.example.com
-      secretKey: demo
+      s3Url: "FILL ME IN"
+      secretKey: "FILL ME IN"

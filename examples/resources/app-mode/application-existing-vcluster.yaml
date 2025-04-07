@@ -3,14 +3,12 @@ kind: Application
 metadata:
   name: demo-cp-application-02
 spec:
-  providerConfigRef:
-    name: default
   forProvider:
-    applicationProfileUid: 67f2a6182bf7ea376554be9d
+    applicationProfileUid: "FILL ME IN"
     config:
-    - clusterGroupUid: 67ed902875815d89fc96802a
+    - clusterGroupUid: "FILL ME IN"
       clusterContext: project
-      clusterUid: 67f2a65675815e6eec378f7e
+      clusterUid: "FILL ME IN"
       limits:
       - cpu: 4
         memory: 8192

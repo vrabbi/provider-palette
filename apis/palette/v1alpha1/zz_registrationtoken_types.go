@@ -29,7 +29,16 @@ type RegistrationTokenInitParameters struct {
 
 	// (String) The unique identifier of the project associated with the registration token.
 	// The unique identifier of the project associated with the registration token.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.Project
 	ProjectUID *string `json:"projectUid,omitempty" tf:"project_uid,omitempty"`
+
+	// Reference to a Project in palette to populate projectUid.
+	// +kubebuilder:validation:Optional
+	ProjectUIDRef *v1.Reference `json:"projectUidRef,omitempty" tf:"-"`
+
+	// Selector for a Project in palette to populate projectUid.
+	// +kubebuilder:validation:Optional
+	ProjectUIDSelector *v1.Selector `json:"projectUidSelector,omitempty" tf:"-"`
 
 	// (String) The status of the registration token. Allowed values are active or inactive. Default is active.
 	// The status of the registration token. Allowed values are `active` or `inactive`. Default is `active`.
@@ -84,8 +93,17 @@ type RegistrationTokenParameters struct {
 
 	// (String) The unique identifier of the project associated with the registration token.
 	// The unique identifier of the project associated with the registration token.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.Project
 	// +kubebuilder:validation:Optional
 	ProjectUID *string `json:"projectUid,omitempty" tf:"project_uid,omitempty"`
+
+	// Reference to a Project in palette to populate projectUid.
+	// +kubebuilder:validation:Optional
+	ProjectUIDRef *v1.Reference `json:"projectUidRef,omitempty" tf:"-"`
+
+	// Selector for a Project in palette to populate projectUid.
+	// +kubebuilder:validation:Optional
+	ProjectUIDSelector *v1.Selector `json:"projectUidSelector,omitempty" tf:"-"`
 
 	// (String) The status of the registration token. Allowed values are active or inactive. Default is active.
 	// The status of the registration token. Allowed values are `active` or `inactive`. Default is `active`.

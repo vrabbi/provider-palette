@@ -3,19 +3,17 @@ kind: AWSCluster
 metadata:
   name: demo-cp-aws-01
 spec:
-  providerConfigRef:
-    name: scott-saas-eks
   forProvider:
     context: project
-    cloudAccountId: "6702714706174ed9652a6ec7"
+    cloudAccountId: "FILL ME IN"
     cloudConfig:
-    - region: us-east-1
-      sshKeyName: spectro
+    - region: "FILL ME IN"
+      sshKeyName: "FILL ME IN"
     clusterProfile:
-    - id: "67f26cfeb14a1b99fab4d20d"
+    - id: "FILL ME IN"
     machinePool:
     - additionalLabels:
-        owner: scott
+        owner: crossplane
       controlPlane: true
       controlPlaneAsWorker: false
       count: 1
@@ -23,10 +21,10 @@ spec:
       instanceType: m5.xlarge
       name: cp-pool
     - additionalLabels:
-        owner: scott
+        owner: crossplane
       count: 2
       instanceType: m5.xlarge
       name: worker-basic
     name: demo-cp-aws-01
     tags:
-    - owner:scott
+    - owner:crossplane

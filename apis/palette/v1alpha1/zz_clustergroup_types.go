@@ -17,7 +17,16 @@ type ClusterGroupClusterProfileInitParameters struct {
 
 	// (String) The ID of this resource.
 	// The ID of the cluster profile.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.ClusterProfile
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a ClusterProfile in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v1.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a ClusterProfile in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v1.Selector `json:"idSelector,omitempty" tf:"-"`
 
 	// (Block List) For packs of type spectro, helm, and manifest, at least one pack must be specified. (see below for nested schema)
 	// For packs of type `spectro`, `helm`, and `manifest`, at least one pack must be specified.
@@ -56,7 +65,16 @@ type ClusterGroupClusterProfilePackInitParameters struct {
 
 	// (String) The registry UID of the pack. The registry UID is the unique identifier of the registry. This attribute is required if there is more than one registry that contains a pack with the same name.
 	// The registry UID of the pack. The registry UID is the unique identifier of the registry. This attribute is required if there is more than one registry that contains a pack with the same name.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.OCIRegistry
 	RegistryUID *string `json:"registryUid,omitempty" tf:"registry_uid,omitempty"`
+
+	// Reference to a OCIRegistry in palette to populate registryUid.
+	// +kubebuilder:validation:Optional
+	RegistryUIDRef *v1.Reference `json:"registryUidRef,omitempty" tf:"-"`
+
+	// Selector for a OCIRegistry in palette to populate registryUid.
+	// +kubebuilder:validation:Optional
+	RegistryUIDSelector *v1.Selector `json:"registryUidSelector,omitempty" tf:"-"`
 
 	// (String) The tag of the pack. The tag is the version of the pack. This attribute is required if the pack type is spectro or helm.
 	// The tag of the pack. The tag is the version of the pack. This attribute is required if the pack type is `spectro` or `helm`.
@@ -156,8 +174,17 @@ type ClusterGroupClusterProfilePackParameters struct {
 
 	// (String) The registry UID of the pack. The registry UID is the unique identifier of the registry. This attribute is required if there is more than one registry that contains a pack with the same name.
 	// The registry UID of the pack. The registry UID is the unique identifier of the registry. This attribute is required if there is more than one registry that contains a pack with the same name.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.OCIRegistry
 	// +kubebuilder:validation:Optional
 	RegistryUID *string `json:"registryUid,omitempty" tf:"registry_uid,omitempty"`
+
+	// Reference to a OCIRegistry in palette to populate registryUid.
+	// +kubebuilder:validation:Optional
+	RegistryUIDRef *v1.Reference `json:"registryUidRef,omitempty" tf:"-"`
+
+	// Selector for a OCIRegistry in palette to populate registryUid.
+	// +kubebuilder:validation:Optional
+	RegistryUIDSelector *v1.Selector `json:"registryUidSelector,omitempty" tf:"-"`
 
 	// (String) The tag of the pack. The tag is the version of the pack. This attribute is required if the pack type is spectro or helm.
 	// The tag of the pack. The tag is the version of the pack. This attribute is required if the pack type is `spectro` or `helm`.
@@ -184,8 +211,17 @@ type ClusterGroupClusterProfileParameters struct {
 
 	// (String) The ID of this resource.
 	// The ID of the cluster profile.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.ClusterProfile
 	// +kubebuilder:validation:Optional
-	ID *string `json:"id" tf:"id,omitempty"`
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a ClusterProfile in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v1.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a ClusterProfile in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v1.Selector `json:"idSelector,omitempty" tf:"-"`
 
 	// (Block List) For packs of type spectro, helm, and manifest, at least one pack must be specified. (see below for nested schema)
 	// For packs of type `spectro`, `helm`, and `manifest`, at least one pack must be specified.

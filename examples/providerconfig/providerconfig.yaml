@@ -1,59 +1,11 @@
 apiVersion: palette.crossplane.io/v1beta1
 kind: ProviderConfig
 metadata:
-  name: tenant
-spec:
-  credentials:
-    source: Secret
-    secretRef:
-      name: spectrocloud-tenant-creds
-      namespace: crossplane-system
-      key: credentials
----
-apiVersion: palette.crossplane.io/v1beta1
-kind: ProviderConfig
-metadata:
   name: default
 spec:
   credentials:
     source: Secret
     secretRef:
       name: spectrocloud-default-creds
-      namespace: crossplane-system
-      key: credentials
----
-apiVersion: palette.crossplane.io/v1beta1
-kind: ProviderConfig
-metadata:
-  name: saas-tenant
-spec:
-  credentials:
-    source: Secret
-    secretRef:
-      name: spectrocloud-saas-tenant-creds
-      namespace: crossplane-system
-      key: credentials
----
-apiVersion: palette.crossplane.io/v1beta1
-kind: ProviderConfig
-metadata:
-  name: scott-saas
-spec:
-  credentials:
-    source: Secret
-    secretRef:
-      name: spectrocloud-scott-saas-creds
-      namespace: crossplane-system
-      key: credentials
----
-apiVersion: palette.crossplane.io/v1beta1
-kind: ProviderConfig
-metadata:
-  name: scott-saas-eks
-spec:
-  credentials:
-    source: Secret
-    secretRef:
-      name: spectrocloud-scott-saas-eks-creds
       namespace: crossplane-system
       key: credentials

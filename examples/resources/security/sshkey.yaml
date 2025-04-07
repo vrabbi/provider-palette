@@ -12,8 +12,6 @@ kind: SSHKey
 metadata:
   name: demo-cp-ssh-key
 spec:
-  providerConfigRef:
-    name: demo-cp
   forProvider:
     context: project
     name: ssh-dev-1

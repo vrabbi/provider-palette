@@ -3,8 +3,6 @@ kind: Workspace
 metadata:
   name: demo-cp-workspace-01
 spec:
-  providerConfigRef:
-    name: default
   forProvider:
     clusterRbacBinding:
     - role:
@@ -33,7 +31,7 @@ spec:
         type: ServiceAccount
       type: RoleBinding
     clusters:
-    - uid: 67ed87f8dae1538cca143429
+    - uid: "FILL ME IN"
     name: demo-cp-workspace-01
     namespaces:
     - name: demo-cp-namespace

@@ -3,8 +3,6 @@ kind: ResourceLimit
 metadata:
   name: demo-cp-resource-limit
 spec:
-  providerConfigRef:
-    name: tenant
   forProvider:
     alert: 101
     apiKeys: 201

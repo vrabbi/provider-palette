@@ -86,7 +86,16 @@ type VirtualClusterBackupPolicyInitParameters struct {
 
 	// (String) The ID of the backup location to use for the backup.
 	// The ID of the backup location to use for the backup.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.BackupStorageLocation
 	BackupLocationID *string `json:"backupLocationId,omitempty" tf:"backup_location_id,omitempty"`
+
+	// Reference to a BackupStorageLocation in palette to populate backupLocationId.
+	// +kubebuilder:validation:Optional
+	BackupLocationIDRef *v1.Reference `json:"backupLocationIdRef,omitempty" tf:"-"`
+
+	// Selector for a BackupStorageLocation in palette to populate backupLocationId.
+	// +kubebuilder:validation:Optional
+	BackupLocationIDSelector *v1.Selector `json:"backupLocationIdSelector,omitempty" tf:"-"`
 
 	// (Set of String) The list of cluster UIDs to include in the backup. If include_all_clusters is set to true, then all clusters will be included.
 	// The list of cluster UIDs to include in the backup. If `include_all_clusters` is set to `true`, then all clusters will be included.
@@ -176,8 +185,17 @@ type VirtualClusterBackupPolicyParameters struct {
 
 	// (String) The ID of the backup location to use for the backup.
 	// The ID of the backup location to use for the backup.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.BackupStorageLocation
 	// +kubebuilder:validation:Optional
-	BackupLocationID *string `json:"backupLocationId" tf:"backup_location_id,omitempty"`
+	BackupLocationID *string `json:"backupLocationId,omitempty" tf:"backup_location_id,omitempty"`
+
+	// Reference to a BackupStorageLocation in palette to populate backupLocationId.
+	// +kubebuilder:validation:Optional
+	BackupLocationIDRef *v1.Reference `json:"backupLocationIdRef,omitempty" tf:"-"`
+
+	// Selector for a BackupStorageLocation in palette to populate backupLocationId.
+	// +kubebuilder:validation:Optional
+	BackupLocationIDSelector *v1.Selector `json:"backupLocationIdSelector,omitempty" tf:"-"`
 
 	// (Set of String) The list of cluster UIDs to include in the backup. If include_all_clusters is set to true, then all clusters will be included.
 	// The list of cluster UIDs to include in the backup. If `include_all_clusters` is set to `true`, then all clusters will be included.
@@ -290,7 +308,16 @@ type VirtualClusterClusterProfileInitParameters struct {
 
 	// (String) The ID of this resource.
 	// The ID of the cluster profile.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.ClusterProfile
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a ClusterProfile in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v1.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a ClusterProfile in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v1.Selector `json:"idSelector,omitempty" tf:"-"`
 
 	// (Block List) For packs of type spectro, helm, and manifest, at least one pack must be specified. (see below for nested schema)
 	// For packs of type `spectro`, `helm`, and `manifest`, at least one pack must be specified.
@@ -329,7 +356,16 @@ type VirtualClusterClusterProfilePackInitParameters struct {
 
 	// (String) The registry UID of the pack. The registry UID is the unique identifier of the registry. This attribute is required if there is more than one registry that contains a pack with the same name.
 	// The registry UID of the pack. The registry UID is the unique identifier of the registry. This attribute is required if there is more than one registry that contains a pack with the same name.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.OCIRegistry
 	RegistryUID *string `json:"registryUid,omitempty" tf:"registry_uid,omitempty"`
+
+	// Reference to a OCIRegistry in palette to populate registryUid.
+	// +kubebuilder:validation:Optional
+	RegistryUIDRef *v1.Reference `json:"registryUidRef,omitempty" tf:"-"`
+
+	// Selector for a OCIRegistry in palette to populate registryUid.
+	// +kubebuilder:validation:Optional
+	RegistryUIDSelector *v1.Selector `json:"registryUidSelector,omitempty" tf:"-"`
 
 	// (String) The tag of the pack. The tag is the version of the pack. This attribute is required if the pack type is spectro or helm.
 	// The tag of the pack. The tag is the version of the pack. This attribute is required if the pack type is `spectro` or `helm`.
@@ -429,8 +465,17 @@ type VirtualClusterClusterProfilePackParameters struct {
 
 	// (String) The registry UID of the pack. The registry UID is the unique identifier of the registry. This attribute is required if there is more than one registry that contains a pack with the same name.
 	// The registry UID of the pack. The registry UID is the unique identifier of the registry. This attribute is required if there is more than one registry that contains a pack with the same name.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.OCIRegistry
 	// +kubebuilder:validation:Optional
 	RegistryUID *string `json:"registryUid,omitempty" tf:"registry_uid,omitempty"`
+
+	// Reference to a OCIRegistry in palette to populate registryUid.
+	// +kubebuilder:validation:Optional
+	RegistryUIDRef *v1.Reference `json:"registryUidRef,omitempty" tf:"-"`
+
+	// Selector for a OCIRegistry in palette to populate registryUid.
+	// +kubebuilder:validation:Optional
+	RegistryUIDSelector *v1.Selector `json:"registryUidSelector,omitempty" tf:"-"`
 
 	// (String) The tag of the pack. The tag is the version of the pack. This attribute is required if the pack type is spectro or helm.
 	// The tag of the pack. The tag is the version of the pack. This attribute is required if the pack type is `spectro` or `helm`.
@@ -457,8 +502,17 @@ type VirtualClusterClusterProfileParameters struct {
 
 	// (String) The ID of this resource.
 	// The ID of the cluster profile.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.ClusterProfile
 	// +kubebuilder:validation:Optional
-	ID *string `json:"id" tf:"id,omitempty"`
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a ClusterProfile in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v1.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a ClusterProfile in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v1.Selector `json:"idSelector,omitempty" tf:"-"`
 
 	// (Block List) For packs of type spectro, helm, and manifest, at least one pack must be specified. (see below for nested schema)
 	// For packs of type `spectro`, `helm`, and `manifest`, at least one pack must be specified.
@@ -595,7 +649,16 @@ type VirtualClusterInitParameters struct {
 	CloudConfig []VirtualClusterCloudConfigInitParameters `json:"cloudConfig,omitempty" tf:"cloud_config,omitempty"`
 
 	// (String)
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.ClusterGroup
 	ClusterGroupUID *string `json:"clusterGroupUid,omitempty" tf:"cluster_group_uid,omitempty"`
+
+	// Reference to a ClusterGroup in palette to populate clusterGroupUid.
+	// +kubebuilder:validation:Optional
+	ClusterGroupUIDRef *v1.Reference `json:"clusterGroupUidRef,omitempty" tf:"-"`
+
+	// Selector for a ClusterGroup in palette to populate clusterGroupUid.
+	// +kubebuilder:validation:Optional
+	ClusterGroupUIDSelector *v1.Selector `json:"clusterGroupUidSelector,omitempty" tf:"-"`
 
 	// (Block List) (see below for nested schema)
 	ClusterProfile []VirtualClusterClusterProfileInitParameters `json:"clusterProfile,omitempty" tf:"cluster_profile,omitempty"`
@@ -859,8 +922,17 @@ type VirtualClusterParameters struct {
 	CloudConfig []VirtualClusterCloudConfigParameters `json:"cloudConfig,omitempty" tf:"cloud_config,omitempty"`
 
 	// (String)
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.ClusterGroup
 	// +kubebuilder:validation:Optional
 	ClusterGroupUID *string `json:"clusterGroupUid,omitempty" tf:"cluster_group_uid,omitempty"`
+
+	// Reference to a ClusterGroup in palette to populate clusterGroupUid.
+	// +kubebuilder:validation:Optional
+	ClusterGroupUIDRef *v1.Reference `json:"clusterGroupUidRef,omitempty" tf:"-"`
+
+	// Selector for a ClusterGroup in palette to populate clusterGroupUid.
+	// +kubebuilder:validation:Optional
+	ClusterGroupUIDSelector *v1.Selector `json:"clusterGroupUidSelector,omitempty" tf:"-"`
 
 	// (Block List) (see below for nested schema)
 	// +kubebuilder:validation:Optional

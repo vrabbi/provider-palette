@@ -3,16 +3,14 @@ kind: EKSCluster
 metadata:
   name: demo-cp-eks-cls-01
 spec:
-  providerConfigRef:
-    name: tenant
   forProvider:
-    cloudAccountId: 67c6da6092b1f66a5a16b2c0
+    cloudAccountId: "FILL ME IN"
     context: tenant
     cloudConfig:
-    - region: us-east-1
-      sshKeyName: spectro
+    - region: "FILL ME IN"
+      sshKeyName: "FILL ME IN"
     clusterProfile:
-    - id: 67c6dc3430141f37ada01b9c
+    - id: "FILL ME IN"
     machinePool:
     - count: 3
       diskSizeGb: 60

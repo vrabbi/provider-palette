@@ -3,8 +3,6 @@ kind: AWSCloudAccount
 metadata:
   name: demo-cp-aws-01
 spec:
-  providerConfigRef:
-    name: tenant
   forProvider:
     context: tenant
     awsAccessKey: "FILL ME IN"

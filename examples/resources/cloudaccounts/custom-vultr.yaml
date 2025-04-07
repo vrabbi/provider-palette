@@ -12,8 +12,6 @@ kind: CustomCloudAccount
 metadata:
   name: demo-cp-vultr
 spec:
-  providerConfigRef:
-    name: tenant
   forProvider:
     cloud: vultr
     context: tenant
@@ -21,7 +19,7 @@ spec:
       name: demo-cp-vultr-creds
       namespace: crossplane-system
     name: demo-cp-vultr
-    privateCloudGatewayId: "67d6c9822bf7e75b9eb0309c"
+    privateCloudGatewayId: "FILL ME IN"
   initProvider:
     credentialsSecretRef:
       name: demo-cp-vultr-creds

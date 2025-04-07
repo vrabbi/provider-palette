@@ -3,8 +3,6 @@ kind: ClusterProfile
 metadata:
   name: demo-cp-adons
 spec:
-  providerConfigRef:
-    name: tenant
   forProvider:
     cloud: all
     description: A basic add-on profile for all clouds

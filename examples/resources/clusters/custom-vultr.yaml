@@ -6,7 +6,7 @@ spec:
   forProvider:
     applySetting: DownloadAndInstall
     cloud: vultr
-    cloudAccountId: 67f2861475815e6921060929
+    cloudAccountId: "FILL ME IN"
     cloudConfig:
     - values: |
         apiVersion: v1
@@ -14,7 +14,7 @@ spec:
         metadata:
           name: capvultr-manager-credentials
         stringData:
-          apiKey: 1234567890
+          apiKey: "FILL ME IN"
         type: Opaque
         ---
         apiVersion: cluster.x-k8s.io/v1beta1
@@ -76,9 +76,9 @@ spec:
         metadata:
           name: "demo-cp-vultr-01"
         spec:
-          region: "fra"
+          region: "FILL ME IN"
     clusterProfile:
-    - id: 
+    - id: "FILL ME IN"
     context: tenant
     description: A Vultr cluster with k8 infra profile test
     machinePool:
@@ -126,12 +126,12 @@ spec:
         spec:
           template:
             spec:
-              region: "fra"
-              planID: "vc2-4c-8gb"
-              vpc_id: "755ef6ae-e14f-4d02-8bbc-c836fabd02a4"
-              snapshot_id: "95fbe447-cced-4f02-a3a0-dc12fd56a77d"
+              region: "FILL ME IN"
+              planID: "FILL ME IN"
+              vpc_id: "FILL ME IN"
+              snapshot_id: "FILL ME IN"
               sshKey:
-                - "8011df2e-4ae4-4aab-8059-90d9f2e0a36a"
+                - "FILL ME IN"
     - controlPlane: false
       controlPlaneAsWorker: false
       nodePoolConfig: |
@@ -165,12 +165,12 @@ spec:
         spec:
           template:
             spec:
-              region: "fra"
-              planID: "vc2-4c-8gb"
-              vpc_id: "755ef6ae-e14f-4d02-8bbc-c836fabd02a4"
-              snapshot_id: "95fbe447-cced-4f02-a3a0-dc12fd56a77d"
+              region: "FILL ME IN"
+              planID: "FILL ME IN"
+              vpc_id: "FILL ME IN"
+              snapshot_id: "FILL ME IN"
               sshKey:
-                - "8011df2e-4ae4-4aab-8059-90d9f2e0a36a"
+                - "FILL ME IN"
         ---
         apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
         kind: KubeadmConfigTemplate
@@ -189,6 +189,4 @@ spec:
                     eviction-hard: nodefs.available<0%,nodefs.inodesFree<0%,imagefs.available<0%
     name: demo-cp-vultr-01
     tags:
-    - environment:dev
-    - department:crossplane
-    - owner:admin
+    - owner:crossplane

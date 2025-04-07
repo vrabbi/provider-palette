@@ -23,5 +23,3 @@ spec:
           }
     tags:
       - scenario-1
-  providerConfigRef:
-    name: default

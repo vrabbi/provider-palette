@@ -3,8 +3,6 @@ kind: GCPCloudAccount
 metadata:
   name: demo-cp-gcp-cloudaccount-01
 spec:
-  providerConfigRef:
-    name: tenant
   forProvider:
     context: tenant
     gcpJsonCredentials: |

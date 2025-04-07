@@ -3,20 +3,19 @@ kind: AzureCluster
 metadata:
   name: demo-cp-azure-01
 spec:
-  providerConfigRef:
-    name: saas-tenant
   forProvider:
-    cloudAccountId: "6776b93f84c2a19d2c9bf4c2"
+    cloudAccountId: "FILL ME IN"
+    context: tenant
     cloudConfig:
-    - region: eastus
-      resourceGroup: scott-spectro
-      sshKey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDMbprNuzofXBf7L41MPcVMrEb0xQgw9AaSDBvRowrHr/BNCTEm05v0CnTEmEnEP8WgG963SoiIIFQ2EsHC+Tyt4oROTMPDMe7L8KmhzfDqvneUVj8ax86FdT0sVPdl+s/pWAmAa6SB8m8BFJZBpTpw1MXQH+cfwZJoOk5QGcj0Xi8vDQJucngDKwvKhCQ7sWdLTFgohmpJS7GFOe0ea4/78aEsb1Ulj4MfET2t8LkZBngHDad8jkyok8tXg5zsIptqt9kqQDcl48u1MOw5CUfnaK6TN0dOT2km46IWPWaPQCRmMoLVwcNkOzOlS7Bb0n8wfdTtx13BFuVt9a0LYaysT//6lVOlotNTOOKASGazGzM+zLPlIOTrG7OHw8StsG65LHZbp2r3kmi2IgImHuuhd4lCyeTlWR2ik+2SWmNM06jwYijjPoDijuDj7m+5OSW0SrllJHVWyp4Qe9/zBXEMSiRytd2PI6F/qy2MOfeKupvt1hwKdQmOJA/s314aESs= vrabbi@DESKTOP-OLSRC3G"
-      subscriptionId: "5d70695f-e89b-49af-a96a-71cfbef69887"
+    - region: "FILL ME IN"
+      resourceGroup: "FILL ME IN"
+      sshKey: "FILL ME IN"
+      subscriptionId: "FILL ME IN"
     clusterProfile:
-    - id: "67f26dd1b2cc84c94a4be5c5"
+    - id: "FILL ME IN"
     machinePool:
     - controlPlane: true
-      controlPlaneAsWorker: false
+      controlPlaneAsWorker: true
       count: 1
       disk:
       - sizeGb: 65
@@ -28,4 +27,4 @@ spec:
       name: worker-basic
     name: demo-cp-azure-01
     tags:
-    - owner:scott
+    - owner:crossplane

@@ -3,8 +3,6 @@ kind: VSphereCloudAccount
 metadata:
   name: demo-cp-vsphere-cloudaccount
 spec:
-  providerConfigRef:
-    name: saas-tenant
   forProvider:
     context: tenant
     name: demo-cp-vsphere

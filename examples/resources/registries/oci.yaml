@@ -3,8 +3,6 @@ kind: OCIRegistry
 metadata:
   name: demo-cp-bitnami-oci-registry
 spec:
-  providerConfigRef:
-    name: tenant
   forProvider:
     credentials:
     - credentialType: basic

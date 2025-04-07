@@ -3,8 +3,6 @@ kind: Role
 metadata:
   name: demo-cp-custom-role
 spec:
-  providerConfigRef:
-    name: tenant
   forProvider:
     name: demo-cp-custom-role
     permissions:

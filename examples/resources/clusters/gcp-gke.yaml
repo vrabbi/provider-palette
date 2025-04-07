@@ -5,17 +5,18 @@ metadata:
 spec:
   forProvider:
     name: demo-cp-gke-01
-    cloudAccountId: 6702714706174ed9652a6ec7
+    cloudAccountId: "FILL ME IN"
     context: project
     osPatchOnBoot: false
     pauseAgentUpgrades: lock
     skipCompletion: false
-    tags: []
+    tags:
+    - owner:crossplane
     cloudConfig:
-      - project: skywiz-sandbox
-        region: us-east1
+      - project: "FILL ME IN"
+        region: "FILL ME IN"
     clusterProfile:
-      - id: 67f26a70b2cc84b2a3fd08c5
+      - id: "FILL ME IN"
         variables: {}
     machinePool:
       - name: basic-workers
@@ -24,5 +25,3 @@ spec:
         instanceType: c2d-standard-4
         updateStrategy: RollingUpdateScaleOut
         additionalLabels: {}
-  providerConfigRef:
-    name: saas-scott-eks

@@ -3,8 +3,6 @@ kind: Filter
 metadata:
   name: demo-cp-filter
 spec:
-  providerConfigRef:
-    name: tenant
   forProvider:
     metadata:
     - name: resourcefilter2

@@ -17,12 +17,30 @@ type ProjectRoleMappingInitParameters struct {
 
 	// (String) The ID of this resource.
 	// Project id to be associated with the team.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.Project
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a Project in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v1.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a Project in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v1.Selector `json:"idSelector,omitempty" tf:"-"`
 
 	// (Set of String) List of project roles to be associated with the team.
 	// List of project roles to be associated with the team.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.Role
 	// +listType=set
 	Roles []*string `json:"roles,omitempty" tf:"roles,omitempty"`
+
+	// References to Role in palette to populate roles.
+	// +kubebuilder:validation:Optional
+	RolesRefs []v1.Reference `json:"rolesRefs,omitempty" tf:"-"`
+
+	// Selector for a list of Role in palette to populate roles.
+	// +kubebuilder:validation:Optional
+	RolesSelector *v1.Selector `json:"rolesSelector,omitempty" tf:"-"`
 }
 
 type ProjectRoleMappingObservation struct {
@@ -41,14 +59,32 @@ type ProjectRoleMappingParameters struct {
 
 	// (String) The ID of this resource.
 	// Project id to be associated with the team.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.Project
 	// +kubebuilder:validation:Optional
-	ID *string `json:"id" tf:"id,omitempty"`
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a Project in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v1.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a Project in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v1.Selector `json:"idSelector,omitempty" tf:"-"`
 
 	// (Set of String) List of project roles to be associated with the team.
 	// List of project roles to be associated with the team.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.Role
 	// +kubebuilder:validation:Optional
 	// +listType=set
-	Roles []*string `json:"roles" tf:"roles,omitempty"`
+	Roles []*string `json:"roles,omitempty" tf:"roles,omitempty"`
+
+	// References to Role in palette to populate roles.
+	// +kubebuilder:validation:Optional
+	RolesRefs []v1.Reference `json:"rolesRefs,omitempty" tf:"-"`
+
+	// Selector for a list of Role in palette to populate roles.
+	// +kubebuilder:validation:Optional
+	RolesSelector *v1.Selector `json:"rolesSelector,omitempty" tf:"-"`
 }
 
 type TeamInitParameters struct {
@@ -63,13 +99,31 @@ type TeamInitParameters struct {
 
 	// (Set of String) List of tenant role ids to be associated with the team.
 	// List of tenant role ids to be associated with the team.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.Role
 	// +listType=set
 	TenantRoleMapping []*string `json:"tenantRoleMapping,omitempty" tf:"tenant_role_mapping,omitempty"`
 
+	// References to Role in palette to populate tenantRoleMapping.
+	// +kubebuilder:validation:Optional
+	TenantRoleMappingRefs []v1.Reference `json:"tenantRoleMappingRefs,omitempty" tf:"-"`
+
+	// Selector for a list of Role in palette to populate tenantRoleMapping.
+	// +kubebuilder:validation:Optional
+	TenantRoleMappingSelector *v1.Selector `json:"tenantRoleMappingSelector,omitempty" tf:"-"`
+
 	// (Set of String) List of user ids to be associated with the team.
 	// List of user ids to be associated with the team.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.User
 	// +listType=set
 	Users []*string `json:"users,omitempty" tf:"users,omitempty"`
+
+	// References to User in palette to populate users.
+	// +kubebuilder:validation:Optional
+	UsersRefs []v1.Reference `json:"usersRefs,omitempty" tf:"-"`
+
+	// Selector for a list of User in palette to populate users.
+	// +kubebuilder:validation:Optional
+	UsersSelector *v1.Selector `json:"usersSelector,omitempty" tf:"-"`
 
 	// (Block Set) List of workspace roles to be associated with the team. (see below for nested schema)
 	// List of workspace roles to be associated with the team.
@@ -118,15 +172,33 @@ type TeamParameters struct {
 
 	// (Set of String) List of tenant role ids to be associated with the team.
 	// List of tenant role ids to be associated with the team.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.Role
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	TenantRoleMapping []*string `json:"tenantRoleMapping,omitempty" tf:"tenant_role_mapping,omitempty"`
 
+	// References to Role in palette to populate tenantRoleMapping.
+	// +kubebuilder:validation:Optional
+	TenantRoleMappingRefs []v1.Reference `json:"tenantRoleMappingRefs,omitempty" tf:"-"`
+
+	// Selector for a list of Role in palette to populate tenantRoleMapping.
+	// +kubebuilder:validation:Optional
+	TenantRoleMappingSelector *v1.Selector `json:"tenantRoleMappingSelector,omitempty" tf:"-"`
+
 	// (Set of String) List of user ids to be associated with the team.
 	// List of user ids to be associated with the team.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.User
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Users []*string `json:"users,omitempty" tf:"users,omitempty"`
+
+	// References to User in palette to populate users.
+	// +kubebuilder:validation:Optional
+	UsersRefs []v1.Reference `json:"usersRefs,omitempty" tf:"-"`
+
+	// Selector for a list of User in palette to populate users.
+	// +kubebuilder:validation:Optional
+	UsersSelector *v1.Selector `json:"usersSelector,omitempty" tf:"-"`
 
 	// (Block Set) List of workspace roles to be associated with the team. (see below for nested schema)
 	// List of workspace roles to be associated with the team.
@@ -138,12 +210,30 @@ type WorkspaceInitParameters struct {
 
 	// (String) The ID of this resource.
 	// Workspace id to be associated with the team.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.Workspace
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a Workspace in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v1.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a Workspace in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v1.Selector `json:"idSelector,omitempty" tf:"-"`
 
 	// (Set of String) List of project roles to be associated with the team.
 	// List of workspace roles to be associated with the team.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.Role
 	// +listType=set
 	Roles []*string `json:"roles,omitempty" tf:"roles,omitempty"`
+
+	// References to Role in palette to populate roles.
+	// +kubebuilder:validation:Optional
+	RolesRefs []v1.Reference `json:"rolesRefs,omitempty" tf:"-"`
+
+	// Selector for a list of Role in palette to populate roles.
+	// +kubebuilder:validation:Optional
+	RolesSelector *v1.Selector `json:"rolesSelector,omitempty" tf:"-"`
 }
 
 type WorkspaceObservation struct {
@@ -162,21 +252,48 @@ type WorkspaceParameters struct {
 
 	// (String) The ID of this resource.
 	// Workspace id to be associated with the team.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.Workspace
 	// +kubebuilder:validation:Optional
-	ID *string `json:"id" tf:"id,omitempty"`
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a Workspace in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v1.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a Workspace in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v1.Selector `json:"idSelector,omitempty" tf:"-"`
 
 	// (Set of String) List of project roles to be associated with the team.
 	// List of workspace roles to be associated with the team.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.Role
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Roles []*string `json:"roles,omitempty" tf:"roles,omitempty"`
+
+	// References to Role in palette to populate roles.
+	// +kubebuilder:validation:Optional
+	RolesRefs []v1.Reference `json:"rolesRefs,omitempty" tf:"-"`
+
+	// Selector for a list of Role in palette to populate roles.
+	// +kubebuilder:validation:Optional
+	RolesSelector *v1.Selector `json:"rolesSelector,omitempty" tf:"-"`
 }
 
 type WorkspaceRoleMappingInitParameters struct {
 
 	// (String) The ID of this resource.
 	// Project id to be associated with the team.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.Project
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a Project in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v1.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a Project in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v1.Selector `json:"idSelector,omitempty" tf:"-"`
 
 	// (Block Set) List of workspace roles to be associated with the team. (see below for nested schema)
 	// List of workspace roles to be associated with the team.
@@ -198,8 +315,17 @@ type WorkspaceRoleMappingParameters struct {
 
 	// (String) The ID of this resource.
 	// Project id to be associated with the team.
+	// +crossplane:generate:reference:type=github.com/vrabbi/provider-palette/apis/palette/v1alpha1.Project
 	// +kubebuilder:validation:Optional
-	ID *string `json:"id" tf:"id,omitempty"`
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a Project in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v1.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a Project in palette to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v1.Selector `json:"idSelector,omitempty" tf:"-"`
 
 	// (Block Set) List of workspace roles to be associated with the team. (see below for nested schema)
 	// List of workspace roles to be associated with the team.

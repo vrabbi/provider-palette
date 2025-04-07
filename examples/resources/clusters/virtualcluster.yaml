@@ -3,10 +3,8 @@ kind: VirtualCluster
 metadata:
   name: demo-cp-vcluster-01
 spec:
-  providerConfigRef:
-    name: default
   forProvider:
-    clusterGroupUid: 67ed902875815d89fc96802a
+    clusterGroupUid: "FILL ME IN"
     context: project
     name: demo-cp-vcluster-01
     resources:
